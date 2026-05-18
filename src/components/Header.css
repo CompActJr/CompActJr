@@ -53,6 +53,28 @@
     @apply w-6 h-0.5 bg-branco transition-all;
 }
 
+.header-extra-icons {
+    @apply flex items-center gap-4;
+}
+
+.icon-btn {
+    @apply text-branco/50 hover:text-secundaria transition-colors cursor-pointer flex items-center justify-center p-1;
+}
+
+/* 💡 Adicionando um separador visual suave entre o botão de contato e os ícones */
+.border-l {
+    @apply border-branco/10 h-6 flex items-center;
+}
+
+.nav-link {
+    @apply font-principal text-[11px] uppercase tracking-[3px] text-branco whitespace-nowrap transition-all duration-300;
+}
+
+/* Otimização para o botão contato não quebrar */
+.btn-contato {
+    @apply font-titulo border border-secundaria text-secundaria px-5 py-2 text-[10px] font-bold tracking-[2px] whitespace-nowrap transition-all duration-300;
+}
+
 .burger-open .line-1 { @apply rotate-45 translate-y-2; }
 .burger-open .line-2 { @apply opacity-0; }
 .burger-open .line-3 { @apply -rotate-45 -translate-y-2; }
