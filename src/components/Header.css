@@ -1,0 +1,58 @@
+@reference "../app/globals.css";
+
+.header-container {
+    @apply fixed top-0 w-full z-50 transition-all duration-300 flex items-center;
+}
+
+.header-scroll-active {
+    @apply bg-preto/90 backdrop-blur-md py-3 shadow-2xl border-b border-branco/5;
+}
+
+.header-scroll-inactive {
+    @apply bg-transparent py-6;
+}
+
+.nav-link {
+    @apply font-principal text-[13px] uppercase tracking-[2px] text-branco whitespace-nowrap transition-all duration-300;
+}
+
+.nav-link:hover {
+    @apply text-secundaria;
+}
+
+.nav-link-muted {
+    @apply opacity-70 hover:opacity-100;
+}
+
+.logo-image-container {
+    @apply transition-transform duration-300 hover:scale-105;
+}
+
+/* Restante do CSS mantido... */
+.mobile-menu-overlay {
+    @apply fixed inset-0 bg-preto/95 z-[60] flex flex-col items-center justify-center gap-8 md:hidden transition-all duration-500;
+}
+
+.nav-link-mobile {
+    @apply text-lg tracking-[5px] font-titulo;
+}
+
+.btn-contato {
+    @apply font-titulo border border-secundaria text-secundaria px-6 py-2 text-[10px] font-bold tracking-[2px] whitespace-nowrap transition-all duration-300;
+}
+
+.btn-contato:hover {
+    @apply bg-secundaria text-branco shadow-lg shadow-secundaria/20;
+}
+
+.menu-burger {
+    @apply md:hidden flex flex-col gap-1.5 z-[70] cursor-pointer;
+}
+
+.burger-line {
+    @apply w-6 h-0.5 bg-branco transition-all;
+}
+
+.burger-open .line-1 { @apply rotate-45 translate-y-2; }
+.burger-open .line-2 { @apply opacity-0; }
+.burger-open .line-3 { @apply -rotate-45 -translate-y-2; }
