@@ -1,80 +1,86 @@
+/* IMPORTAÇÃO BASE DO TAILWIND V4
+   Isso permite que o arquivo CSS reconheça cores como 'bg-preto' e fontes como 'font-principal'
+   definidas globalmente no app/globals.css */
 @reference "../app/globals.css";
 
+/* CLASSES GERAIS DO HEADER */
 .header-container {
-    @apply fixed top-0 w-full z-50 transition-all duration-300 flex items-center;
+    /* fixed: Mantém o header colado no topo; z-50: Garante que fique acima de outros elementos */
+    @apply fixed top-0 w-full z-50 transition-all duration-300 flex items-center h-24;
 }
 
 .header-scroll-active {
-    @apply bg-preto/90 backdrop-blur-md py-3 shadow-2xl border-b border-branco/5;
+    /* Efeito "Glassmorphism": Fundo preto 90% opaco com desfoque traseiro (backdrop-blur) */
+    @apply bg-preto/90 backdrop-blur-md h-20 shadow-2xl border-b border-branco/5;
 }
 
 .header-scroll-inactive {
-    @apply bg-transparent py-6;
+    @apply bg-transparent;
 }
 
+/* TIPOGRAFIA E ESTILO DOS LINKS (DESKTOP) */
 .nav-link {
-    @apply font-principal text-[13px] uppercase tracking-[2px] text-branco whitespace-nowrap transition-all duration-300;
-}
-
-.nav-link:hover {
-    @apply text-secundaria;
+    /* shrink-0: É crucial para impedir que links sejam espremidos e quebrem o layout em telas menores */
+    @apply font-principal font-normal text-[11px] uppercase tracking-[3px] text-branco whitespace-nowrap transition-colors duration-300 shrink-0 hover:text-secundaria;
 }
 
 .nav-link-muted {
-    @apply opacity-70 hover:opacity-100;
+    /* Efeito de opacidade para links não-ativos */
+    @apply opacity-60 hover:opacity-100;
 }
 
-.logo-image-container {
-    @apply transition-transform duration-300 hover:scale-105;
-}
-
-/* Restante do CSS mantido... */
-.mobile-menu-overlay {
-    @apply fixed inset-0 bg-preto/95 z-[60] flex flex-col items-center justify-center gap-8 md:hidden transition-all duration-500;
-}
-
-.nav-link-mobile {
-    @apply text-lg tracking-[5px] font-titulo;
-}
-
+/* ESTILIZAÇÃO DO BOTÃO PRINCIPAL (CTA) */
 .btn-contato {
-    @apply font-titulo border border-secundaria text-secundaria px-6 py-2 text-[10px] font-bold tracking-[2px] whitespace-nowrap transition-all duration-300;
+    /* min-w-fit: Garante que o botão nunca seja menor que a palavra "CONTATO" */
+    @apply font-titulo border border-secundaria text-secundaria px-6 py-2 text-[10px] font-bold tracking-[2px] whitespace-nowrap shrink-0 transition-all duration-300 min-w-fit;
 }
 
 .btn-contato:hover {
     @apply bg-secundaria text-branco shadow-lg shadow-secundaria/20;
 }
 
-.menu-burger {
-    @apply md:hidden flex flex-col gap-1.5 z-[70] cursor-pointer;
+/* ANIMAÇÃO DA LOGO */
+.logo-img {
+    /* Efeito simples de "respiro" ao passar o mouse por cima */
+    @apply transition-transform duration-300 hover:scale-105 shrink-0;
 }
 
-.burger-line {
-    @apply w-6 h-0.5 bg-branco transition-all;
-}
-
+/* ÍCONES AUXILIARES (TEMA / LINGUAGEM) */
 .header-extra-icons {
-    @apply flex items-center gap-4;
+    @apply flex items-center gap-4 shrink-0;
 }
 
 .icon-btn {
-    @apply text-branco/50 hover:text-secundaria transition-colors cursor-pointer flex items-center justify-center p-1;
+    @apply text-branco/50 hover:text-secundaria transition-colors cursor-pointer flex items-center justify-center p-1 shrink-0;
 }
 
-/* 💡 Adicionando um separador visual suave entre o botão de contato e os ícones */
+/* Linha divisória sutil entre os links e o botão de contato */
 .border-l {
-    @apply border-branco/10 h-6 flex items-center;
+    @apply border-branco/10 h-6 flex items-center shrink-0;
 }
 
-.nav-link {
-    @apply font-principal text-[11px] uppercase tracking-[3px] text-branco whitespace-nowrap transition-all duration-300;
+/* LÓGICA DO MENU HAMBURGUER (MOBILE) */
+.menu-burger {
+    /* Espaçamento (gap) define a distância entre as 3 barrinhas brancas */
+    @apply flex flex-col gap-1.5 z-[70] cursor-pointer;
 }
 
-/* Otimização para o botão contato não quebrar */
-.btn-contato {
-    @apply font-titulo border border-secundaria text-secundaria px-5 py-2 text-[10px] font-bold tracking-[2px] whitespace-nowrap transition-all duration-300;
+.burger-line {
+    @apply w-6 h-0.5 bg-branco transition-all duration-300;
 }
 
+/* Transformação: Quando aberto, a linha 1 desce e gira, a 2 some, a 3 sobe e gira = X */
 .burger-open .line-1 { @apply rotate-45 translate-y-2; }
 .burger-open .line-2 { @apply opacity-0; }
 .burger-open .line-3 { @apply -rotate-45 -translate-y-2; }
+
+/* TELA DE FUNDO DO MENU MOBILE (OVERLAY) */
+.mobile-menu-overlay {
+    /* fixed inset-0: Faz a div ocupar 100% da tela (Top, Right, Bottom, Left = 0) */
+    @apply fixed inset-0 bg-preto/98 z-[60] flex flex-col items-center justify-center gap-8 transition-all duration-500 lg:hidden;
+}
+
+/* Links do menu de celular (Textos maiores para toque) */
+.nav-link-mobile {
+    @apply font-principal text-2xl uppercase tracking-[5px] text-branco hover:text-secundaria transition-colors;
+}
