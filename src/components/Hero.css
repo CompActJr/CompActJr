@@ -1,0 +1,61 @@
+/* IMPORTAÇÃO DO TAILWIND V4
+   Permite o uso da diretiva @apply integrada com as variáveis do globals.css */
+@reference "../app/globals.css";
+
+/* ESTRUTURA PRINCIPAL */
+.hero-section {
+    /* min-h-screen assegura que a seção ocupe pelo menos 100% da altura do monitor.
+       overflow-hidden é crítico aqui para evitar barras de rolagem indesejadas causadas
+       pelos efeitos de luz (glows) que extrapolam as bordas da tela. */
+    @apply relative w-full min-h-screen flex items-center pt-32 pb-20 overflow-hidden bg-preto;
+}
+
+/* LUZ ROXA DE FUNDO (ESQUERDA) */
+.hero-glow-purple {
+    /* pointer-events-none é uma regra essencial de UX/UI. Ela impede que esta div invisível
+       bloqueie os cliques do usuário nos links e botões que estão por baixo dela. */
+    @apply absolute top-[-10%] left-[-20%] w-[70vw] h-[70vw] md:w-[45vw] md:h-[45vw] rounded-full opacity-60 blur-[60px] md:blur-[80px] pointer-events-none;
+    background: radial-gradient(circle, var(--color-roxo) 0%, transparent 70%);
+}
+
+/* LUZ AZUL DE FUNDO (DIREITA) */
+.hero-glow-blue {
+    /* O posicionamento absoluto no canto inferior direito equilibra o peso visual do texto
+       que está alinhado à esquerda. */
+    @apply absolute bottom-[-20%] right-[-20%] w-[70vw] h-[70vw] md:w-[55vw] md:h-[55vw] rounded-full opacity-50 blur-[60px] md:blur-[80px] pointer-events-none;
+    background: radial-gradient(circle, var(--color-secundaria) 0%, transparent 70%);
+}
+
+/* CONTAINER DE CONTEÚDO */
+.hero-content {
+    /* A combinação de relative e z-10 empurra o texto estruturalmente para frente,
+       garantindo que fique sempre acima dos efeitos de luz do fundo. */
+    @apply container mx-auto px-6 max-w-7xl relative z-10;
+}
+
+/* TIPOGRAFIA DO TÍTULO PRINCIPAL (H1) */
+.hero-title {
+    /* O leading-[1.1] ajusta o espaçamento entre as linhas (line-height) para evitar
+       que o texto grande fique com muito espaço morto verticalmente. */
+    @apply font-titulo text-4xl md:text-5xl lg:text-5xl xl:text-5xl font-bold text-branco uppercase leading-[1.1] max-w-4xl tracking-tight;
+}
+
+/* TIPOGRAFIA DO SUBTÍTULO */
+.hero-subtitle {
+    /* A restrição max-w-2xl limita a largura da linha. Em UI/UX, linhas de texto muito longas
+       dificultam a leitura e quebram o fluxo de varredura visual. */
+    @apply font-principal text-base md:text-lg lg:text-xl text-branco/80 mt-6 max-w-2xl leading-relaxed;
+}
+
+/* BOTÃO DE CHAMADA PARA AÇÃO (CTA) */
+.hero-btn {
+    /* inline-block garante que o botão respeite o padding e margin definidos. */
+    @apply mt-10 inline-block font-titulo bg-secundaria text-branco px-8 md:px-10 py-4 md:py-5 text-[12px] md:text-[14px] uppercase font-bold tracking-[2px] transition-all duration-300 cursor-pointer;
+}
+
+/* INTERAÇÃO DO BOTÃO (HOVER) */
+.hero-btn:hover {
+    /* O shadow-xl cria profundidade ao botão e a escala (scale-105) traz um micro-feedback
+       tátil indicando interatividade. */
+    @apply bg-branco text-secundaria shadow-xl shadow-secundaria/30 scale-105;
+}

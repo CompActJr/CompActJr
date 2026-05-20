@@ -1,20 +1,16 @@
 'use client'
 
 import Header from '../components/Header'
+import Hero from '../components/Hero'
 
 export default function Home() {
     return (
-        /* 💡 EXPLICAÇÃO TÉCNICA:
-           h-[200vh] serve apenas para criar rolagem e testar se o header muda de cor. */
-        <main className="min-h-[200vh]">
+        <main>
             <Header />
+            <Hero />
 
-            {/* 🎨 ÁREA DO MARKETING: Espaço reservado para a Hero amanhã */}
-            <div className="flex items-center justify-center pt-64">
-                <p className="text-branco/20 font-principal italic">
-                    [ Espaço reservado para a Hero Section ]
-                </p>
-            </div>
+            {/* 💡 Espaço para criar o scroll e testar o fundo do Header mudando de cor */}
+            <div className="h-[100vh] bg-preto"></div>
         </main>
     )
 }
