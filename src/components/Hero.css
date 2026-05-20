@@ -7,23 +7,7 @@
     /* min-h-screen assegura que a seção ocupe pelo menos 100% da altura do monitor.
        overflow-hidden é crítico aqui para evitar barras de rolagem indesejadas causadas
        pelos efeitos de luz (glows) que extrapolam as bordas da tela. */
-    @apply relative w-full min-h-screen flex items-center pt-32 pb-20 overflow-hidden bg-preto;
-}
-
-/* LUZ ROXA DE FUNDO (ESQUERDA) */
-.hero-glow-purple {
-    /* pointer-events-none é uma regra essencial de UX/UI. Ela impede que esta div invisível
-       bloqueie os cliques do usuário nos links e botões que estão por baixo dela. */
-    @apply absolute top-[-10%] left-[-20%] w-[70vw] h-[70vw] md:w-[45vw] md:h-[45vw] rounded-full opacity-60 blur-[60px] md:blur-[80px] pointer-events-none;
-    background: radial-gradient(circle, var(--color-roxo) 0%, transparent 70%);
-}
-
-/* LUZ AZUL DE FUNDO (DIREITA) */
-.hero-glow-blue {
-    /* O posicionamento absoluto no canto inferior direito equilibra o peso visual do texto
-       que está alinhado à esquerda. */
-    @apply absolute bottom-[-20%] right-[-20%] w-[70vw] h-[70vw] md:w-[55vw] md:h-[55vw] rounded-full opacity-50 blur-[60px] md:blur-[80px] pointer-events-none;
-    background: radial-gradient(circle, var(--color-secundaria) 0%, transparent 70%);
+    @apply relative w-full min-h-screen flex items-center pt-32 pb-20 overflow-hidden bg-transparent;
 }
 
 /* CONTAINER DE CONTEÚDO */

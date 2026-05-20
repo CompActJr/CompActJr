@@ -1,17 +1,17 @@
 @import "tailwindcss";
 
 /**
- * 💡 EXPLICAÇÃO TÉCNICA:
+ * EXPLICAÇÃO TÉCNICA:
  * No Tailwind v4, o @theme registra as variáveis para serem usadas como classes (ex: text-primaria).
  */
 @theme {
-    /* 🎨 PALETA PRINCIPAL - Manual 2026 */
+    /* PALETA PRINCIPAL - Manual 2026 */
     --color-primaria: #1c314c;
     --color-secundaria: #00a7db;
     --color-preto: #000000;
     --color-branco: #ffffff;
 
-    /* 🌈 PALETA COMPLEMENTAR */
+    /* PALETA COMPLEMENTAR */
     --color-royal: #2837a0;
     --color-marinho: #212950;
     --color-roxo: #9628a5;
@@ -22,6 +22,18 @@
     --font-principal: var(--font-carrois), sans-serif;
     --font-titulo: var(--font-montserrat), sans-serif;
     --font-aesthetic: var(--font-poppins), sans-serif;
+}
+
+/* LUZ ROXA DE FUNDO (POSICIONAMENTO À ESQUERDA) */
+.glow-purple {
+    @apply absolute w-[70vw] h-[70vw] md:w-[45vw] md:h-[45vw] rounded-full opacity-60 blur-[60px] md:blur-[80px] pointer-events-none z-0;
+    background: radial-gradient(circle, var(--color-roxo) 30%, transparent 95%);
+}
+
+/* LUZ AZUL DE FUNDO (POSICIONAMENTO À DIREITA) */
+.glow-blue {
+    @apply absolute w-[70vw] h-[70vw] md:w-[55vw] md:h-[55vw] rounded-full opacity-50 blur-[60px] md:blur-[80px] pointer-events-none z-0;
+    background: radial-gradient(circle, var(--color-secundaria) 30%, transparent 95%);
 }
 
 @layer base {

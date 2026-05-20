@@ -1,6 +1,7 @@
 import { Metadata } from 'next'
 import Header from '../components/Header'
 import Hero from '../components/Hero'
+import Indicators from '../components/Indicators'
 
 /**
  * EXPLICAÇÃO TÉCNICA (Capacitação da Equipe):
@@ -37,12 +38,25 @@ export const metadata: Metadata = {
 
 export default function Home() {
     return (
-        <main>
-            <Header />
-            <Hero />
+        <main className="relative bg-preto min-h-screen">
 
-            {/* Espaço provisório para habilitar a barra de rolagem e testar os efeitos de scroll do Header */}
-            <div className="h-[100vh] bg-preto"></div>
+            {/* CONTAINER DE LUZES (ISOLAMENTO)
+                A classe inset-0 faz essa div ter o tamanho exato da página.
+                O overflow-hidden atua como uma "tesoura", cortando qualquer luz que tente
+                vazar da tela, resolvendo de vez o problema de barras de rolagem fantasmas. */}
+            <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+                <div className="glow-purple top-[-10%] left-[-20%]"></div>
+                <div className="glow-blue top-[20%] right-[-10%]"></div>
+                <div className="glow-purple top-[80%] left-[-15%] opacity-30"></div>
+            </div>
+
+            <div className="relative z-10">
+                <Header />
+                <Hero />
+                <Indicators />
+
+                <div className="h-[50vh]"></div>
+            </div>
         </main>
     )
 }

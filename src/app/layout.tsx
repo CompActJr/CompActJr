@@ -48,19 +48,15 @@ export default function RootLayout({
     children: React.ReactNode;
 }) {
     return (
-        // A classe scroll-smooth permite a rolagem fluida ao clicar em links âncora do Header
         <html lang="pt-br" className="scroll-smooth">
         <body
             className={`
-                    ${carrois.variable} 
-                    ${montserrat.variable} 
-                    ${poppins.variable} 
-                    antialiased bg-preto text-branco
-                `}
+                ${carrois.variable} 
+                ${montserrat.variable} 
+                ${poppins.variable} 
+                antialiased bg-preto text-branco overflow-x-hidden
+            `}
         >
-        {/* Aqui futuramente entram scripts invisíveis (Tag Manager, etc) */}
-
-        {/* Renderização dinâmica das páginas */}
         {children}
         </body>
         </html>
