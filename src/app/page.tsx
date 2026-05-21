@@ -13,6 +13,7 @@ import Values from "@/src/components/Values";
 import History from "@/src/components/History";
 import Team from "@/src/components/Team";
 import Contact from "@/src/components/Contact";
+import Footer from "@/src/components/Footer";
 
 /**
  * EXPLICAÇÃO TÉCNICA (Capacitação da Equipe):
@@ -68,8 +69,7 @@ export default function Home() {
                 <History />
                 <Team />
                 <Contact />
-
-                <div className="h-[50vh]"></div>
+                <Footer />
             </div>
         </main>
     )

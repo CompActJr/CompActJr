@@ -1,0 +1,94 @@
+/* IMPORTAÇÃO BASE DO TAILWIND V4 */
+@reference "../app/globals.css";
+
+.footer-container {
+    @apply relative w-full bg-preto border-t border-branco/10 pt-12 md:pt-16 pb-8 z-20;
+}
+
+.footer-container > div {
+    @apply w-full max-w-7xl mx-auto px-4 md:px-6 lg:px-8;
+}
+
+.footer-main-grid {
+    @apply grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-8 pb-10 border-b border-branco/5;
+}
+
+/* =========================================
+   ESTILIZAÇÃO DAS COLUNAS (MOBILE FIRST)
+   Nota: items-center e text-center alinham no mobile.
+   Os prefixos md: restauram o layout no desktop.
+   ========================================= */
+
+.footer-info-col {
+    @apply flex flex-col gap-4 md:col-span-5 lg:col-span-4 items-center text-center md:items-start md:text-left;
+}
+
+.footer-logo-link {
+    @apply inline-block transition-transform duration-300 hover:scale-[1.02] w-fit mx-auto md:mx-0;
+}
+
+.footer-brand-text {
+    @apply font-principal text-sm text-branco/60 leading-relaxed max-w-sm;
+}
+
+.footer-links-col {
+    @apply flex flex-col gap-4 md:col-span-4 lg:col-span-5 md:pl-4 lg:pl-8 items-center text-center md:items-start md:text-left;
+}
+
+.footer-col-title {
+    @apply font-titulo text-xs md:text-sm uppercase tracking-[3px] text-branco font-bold;
+}
+
+.footer-nav {
+    @apply flex flex-col sm:flex-row gap-6 sm:gap-12 lg:gap-16 items-center md:items-start;
+}
+
+.footer-nav-group {
+    @apply flex flex-col gap-3 items-center md:items-start;
+}
+
+.footer-link {
+    @apply font-principal text-sm text-branco/60 transition-colors duration-300 w-fit hover:text-secundaria;
+}
+
+.footer-social-col {
+    /* No desktop (lg), esta coluna alinha o conteúdo à direita para balancear o grid */
+    @apply flex flex-col gap-4 lg:col-span-3 items-center text-center md:items-start md:text-left lg:items-end lg:text-right;
+}
+
+.footer-contact-item {
+    @apply font-principal text-sm text-branco/80 font-medium;
+}
+
+.footer-social-row {
+    @apply flex justify-center md:justify-start lg:justify-end gap-4 mt-2;
+}
+
+.footer-social-btn {
+    @apply w-10 h-10 rounded-full border border-branco/10 flex items-center justify-center text-branco/50 transition-all duration-300 hover:text-secundaria hover:border-secundaria/40 hover:bg-branco/5 cursor-pointer;
+}
+
+.footer-social-icon {
+    @apply w-4 h-4 transition-transform duration-300;
+}
+
+.footer-social-btn:hover .footer-social-icon {
+    @apply scale-110;
+}
+
+/* =========================================
+   BARRA DE DIREITOS AUTORAIS
+   ========================================= */
+
+.footer-bottom-bar {
+    @apply pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left;
+}
+
+.footer-copyright,
+.footer-legal {
+    @apply font-principal text-[11px] md:text-xs text-branco/40 tracking-wide;
+}
+
+.footer-legal {
+    @apply md:text-right;
+}
