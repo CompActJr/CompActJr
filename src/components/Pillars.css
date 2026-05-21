@@ -1,0 +1,59 @@
+/* IMPORTAÇÃO BASE DO TAILWIND V4 */
+@reference "../app/globals.css";
+
+/* SEÇÃO PRINCIPAL */
+.pillars-section {
+    @apply relative w-full py-24 lg:py-35;
+}
+
+/* CONTAINER DOS CARDS INSTITUCIONAIS */
+.pillars-grid {
+    /* Diferente de serviços (flex-col), usamos grid-cols-3 no desktop para o efeito lado a lado */
+    @apply grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-6 lg:gap-10 relative z-10 w-full ;
+}
+
+/* BASE DOS CARDS INSTITUCIONAIS */
+.pillar-card {
+    /* min-height garante que mesmo os textos mais curtos mantenham os cards do mesmo tamanho.
+       flex-col com justify-between garante que o título seja sempre empurrado para o fundo do card. */
+    @apply w-full p-8 md:p-10 shadow-2xl transition-shadow duration-500 rounded-sm flex flex-col justify-between text-center;
+    min-height: 320px;
+    transform-style: preserve-3d;
+}
+
+/* Mobile: reduz a altura mínima */
+@media (max-width: 767px) {
+    .pillar-card {
+        min-height: 220px;  /* ou 200px, 180px, o que preferir */
+    }
+}
+
+.pillar-card:hover {
+    @apply shadow-2xl shadow-preto/50;
+}
+
+/* TEMAS (Herança da identidade visual do manual) */
+.pillar-card.light {
+    @apply bg-branco text-preto;
+}
+
+.pillar-card.dark {
+    @apply bg-marinho text-branco;
+}
+
+/* LAYOUT INTERNO DO CARD */
+.pillar-card-content {
+    @apply flex flex-col h-full justify-between items-center;
+}
+
+/* TIPOGRAFIA ESPECÍFICA DA SEÇÃO */
+.pillar-description {
+    /* Textos centralizados com peso médio. text-balance melhora o alinhamento de blocos de texto. */
+    @apply font-principal text-sm md:text-base font-medium leading-relaxed mb-8;
+    text-wrap: balance;
+}
+
+.pillar-title {
+    /* mt-auto empurra o título "Missão", "Negócio" ou "Visão" para a borda inferior do card */
+    @apply font-titulo text-2xl md:text-3xl font-black mt-auto uppercase tracking-wide;
+}
