@@ -47,18 +47,6 @@ export default function Services() {
     return (
         <section id="servicos" className="services-section">
 
-            {/* MARCA D'ÁGUA FIXA (logo transparente ao fundo) */}
-            <div className="services-watermark-wrapper">
-                <div className="services-watermark">
-                    <Image
-                        src="/logo-compact.png"
-                        alt="Símbolo CompAct Jr"
-                        fill
-                        className="object-contain"
-                    />
-                </div>
-            </div>
-
             <div className="container mx-auto px-6 max-w-6xl relative z-10">
 
                 {/* CABEÇALHO (oculto visualmente no mobile, mantido para SEO/hierarquia) */}

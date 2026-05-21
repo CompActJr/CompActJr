@@ -1,0 +1,16 @@
+/* IMPORTAÇÃO BASE DO TAILWIND V4 */
+@reference "../app/globals.css";
+
+/* CAMADA DE ENVOLVIMENTO */
+.watermark-wrapper {
+    /* absolute inset-0 faz a div assumir exatamente as mesmas dimensões (largura e altura) da seção pai.
+       pointer-events-none garante que a logo não roube o clique dos cards que estão por cima. */
+    @apply absolute inset-0 pointer-events-none z-0;
+}
+
+/* CONTAINER DA LOGO COM EFEITO STICKY */
+.watermark-sticky-container {
+    /* sticky top-[30vh] prende a logo na tela quando ela atinge 30% da altura do monitor.
+       Ela permanecerá presa até que o usuário termine de rolar a seção pai. */
+    @apply sticky top-[30vh] w-full max-w-[400px] md:max-w-xl mx-auto h-[40vh] opacity-[0.75] flex items-center justify-center;
+}

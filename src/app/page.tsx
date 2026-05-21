@@ -7,6 +7,8 @@ import BackgroundGlow from '../components/BackgroundGlow'
 import About from '../components/About'
 import Clientes from "@/src/components/Clientes";
 import Services from "@/src/components/Services";
+import Watermark from "@/src/components/Watermark";
+import SectionsWithWatermark from "@/src/components/SectionsWithWatermark";
 
 /**
  * EXPLICAÇÃO TÉCNICA (Capacitação da Equipe):
@@ -44,7 +46,7 @@ export const metadata: Metadata = {
 export default function Home() {
     return (
         <main className="relative bg-preto min-h-screen">
-            <BackgroundGlow />  {
+            <BackgroundGlow />
             <div className="relative z-10">
                 <Header />
                 <Hero />
@@ -52,10 +54,15 @@ export default function Home() {
                 <Indicadores />
                 <About />
                 <Clientes />
-                <Services />
+
+                {/* Apenas as seções que devem ter watermark ficam dentro do wrapper */}
+                <SectionsWithWatermark>
+                    <Services />
+                    {/* futuras seções: Exemplo <Portfolio />, <Contato />, etc. */}
+                </SectionsWithWatermark>
+
                 <div className="h-[50vh]"></div>
             </div>
-        }
         </main>
     )
 }
