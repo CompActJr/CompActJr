@@ -1,0 +1,125 @@
+/* IMPORTAÇÃO BASE DO TAILWIND V4 */
+@reference "../app/globals.css";
+
+/* SECÇÃO PRINCIPAL */
+.contact-section {
+    /* Removido o fundo de mapa absoluto. A secção herda o fundo preto/brilhos globais da página. */
+    @apply relative w-full min-h-screen overflow-hidden flex items-center;
+}
+
+/* =========================================
+   COLUNA ESQUERDA (INFORMAÇÕES E MAPA)
+   ========================================= */
+
+.contact-info-col {
+    @apply w-full lg:w-5/12 flex flex-col;
+}
+
+.contact-main-title {
+    @apply font-titulo text-4xl md:text-4xl font-black uppercase text-branco leading-tight;
+}
+
+.contact-address-block {
+    @apply mt-6 pl-4 border-l-2 border-secundaria;
+}
+
+.contact-address-text {
+    @apply font-principal text-sm md:text-base text-branco/80 leading-relaxed;
+}
+
+.contact-icon-small {
+    @apply w-5 h-5 text-secundaria flex-shrink-0 mt-1;
+}
+
+/* LINKS SOCIAIS */
+.contact-social-links {
+    @apply flex flex-col sm:flex-row gap-6 mt-8;
+}
+
+.contact-social-btn {
+    @apply flex items-center gap-4 cursor-pointer;
+}
+
+.contact-icon-wrapper {
+    @apply w-12 h-12 rounded-full border border-branco/20 flex items-center justify-center transition-all duration-300 group-hover:bg-secundaria group-hover:border-secundaria;
+}
+
+.contact-icon {
+    @apply w-5 h-5 text-branco transition-transform duration-300 group-hover:scale-110 group-hover:text-preto;
+}
+
+.contact-social-label {
+    @apply font-principal text-sm font-bold uppercase tracking-widest text-branco/80 transition-colors duration-300 group-hover:text-secundaria;
+}
+
+/* NOVO: CAIXA DO MAPA DEDICADA */
+.contact-map-box {
+    /* Cria uma caixa com bordas arredondadas e sombra, mantendo o mapa 100% visível e clicável */
+    @apply w-full h-[250px] md:h-[300px] mt-4 rounded-sm overflow-hidden shadow-2xl border border-branco/10 relative;
+}
+
+.contact-map-box iframe {
+    /* Filtro CSS para transformar o mapa padrão do Google num mapa "Dark Mode" elegante,
+       combinando com o restante do site sem perder legibilidade. */
+    filter: grayscale(100%) invert(92%) contrast(85%);
+    transition: filter 0.3s ease;
+}
+
+/* Opcional: Retira o filtro escuro quando o utilizador passa o rato por cima para ver cores originais */
+.contact-map-box:hover iframe {
+    filter: grayscale(0%) invert(0%) contrast(100%);
+}
+
+/* =========================================
+   COLUNA DIREITA (FORMULÁRIO GLASSMORPHISM)
+   ========================================= */
+
+.contact-form-col {
+    @apply w-full lg:w-7/12 flex justify-center lg:justify-end;
+}
+
+.contact-form {
+    @apply w-full max-w-xl bg-branco/5 backdrop-blur-xl border border-branco/10 p-8 md:p-12 rounded-sm shadow-2xl;
+}
+
+.contact-form-header {
+    @apply mb-8;
+}
+
+.contact-form-title {
+    @apply font-titulo text-2xl md:text-3xl font-bold text-branco mb-2;
+}
+
+.contact-form-subtitle {
+    @apply font-principal text-sm md:text-base text-branco/60;
+}
+
+.contact-input-grid {
+    @apply grid grid-cols-1 sm:grid-cols-2 gap-6;
+}
+
+.contact-input-group {
+    @apply flex flex-col gap-2 mb-6;
+}
+
+.contact-input-group label {
+    @apply font-principal text-xs uppercase tracking-widest text-branco/80 font-bold ml-1;
+}
+
+.contact-input-group input,
+.contact-input-group textarea {
+    @apply w-full bg-preto/30 border-b border-branco/20 px-4 py-3 text-branco font-principal text-sm outline-none transition-all duration-300;
+}
+
+.contact-input-group input:focus,
+.contact-input-group textarea:focus {
+    @apply border-secundaria bg-preto/50;
+}
+
+.contact-submit-btn {
+    @apply w-full mt-4 font-titulo bg-secundaria text-preto px-8 py-4 text-[14px] uppercase font-black tracking-[2px] transition-all duration-300 shadow-lg cursor-pointer;
+}
+
+.contact-submit-btn:hover {
+    @apply bg-branco text-secundaria shadow-xl shadow-secundaria/30 scale-[1.02];
+}

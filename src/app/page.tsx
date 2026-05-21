@@ -12,6 +12,7 @@ import Pillars from "@/src/components/Pillars";
 import Values from "@/src/components/Values";
 import History from "@/src/components/History";
 import Team from "@/src/components/Team";
+import Contact from "@/src/components/Contact";
 
 /**
  * EXPLICAÇÃO TÉCNICA (Capacitação da Equipe):
@@ -66,6 +67,7 @@ export default function Home() {
 
                 <History />
                 <Team />
+                <Contact />
 
                 <div className="h-[50vh]"></div>
             </div>
