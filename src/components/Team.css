@@ -1,0 +1,119 @@
+/* IMPORTAÇÃO BASE DO TAILWIND V4 */
+@reference "../app/globals.css";
+
+/* SECÇÃO PRINCIPAL */
+.team-section {
+    @apply relative w-full py-24 lg:py-32 overflow-hidden;
+}
+
+/* CABEÇALHO */
+.team-header {
+    @apply mb-20 text-center relative z-10;
+}
+
+.team-main-title {
+    @apply font-titulo text-3xl md:text-5xl font-bold uppercase text-branco tracking-widest;
+}
+
+/* CONTAINER DA LISTA DE DIRETORIAS */
+.team-departments-list {
+    @apply flex flex-col gap-12 md:gap-8 relative z-10;
+}
+
+/* LINHA INDIVIDUAL POR DIRETORIA */
+.team-row {
+    /* Layout Flex: No mobile os itens empilham (flex-col). No desktop ficam lado a lado (flex-row).
+       border-b cria uma divisão muito subtil entre as diretorias. */
+    @apply flex flex-col md:flex-row items-start md:items-center justify-between border-b border-branco/5 pb-8 last:border-0 last:pb-0;
+}
+
+/* TÍTULO DA DIRETORIA (EX: PRESIDÊNCIA) */
+.team-dept-title-col {
+    /* order-1 no mobile (aparece em cima), order-2 no desktop (aparece à direita) */
+    @apply w-full md:w-1/3 mb-6 md:mb-0 order-1 md:order-2 flex justify-start md:justify-end;
+}
+
+.team-dept-title {
+    @apply font-titulo text-xl md:text-2xl font-black uppercase text-branco tracking-widest;
+}
+
+/* GRELHA DE MEMBROS NA LINHA */
+.team-cards-col {
+    /* order-2 no mobile (debaixo do título), order-1 no desktop (à esquerda da tela) */
+    @apply w-full md:w-2/3 flex flex-wrap gap-4 md:gap-6 order-2 md:order-1;
+}
+
+/* =========================================
+   CARTÕES DE MEMBROS (REGRA DE NEGÓCIO)
+   ========================================= */
+
+.team-card {
+    /* Tamanhos fixos garantem que todos os cartões ficam perfeitamente simétricos */
+    @apply relative w-[130px] sm:w-[150px] lg:w-[160px] flex-shrink-0 cursor-pointer;
+}
+
+.team-card-inner {
+    /* Borda sólida a toda a volta do cartão. O overflow-hidden aqui cortaria o balão de hover,
+       por isso aplicamo-lo apenas na imagem. */
+    @apply flex flex-col w-full h-full border-2 transition-transform duration-300;
+}
+
+/* Efeito de levitação no cartão todo */
+.team-card:hover .team-card-inner {
+    @apply -translate-y-2 shadow-2xl;
+}
+
+/* TEMA DIRETORES (MOLDURA AZUL) */
+.team-card.director .team-card-inner {
+    @apply border-secundaria;
+}
+
+/* TEMA MEMBROS (MOLDURA BRANCA) */
+.team-card.member .team-card-inner {
+    @apply border-branco;
+}
+
+/* ÁREA DA FOTOGRAFIA */
+.team-image-wrapper {
+    /* Proporção 4/5 mantém o aspeto vertical clássico de retratos */
+    @apply relative w-full aspect-[4/5] overflow-hidden;
+}
+
+/* BARRA DE REDES SOCIAIS (SLIDE HOVER) */
+.team-social-bar {
+    /* Escondida à direita (translate-x-full). Surge suavemente no hover (translate-x-0). */
+    @apply absolute top-0 right-0 h-full w-10 md:w-12 flex flex-col items-center justify-center gap-4 translate-x-full transition-transform duration-300 z-10;
+
+    /* DETALHE DO DESIGN: Cria o corte diagonal no canto inferior esquerdo da barra, idêntico ao protótipo */
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 100% 100%, 0 calc(100% - 15px));
+}
+
+.team-card:hover .team-social-bar {
+    @apply translate-x-0;
+}
+
+/* COR DA BARRA ACOMPANHA A REGRA DE NEGÓCIO DO CARTÃO */
+.team-card.director .team-social-bar { @apply bg-secundaria; }
+.team-card.member .team-social-bar { @apply bg-branco; }
+
+.team-social-icon {
+    /* Ícones pretos para garantir contraste, com animação de escala no hover */
+    @apply w-5 h-5 text-preto hover:scale-125 transition-transform;
+}
+
+/* ÁREA DE TEXTO (NOME E CARGO) */
+.team-info {
+    @apply p-2 md:p-3 flex flex-col justify-center min-h-[60px] md:min-h-[70px];
+}
+
+/* FUNDO DO TEXTO ACOMPANHA A REGRA DE NEGÓCIO DO CARTÃO */
+.team-card.director .team-info { @apply bg-secundaria text-preto; }
+.team-card.member .team-info { @apply bg-branco text-preto; }
+
+.team-name {
+    @apply font-titulo text-sm md:text-base font-black leading-tight;
+}
+
+.team-role {
+    @apply font-principal text-[10px] md:text-[11px] font-bold uppercase mt-1 opacity-80;
+}

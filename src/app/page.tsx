@@ -11,6 +11,7 @@ import SectionsWithWatermark from "@/src/components/SectionsWithWatermark";
 import Pillars from "@/src/components/Pillars";
 import Values from "@/src/components/Values";
 import History from "@/src/components/History";
+import Team from "@/src/components/Team";
 
 /**
  * EXPLICAÇÃO TÉCNICA (Capacitação da Equipe):
@@ -64,6 +65,7 @@ export default function Home() {
                 </SectionsWithWatermark>
 
                 <History />
+                <Team />
 
                 <div className="h-[50vh]"></div>
             </div>
