@@ -1,0 +1,82 @@
+/* IMPORTAÇÃO DO TAILWIND V4 */
+@reference "../app/globals.css";
+
+.services-section {
+    @apply relative w-full py-20 lg:py-32;
+}
+
+.services-header {
+    @apply mb-16 text-left border-l-2 border-secundaria pl-6;
+}
+
+.services-kicker {
+    @apply font-principal text-sm uppercase tracking-[3px] text-secundaria block mb-2 font-bold;
+}
+
+.services-main-title {
+    @apply font-titulo text-3xl md:text-5xl font-bold uppercase text-branco;
+}
+
+/* GRID LAYOUT ASSIMÉTRICO */
+.services-grid {
+    /* Grid de 12 colunas para permitir tamanhos variados dos cards */
+    @apply grid grid-cols-1 md:grid-cols-12 gap-6;
+}
+
+/* ESTILO BASE DO CARD */
+.service-card {
+    @apply relative overflow-hidden p-8 md:p-12 flex flex-col justify-between shadow-2xl transition-all duration-300;
+    min-height: 350px;
+}
+
+/* VARIAÇÕES DE TAMANHO DO GRID */
+.service-card-lg { @apply md:col-span-7 lg:col-span-8; }
+.service-card-md { @apply md:col-span-5 lg:col-span-4; }
+.service-card-sm { @apply md:col-span-12; }
+
+/* TEMAS DOS CARDS (CORES DO PROTÓTIPO) */
+.service-card.light {
+    @apply bg-branco text-preto;
+}
+
+.service-card.accent {
+    @apply bg-secundaria text-preto;
+}
+
+.service-card.dark {
+    @apply bg-marinho text-branco;
+}
+
+/* TIPOGRAFIA INTERNA */
+.service-title {
+    @apply font-titulo text-3xl md:text-4xl font-black uppercase mb-4;
+}
+
+.service-description {
+    @apply font-principal text-lg md:text-xl font-bold leading-tight mb-6;
+}
+
+.service-details-list {
+    @apply list-none space-y-2 opacity-80;
+}
+
+.service-details-list li {
+    @apply font-principal text-sm md:text-base border-l border-current pl-3;
+}
+
+/* DECORAÇÃO (LOGO COMPACT NO BACKGROUND) */
+.service-decoration {
+    @apply absolute -bottom-10 -right-10 w-40 h-40 opacity-10 pointer-events-none;
+    background-image: url('../../public/logo-compact.png'); /* Versão simplificada do logo */
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+/* AJUSTES DE CONTRASTE PARA O TEMA DARK */
+.service-card.dark .service-description {
+    @apply text-branco/90;
+}
+
+.service-card.dark .service-details-list li {
+    @apply border-branco/30;
+}

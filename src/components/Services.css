@@ -1,0 +1,83 @@
+/* IMPORTAÇÃO BASE DO TAILWIND V4 */
+@reference "../app/globals.css";
+
+/* SEÇÃO PRINCIPAL: ocupação total com padding vertical */
+.services-section {
+    @apply relative w-full py-24 lg:py-40;
+}
+
+/* MARCA D'ÁGUA: camada absoluta sem interação, atrás de tudo */
+.services-watermark-wrapper {
+    @apply absolute inset-0 pointer-events-none z-0;
+}
+
+/* LOGO FLUTUANTE: sticky para acompanhar scroll, opaca e centralizada */
+.services-watermark {
+    @apply sticky top-[30vh] w-full max-w-[400px] md:max-w-xl mx-auto h-[40vh] opacity-[0.75] flex items-center justify-center;
+}
+
+/* CABEÇALHO: borda lateral esquerda (branca) no desktop, texto maiúsculo */
+.services-header {
+    @apply relative z-10 mb-20 text-center md:text-left border-l-0 md:border-l-2 border-branco pl-0 md:pl-6;
+}
+
+.services-main-title {
+    @apply font-titulo text-3xl md:text-4xl font-bold uppercase text-branco tracking-widest;
+}
+
+/* CONTAINER DOS CARDS: coluna flexível com gaps grandes */
+.services-cascade {
+    @apply flex flex-col gap-18 md:gap-35 relative z-10 w-full;
+}
+
+/* BASE DOS CARDS: altura mínima, sombra, preserva 3D para os filhos */
+.service-card {
+    @apply w-full p-10 md:p-14 shadow-2xl transition-shadow duration-500 rounded-sm flex flex-col justify-center;
+    min-height: 250px;
+    transform-style: preserve-3d;
+}
+
+.service-card:hover {
+    @apply shadow-2xl shadow-preto/50;
+}
+
+/* TEMAS (cores sólidas conforme protótipo) */
+.service-card.light {
+    @apply bg-branco text-preto;
+}
+
+.service-card.accent {
+    @apply bg-secundaria text-preto;
+}
+
+.service-card.dark {
+    @apply bg-marinho text-branco;
+}
+
+/* TIPOGRAFIA DOS CARDS */
+.service-title {
+    @apply font-titulo text-3xl md:text-4xl font-black mb-4;
+}
+
+.service-description {
+    @apply font-principal text-base md:text-lg font-medium leading-relaxed;
+    text-wrap: balance; /* Evita palavras solitárias na última linha */
+}
+
+.service-details-list {
+    @apply list-none space-y-2 mt-6;
+}
+
+.service-details-list li {
+    @apply font-principal text-sm md:text-base opacity-90;
+}
+
+/* ALINHAMENTOS ESPECÍFICOS POR TEMA (conforme protótipo) */
+.service-card.light .service-card-content,
+.service-card.dark .service-card-content {
+    @apply text-center flex flex-col items-center;
+}
+
+.service-card.accent .service-card-content {
+    @apply text-center md:text-right flex flex-col md:items-end;
+}
