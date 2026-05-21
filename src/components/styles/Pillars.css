@@ -12,6 +12,15 @@
     @apply grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-6 lg:gap-10 relative z-10 w-full pl-10 pr-10;
 }
 
+/* CABEÇALHO */
+.pillars-header {
+    @apply relative z-10 mb-20 text-center md:text-right border-r-0 md:border-r-2 border-branco pr-0 md:pr-6;
+}
+
+.pillars-main-title {
+    @apply font-titulo text-3xl md:text-4xl font-bold uppercase text-branco tracking-widest;
+}
+
 /* BASE DOS CARDS INSTITUCIONAIS */
 .pillar-card {
     /* min-height garante que mesmo os textos mais curtos mantenham os cards do mesmo tamanho.

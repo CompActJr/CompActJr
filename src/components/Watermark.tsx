@@ -15,8 +15,9 @@ export default function Watermark() {
                 <Image
                     src="/logo-compact.png"
                     alt="Marca d'água CompAct Jr"
-                    fill
-                    className="object-contain"
+                    width={400}
+                    height={400}
+                    className="object-contain w-full h-full"
                 />
             </div>
         </div>

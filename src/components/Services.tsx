@@ -49,8 +49,7 @@ export default function Services() {
 
             <div className="container mx-auto px-6 max-w-6xl relative z-10">
 
-                {/* CABEÇALHO (oculto visualmente no mobile, mantido para SEO/hierarquia) */}
-                <header className="services-header sr-only md:not-sr-only">
+                <header className="services-header text-center md:text-left border-l-0 md:border-l-2 border-branco pl-0 md:pl-6">
                     <h2 className="services-main-title">Nossos Serviços</h2>
                 </header>
 

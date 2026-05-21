@@ -14,3 +14,7 @@
        Ela permanecerá presa até que o usuário termine de rolar a seção pai. */
     @apply sticky top-[30vh] w-full max-w-[400px] md:max-w-xl mx-auto h-[40vh] opacity-[0.15] flex items-center justify-center;
 }
+
+.watermark-sticky-container img {
+    @apply w-auto h-full max-w-full object-contain;
+}

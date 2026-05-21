@@ -41,6 +41,11 @@ export default function Pillars() {
 
     return (
         <section id="pilares" className="pillars-section">
+            <div className="container mx-auto px-6 max-w-6xl relative z-10">
+                <header className="pillars-header text-center md:text-right border-r-0 md:border-r-2 border-branco pr-0 md:pr-6">
+                    <h2 className="pillars-main-title">Nossos Pilares</h2>
+                </header>
+            </div>
 
             <div className="container mx-auto px-6 max-w-6xl relative z-10">
 
