@@ -7,7 +7,7 @@ import './Hero.css'
  * COMPONENTE HERO SECTION
  * @description A primeira seção do site (acima da dobra). Responsável pela primeira impressão,
  * apresentando a proposta de valor principal da empresa e a chamada para ação (CTA).
- * @kayualins Equipe de Projetos CompAct Jr.
+ * @kayualins - Equipe de Projetos CompAct Jr.
  */
 export default function Hero() {
     return (

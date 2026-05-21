@@ -24,16 +24,17 @@
     --font-aesthetic: var(--font-poppins), sans-serif;
 }
 
-/* LUZ ROXA DE FUNDO (POSICIONAMENTO À ESQUERDA) */
+/* LUZ ROXA DE FUNDO (AMBIENTAL) */
 .glow-purple {
-    @apply absolute w-[70vw] h-[70vw] md:w-[45vw] md:h-[45vw] rounded-full opacity-60 blur-[60px] md:blur-[80px] pointer-events-none z-0;
-    background: radial-gradient(circle, var(--color-roxo) 30%, transparent 95%);
+    /* O aumento do blur e do tamanho (vw/vh) cria um preenchimento muito mais denso e cinematográfico */
+    @apply w-[120vw] h-[120vw] md:w-[80vw] md:h-[80vw] rounded-full opacity-50 blur-[80px] md:blur-[120px] pointer-events-none z-0;
+    background: radial-gradient(circle, var(--color-roxo) 5%, transparent 65%);
 }
 
-/* LUZ AZUL DE FUNDO (POSICIONAMENTO À DIREITA) */
+/* LUZ AZUL DE FUNDO (AMBIENTAL) */
 .glow-blue {
-    @apply absolute w-[70vw] h-[70vw] md:w-[55vw] md:h-[55vw] rounded-full opacity-50 blur-[60px] md:blur-[80px] pointer-events-none z-0;
-    background: radial-gradient(circle, var(--color-secundaria) 30%, transparent 95%);
+    @apply w-[120vw] h-[120vw] md:w-[90vw] md:h-[90vw] rounded-full opacity-40 blur-[80px] md:blur-[120px] pointer-events-none z-0;
+    background: radial-gradient(circle, var(--color-secundaria) 5%, transparent 65%);
 }
 
 @layer base {

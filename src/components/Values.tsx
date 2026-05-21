@@ -6,7 +6,7 @@ import './Values.css'
 /**
  * COMPONENTE DE VALORES (Princípios da empresa)
  * @description Exibe 6 valores em grid (4 na primeira linha, 2 centralizados na segunda) com efeitos 3D no hover.
- * @kayualins Equipe de Projetos CompAct Jr.
+ * @kayualins - Equipe de Projetos CompAct Jr.
  */
 
 // ÍCONES SVG DE FUNDO PARA CADA VALOR (translúcidos, atrás do texto)

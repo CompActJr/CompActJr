@@ -1,0 +1,50 @@
+/* IMPORTAÇÃO BASE DO TAILWIND V4 */
+@reference "../app/globals.css";
+
+/* CONTAINER DO BOTÃO */
+.fab-wrapper {
+    /* Fixo no canto inferior direito, com z-index elevadíssimo para garantir
+       que sobrepõe mapas, footers e qualquer outro conteúdo. */
+    @apply fixed bottom-6 right-6 md:bottom-8 md:right-8 z-[100];
+}
+
+/* O BOTÃO EM SI */
+.fab-button {
+    /* Utilizamos a cor verde universal do WhatsApp (#25D366) para reconhecimento cognitivo imediato. */
+    @apply relative flex items-center justify-center w-14 h-14 md:w-16 md:h-16 bg-[#25D366] rounded-full shadow-2xl transition-transform duration-300 hover:scale-110;
+}
+
+.fab-icon {
+    /* z-10 garante que o ícone fique acima do anel de pulsação */
+    @apply w-7 h-7 md:w-8 md:h-8 text-branco relative z-10;
+}
+
+/* EFEITO DE PULSAÇÃO (RIPPLE EFFECT) */
+.fab-pulse-ring {
+    /* Cria um anel atrás do botão que expande e desaparece infinitamente,
+       chamando a atenção sem ser obstrutivo. */
+    @apply absolute inset-0 rounded-full bg-[#25D366] opacity-70 z-0;
+    animation: pulse-ring 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+}
+
+/* TOOLTIP (MENSAGEM AO PASSAR O RATO) */
+.fab-tooltip {
+    /* Surge do lado esquerdo do botão no hover. Invisível no mobile por padrão. */
+    @apply absolute right-full mr-4 px-4 py-2 bg-branco text-preto font-principal text-sm font-bold rounded-sm shadow-xl whitespace-nowrap opacity-0 pointer-events-none transition-all duration-300 translate-x-4;
+}
+
+.fab-button:hover .fab-tooltip {
+    @apply opacity-100 translate-x-0 hidden md:block;
+}
+
+/* ANIMAÇÃO CSS PURA PARA O PULSO */
+@keyframes pulse-ring {
+    0% {
+        transform: scale(1);
+        opacity: 0.7;
+    }
+    100% {
+        transform: scale(1.5);
+        opacity: 0;
+    }
+}

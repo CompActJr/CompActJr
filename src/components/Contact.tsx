@@ -7,7 +7,7 @@ import './Contact.css'
  * COMPONENTE DE CONTATO (CONTACT SECTION)
  * @description Seção final de conversão.
  * Layout de 2 colunas: Informações e Mapa dedicado à esquerda, Formulário Glassmorphism à direita.
- * @kayualins Equipe de Projetos CompAct Jr.
+ * @kayualins - Equipe de Projetos CompAct Jr.
  */
 
 const WhatsAppIcon = () => (

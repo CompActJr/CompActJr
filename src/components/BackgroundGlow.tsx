@@ -1,36 +1,81 @@
-'use client' // Permite animações ou interações futuras (opcional)
+'use client'
 import React from 'react'
+import { motion } from 'framer-motion'
 
 /**
- * COMPONENTE BACKGROUND GLOW (Efeitos Luminosos de Fundo)
- * @description Camada de elementos decorativos (manchas roxas e azuis) que flutuam atrás do conteúdo principal.
+ * COMPONENTE BACKGROUND GLOW (Ambiente Dinâmico)
+ * @description Camada fixa de elementos luminosos animados que acompanham o scroll do utilizador.
+ * Utiliza Framer Motion para criar um efeito de respiração/flutuação contínua.
  * @kayualins - Equipe de Projetos CompAct Jr.
  */
-
-interface GlowProps {
-    purplePosition?: string   // Classes Tailwind para posicionar a mancha roxa
-    bluePosition?: string     // Classes Tailwind para posicionar a mancha azul
-    secondPurplePosition?: string // Posição da segunda mancha roxa (mais suave)
-    purpleOpacity?: string    // Opacidade personalizada para a segunda mancha roxa
-}
-
-export default function BackgroundGlow({
-                                           purplePosition = "top-[-10%] left-[-20%]",
-                                           bluePosition = "top-[20%] right-[-10%]",
-                                           secondPurplePosition = "top-[80%] left-[-15%]",
-                                           purpleOpacity = "opacity-30"
-                                       }: GlowProps) {
+export default function BackgroundGlow() {
     return (
-        // Container absoluto que cobre toda a tela (inset-0), sem interação de clique (pointer-events-none)
-        <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
-            {/* Mancha roxa principal (maior, mais intensa) */}
-            <div className={`glow-purple ${purplePosition}`}></div>
+        // A classe 'fixed' em vez de 'absolute' garante que o fundo cubra sempre o monitor,
+        // não importando o quão longe o utilizador role a página.
+        <div className="fixed inset-0 w-screen h-screen overflow-hidden pointer-events-none z-0">
 
-            {/* Mancha azul (contraste) */}
-            <div className={`glow-blue ${bluePosition}`}></div>
+            {/* Mancha Roxa - Superior Esquerda */}
+            <motion.div
+                className="glow-purple absolute top-[-10%] left-[-10%]"
+                animate={{
+                    x: [0, 50, -30, 0], // Move lateralmente
+                    y: [0, 30, -50, 0], // Move verticalmente
+                    scale: [1, 1.2, 1], // Efeito de respiração (aumenta e diminui)
+                }}
+                transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                }}
+            />
 
-            {/* Segunda mancha roxa (inferior, com opacidade reduzida para profundidade) */}
-            <div className={`glow-purple ${secondPurplePosition} ${purpleOpacity}`}></div>
+            {/* Mancha Azul - Centro Direita */}
+            <motion.div
+                className="glow-blue absolute top-[20%] right-[-10%]"
+                animate={{
+                    x: [0, -60, 40, 0],
+                    y: [0, -40, 60, 0],
+                    scale: [1, 1.15, 0.9, 1],
+                }}
+                transition={{
+                    duration: 5,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: 2 // O delay desencontra as animações para parecer mais orgânico
+                }}
+            />
+
+            {/* Mancha Roxa - Inferior Centro/Direita (Suave) */}
+            <motion.div
+                className="glow-purple absolute bottom-[-20%] right-[10%] opacity-40"
+                animate={{
+                    x: [0, 40, -40, 0],
+                    y: [0, -50, 30, 0],
+                    scale: [1, 1.3, 1],
+                }}
+                transition={{
+                    duration: 5,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: 1
+                }}
+            />
+
+            {/* Nova Mancha Azul - Inferior Esquerda (Preenchimento) */}
+            <motion.div
+                className="glow-blue absolute bottom-[-10%] left-[-10%] opacity-30"
+                animate={{
+                    x: [0, -30, 50, 0],
+                    y: [0, -30, 20, 0],
+                    scale: [1, 1.1, 1],
+                }}
+                transition={{
+                    duration: 4,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: 2
+                }}
+            />
         </div>
     )
 }

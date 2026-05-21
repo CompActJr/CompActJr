@@ -8,7 +8,7 @@ import './Header.css'
 /**
  * COMPONENTE HEADER (Navegação Principal)
  * @description O cabeçalho do site. Ele é responsivo, possui fundo dinâmico (transparente no topo, sólido ao rolar) e um menu mobile customizado.
- * @kayualins Equipe de Projetos CompAct Jr.
+ * @kayualins - Equipe de Projetos CompAct Jr.
  */
 export default function Header() {
     // ESTADOS DO COMPONENTE

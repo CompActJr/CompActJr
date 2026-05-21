@@ -7,7 +7,7 @@ import './ServicesAlternativa.css'
  * COMPONENTE DE SERVIÇOS (SERVICES SECTION)
  * @description Exibe as principais soluções da empresa utilizando um layout de grid
  * dinâmico. Foca em interatividade via hover e hierarquia visual clara.
- * @kayualins Equipe de Projetos CompAct Jr.
+ * @kayualins - Equipe de Projetos CompAct Jr.
  */
 export default function ServicesAlternativa() {
     // Definição dos dados dos serviços para facilitar manutenção

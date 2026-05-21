@@ -6,7 +6,7 @@ import './Watermark.css'
  * COMPONENTE DE MARCA D'ÁGUA (WATERMARK)
  * @description Renderiza a logo da empresa ao fundo de uma seção.
  * Utiliza posicionamento sticky para acompanhar o scroll do usuário dentro dos limites da seção pai.
- * @kayualins Equipe de Projetos CompAct Jr.
+ * @kayualins - Equipe de Projetos CompAct Jr.
  */
 export default function Watermark() {
     return (

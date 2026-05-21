@@ -7,7 +7,7 @@ import './History.css'
 /**
  * COMPONENTE NOSSA HISTÓRIA (Timeline interativa com carrossel)
  * @description Linha do tempo com régua cronológica e cartões animados (blur, escala, posição).
- * @author Equipe de Projetos CompAct Jr.
+ * @kayualins - Equipe de Projetos CompAct Jr.
  */
 export default function History() {
     // ESTADO: índice do cartão ativo (central)

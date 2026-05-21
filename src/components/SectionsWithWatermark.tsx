@@ -4,7 +4,7 @@ import Watermark from './Watermark'
 /**
  * COMPONENTE ENVOLTÓRIO COM MARCA D'ÁGUA
  * @description Adiciona a marca d'água (logo flutuante) como fundo fixo a qualquer seção filha.
- * @kayualins Equipe de Projetos CompAct Jr.
+ * @kayualins - Equipe de Projetos CompAct Jr.
  */
 export default function SectionsWithWatermark({ children }: { children: React.ReactNode }) {
     return (

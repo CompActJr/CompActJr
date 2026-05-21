@@ -7,7 +7,7 @@ import './BannerParceiros.css'   // Reaproveita o mesmo CSS do componente Apoiad
 /**
  * COMPONENTE CLIENTES (Social Proof / Carrossel de Clientes)
  * @description Exibe os logos dos clientes em um carrossel infinito, similar à seção de apoiadores.
- * @kayualins Equipe de Projetos CompAct Jr.
+ * @kayualins - Equipe de Projetos CompAct Jr.
  */
 
 export default function Clientes() {

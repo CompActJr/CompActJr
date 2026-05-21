@@ -8,7 +8,7 @@ import './Footer.css'
  * COMPONENTE DE RODAPÉ (FOOTER)
  * @description Encerramento da página. Versão otimizada com navegação espelhada do Header
  * e alinhamento centralizado na versão mobile para melhor simetria e UX.
- * @kayualins Equipe de Projetos CompAct Jr.
+ * @kayualins - Equipe de Projetos CompAct Jr.
  */
 
 const InstagramIcon = () => (
@@ -46,9 +46,9 @@ export default function Footer() {
                     <div className="footer-info-col">
                         <Link href="/" className="footer-logo-link">
                             <Image
-                                src="/logo-compact.png"
+                                src="/logo-h.png"
                                 alt="CompAct Jr. Logo"
-                                width={96}
+                                width={250}
                                 height={45}
                                 className="object-contain"
                             />

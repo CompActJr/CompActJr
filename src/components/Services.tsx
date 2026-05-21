@@ -7,7 +7,7 @@ import './Services.css'
 /**
  * COMPONENTE DE SERVIÇOS (Layout orgânico com efeito 3D)
  * @description Cards assimétricos (esquerda, direita, centro) com perspectiva e rotação ao hover.
- * @kayualins Equipe de Projetos CompAct Jr.
+ * @kayualins - Equipe de Projetos CompAct Jr.
  */
 export default function Services() {
     // CONFIGURAÇÃO DOS CARDS: título, descrição, tema, posição e ângulo 3D no hover

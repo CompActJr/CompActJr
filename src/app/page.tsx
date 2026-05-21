@@ -14,6 +14,7 @@ import History from "@/src/components/History";
 import Team from "@/src/components/Team";
 import Contact from "@/src/components/Contact";
 import Footer from "@/src/components/Footer";
+import FloatingButton from "@/src/components/FloatingButton";
 
 /**
  * EXPLICAÇÃO TÉCNICA (Capacitação da Equipe):
@@ -71,6 +72,7 @@ export default function Home() {
                 <Contact />
                 <Footer />
             </div>
+            <FloatingButton />
         </main>
     )
 }

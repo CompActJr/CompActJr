@@ -9,7 +9,7 @@ import './Team.css'
  * @description Secção que apresenta os membros organizados por diretoria.
  * Implementa as Regras de Negócio: Moldura/Tema Azul para Diretores e Branco para Membros.
  * Efeito de hover revela os ícones de redes sociais sobre a imagem.
- * @kayualins Equipa de Projetos CompAct Jr.
+ * @kayualins - Equipa de Projetos CompAct Jr.
  */
 
 // Ícones SVG reutilizáveis para as redes sociais

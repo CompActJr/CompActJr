@@ -7,7 +7,7 @@ import './About.css'
 /**
  * COMPONENTE QUEM SOMOS (Seção Institucional)
  * @description Apresenta a história, missão e equipe com layout assimétrico (texto + foto).
- * @kayualins Equipe de Projetos CompAct Jr.
+ * @kayualins - Equipe de Projetos CompAct Jr.
  */
 export default function About() {
     return (
