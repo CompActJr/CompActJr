@@ -15,7 +15,7 @@ import './Apoiadores.css'
  * - Layout responsivo: carrossel ocupa 65% (desktop) / 100% (mobile)
  * - Placeholders de texto (substituíveis por imagens reais futuramente)
  *
- * @author kayualins - Equipe de Projetos CompAct Jr.
+ * @kayualins - Equipe de Projetos CompAct Jr.
  */
 
 export default function Apoiadores() {

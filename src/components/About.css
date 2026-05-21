@@ -1,0 +1,64 @@
+/* IMPORTAÇÃO DO TAILWIND V4 */
+@reference "../app/globals.css";
+
+/* ESTRUTURA PRINCIPAL */
+.about-section {
+    /* Padding generoso para separar visualmente dos indicadores acima e da próxima seção abaixo.
+       O z-10 garante que o conteúdo fique sobre os efeitos de luz do componente Background global. */
+    @apply relative w-full py-20 lg:py-32 z-10;
+}
+
+.about-container {
+    /* Layout em grid: 1 coluna no mobile, 2 colunas proporcionais no desktop.
+       O gap-12 cria um respiro elegante entre o texto e a imagem. */
+    @apply container mx-auto px-6 max-w-7xl grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center;
+}
+
+/* COLUNA DE TEXTO E LINHA VERTICAL */
+.about-text-wrapper {
+    /* pl-6 (padding-left) cria espaço interno, e border-l-2 cria a linha branca do protótipo */
+    @apply border-l-2 border-branco pl-6 md:pl-8 mb-8;
+}
+
+.about-kicker {
+    /* Texto menor acima do título, atuando como um chapéu/tag da seção */
+    @apply font-principal text-sm md:text-base uppercase tracking-[3px] text-branco/80 block mb-2 font-bold;
+}
+
+.about-title {
+    /* leading-tight evita que as linhas do título fiquem muito distantes */
+    @apply font-titulo text-4xl xl:text-5xl md:text-5xl lg:text-4xl font-bold uppercase text-branco leading-tight mb-6;
+}
+
+.about-description {
+    /* text-justify no mobile e text-left no desktop melhora a legibilidade.
+       leading-relaxed dá um espaçamento confortável entre as linhas do parágrafo. */
+    @apply font-principal text-sm md:text-base text-branco/80 leading-relaxed text-justify md:text-left;
+}
+
+/* BOTÃO DE CHAMADA PARA AÇÃO */
+.about-btn {
+    /* Mantém a identidade visual do botão da Hero Section */
+    @apply inline-block font-titulo bg-secundaria text-branco px-8 md:px-10 py-3 md:py-4 text-[12px] md:text-[14px] uppercase font-bold tracking-[2px] transition-all duration-300 shadow-lg cursor-pointer;
+}
+
+.about-btn:hover {
+    /* Inversão de cores no hover com leve aumento de escala para feedback tátil */
+    @apply bg-branco text-secundaria shadow-xl shadow-secundaria/30 scale-105;
+}
+
+/* TRATAMENTO DA IMAGEM */
+.about-image-column {
+    @apply w-full h-full flex items-center justify-center;
+}
+
+.about-image-wrapper {
+    /* O aspect-video (16:9) ou proporções manuais (4/3) definem o formato da caixa da imagem.
+       overflow-hidden assegura que as bordas arredondadas cortem a imagem perfeitamente. */
+    @apply relative w-full aspect-[4/3] lg:aspect-[4/3] rounded-sm overflow-hidden shadow-2xl;
+}
+
+.about-image {
+    /* object-cover garante que a imagem preencha todo o container sem ser esticada. */
+    @apply object-cover transition-transform duration-700;
+}

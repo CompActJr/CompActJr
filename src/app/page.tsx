@@ -4,6 +4,7 @@ import Hero from '../components/Hero'
 import Apoiadores from '../components/Apoiadores'
 import Indicadores from '../components/Indicadores'
 import BackgroundGlow from '../components/BackgroundGlow'
+import About from '../components/About'
 
 /**
  * EXPLICAÇÃO TÉCNICA (Capacitação da Equipe):
@@ -47,6 +48,7 @@ export default function Home() {
                 <Hero />
                 <Apoiadores />
                 <Indicadores />
+                <About />
                 <div className="h-[50vh]"></div>
             </div>
         }

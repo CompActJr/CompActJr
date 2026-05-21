@@ -4,7 +4,7 @@ import React from 'react'
 /**
  * COMPONENTE BACKGROUND GLOW (Efeitos Luminosos de Fundo)
  * @description Camada de elementos decorativos (manchas roxas e azuis) que flutuam atrás do conteúdo principal.
- * @author kayualins - Equipe de Projetos CompAct Jr.
+ * @kayualins - Equipe de Projetos CompAct Jr.
  */
 
 interface GlowProps {

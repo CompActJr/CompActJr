@@ -6,7 +6,7 @@ import './Indicadores.css'
 /**
  * COMPONENTE DE INDICADORES (Social Proof / Métricas)
  * @description Seção que exibe números animados (anos, projetos, membros, clientes) em cartões.
- * @author kayualins - Equipe de Projetos CompAct Jr.
+ * @kayualins - Equipe de Projetos CompAct Jr.
  */
 
 /**
