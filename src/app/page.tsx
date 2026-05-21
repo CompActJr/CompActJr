@@ -7,10 +7,10 @@ import BackgroundGlow from '../components/BackgroundGlow'
 import About from '../components/About'
 import Clientes from "@/src/components/Clientes";
 import Services from "@/src/components/Services";
-import Watermark from "@/src/components/Watermark";
 import SectionsWithWatermark from "@/src/components/SectionsWithWatermark";
 import Pillars from "@/src/components/Pillars";
 import Values from "@/src/components/Values";
+import History from "@/src/components/History";
 
 /**
  * EXPLICAÇÃO TÉCNICA (Capacitação da Equipe):
@@ -62,6 +62,8 @@ export default function Home() {
                     <Pillars />
                     <Values />
                 </SectionsWithWatermark>
+
+                <History />
 
                 <div className="h-[50vh]"></div>
             </div>

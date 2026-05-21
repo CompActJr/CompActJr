@@ -3,7 +3,7 @@
 
 /* SECÇÃO PRINCIPAL */
 .values-section {
-    @apply relative w-full py-24 lg:py-32;
+    @apply relative w-full py-24 lg:py-32 pl-3 pr-3;
 }
 
 /* CABEÇALHO */

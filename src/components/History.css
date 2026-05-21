@@ -1,0 +1,127 @@
+/* IMPORTAÇÃO BASE DO TAILWIND V4 */
+@reference "../app/globals.css";
+
+/* SECÇÃO PRINCIPAL */
+.history-section {
+    @apply relative w-full pt-24 pb-10 lg:pt-32 overflow-hidden flex flex-col justify-between;
+    min-height: 100vh;
+}
+
+.history-container {
+    @apply container mx-auto px-6 max-w-7xl relative z-10 flex-1 flex flex-col;
+}
+
+.history-header {
+    @apply relative z-10 mb-12 text-center;
+}
+
+.history-main-title {
+    @apply font-titulo text-3xl md:text-5xl font-bold uppercase text-branco tracking-widest;
+}
+
+.history-carousel-viewport {
+    @apply relative w-full flex-1 flex items-center justify-center;
+    min-height: 500px;
+}
+
+.history-carousel-track {
+    @apply relative w-full max-w-4xl h-full flex items-center justify-center;
+}
+
+.history-card {
+    @apply absolute w-full h-auto p-0 flex flex-col justify-center;
+}
+
+.history-card.inactive {
+    @apply cursor-pointer;
+}
+
+.history-bg-year {
+    @apply absolute inset-0 flex items-center justify-center font-titulo font-black text-branco select-none pointer-events-none;
+    font-size: clamp(8rem, 25vw, 25rem);
+    opacity: 0.1;
+    line-height: 0.8;
+}
+
+/* =========================================
+   CONTEÚDO INTERNO DO CARTÃO (Texto + Imagem Vertical)
+   ========================================= */
+
+.history-card-content {
+    /* A MUDANÇA ESTÁ AQUI: Removemos o grid-cols-2.
+      Agora o layout é flex-col, garantindo que o texto fique ACIMA da imagem
+      tanto no mobile quanto no desktop.
+    */
+    @apply relative z-10 flex flex-col gap-6 md:gap-8 items-start text-left p-6 md:p-0 w-full max-w-3xl mx-auto;
+}
+
+.history-text-area {
+    @apply flex flex-col gap-3 md:gap-4 items-start w-full;
+}
+
+.history-year-title {
+    @apply font-titulo text-4xl md:text-5xl lg:text-6xl font-normal text-branco text-left;
+}
+
+.history-subtitle {
+    @apply font-titulo text-xl md:text-2xl font-bold text-branco;
+}
+
+.history-description {
+    /* max-w-2xl para que a linha de texto não fique demasiado longa e cansativa de ler */
+    @apply font-principal text-sm md:text-base leading-relaxed text-branco/80 w-full text-left;
+    text-wrap: balance;
+}
+
+.history-image-area {
+    /* O aspect-video (16:9) no desktop cria uma imagem mais "panorâmica" e menos alta,
+      o que funciona muito melhor quando está posicionada por baixo do texto,
+      evitando que empurre a régua para fora do ecrã.
+    */
+    @apply w-full max-w-2xl aspect-video relative overflow-hidden rounded-sm shadow-2xl;
+}
+
+/* =========================================
+   RÉGUA CRONOLÓGICA (TIMELINE RULER)
+   ========================================= */
+
+.history-ruler-wrapper {
+    @apply w-full border-t border-branco/20 mt-16 pt-8 pb-8 overflow-x-auto overflow-y-hidden;
+    scrollbar-width: none;
+}
+.history-ruler-wrapper::-webkit-scrollbar {
+    display: none;
+}
+
+.history-ruler-track {
+    @apply flex items-end justify-center min-w-max px-10 gap-2 md:gap-4;
+}
+
+.history-ruler-tick-group {
+    @apply relative flex flex-col items-center justify-end h-20 transition-all duration-300;
+}
+
+.ruler-minor-ticks {
+    @apply flex gap-2 md:gap-3 mb-2;
+}
+
+.minor-tick {
+    @apply w-[1px] h-3 bg-branco/20;
+}
+
+.ruler-major-tick {
+    @apply w-[2px] h-6 bg-branco/50 relative mb-4 transition-all duration-300;
+}
+
+.ruler-major-tick.active-tick {
+    @apply bg-secundaria h-10;
+}
+
+.ruler-indicator-arrow {
+    @apply absolute -top-4 left-1/2 -translate-x-1/2 w-4 h-4 bg-branco;
+    clip-path: polygon(50% 100%, 0 0, 100% 0);
+}
+
+.ruler-year-text {
+    @apply font-titulo text-xs md:text-sm transition-all duration-300;
+}

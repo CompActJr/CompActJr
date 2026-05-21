@@ -9,7 +9,7 @@
 /* CONTAINER DOS CARDS INSTITUCIONAIS */
 .pillars-grid {
     /* Diferente de serviços (flex-col), usamos grid-cols-3 no desktop para o efeito lado a lado */
-    @apply grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-6 lg:gap-10 relative z-10 w-full ;
+    @apply grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-6 lg:gap-10 relative z-10 w-full pl-10 pr-10;
 }
 
 /* BASE DOS CARDS INSTITUCIONAIS */
