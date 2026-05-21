@@ -1,3 +1,4 @@
+
 import { Metadata } from 'next'
 import Header from '../components/Header'
 import Hero from '../components/Hero'
@@ -34,7 +35,7 @@ export const metadata: Metadata = {
     openGraph: {
         title: 'CompAct Jr. | Soluções em TI que Transformam Negócios',
         description: 'Desenvolvimento profissional de softwares e sites com a qualidade de uma Empresa Júnior de excelência.',
-        url: 'https://compactjr.com.br',
+        url: 'https://project-nextjs-one-rose.vercel.app/',
         siteName: 'CompAct Jr.',
         images: [
             {

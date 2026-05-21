@@ -39,7 +39,7 @@ export const metadata: Metadata = {
         default: 'CompAct Jr. | Soluções em TI',
     },
     description: "A primeira Empresa Júnior de TI do Rio Grande do Sul. Especialistas em desenvolvimento de software e sistemas web.",
-    metadataBase: new URL('https://compactjr.com.br'), // Substituir pelo domínio oficial quando em produção
+    metadataBase: new URL('https://project-nextjs-one-rose.vercel.app/'), // Substituir pelo domínio oficial quando em produção
 };
 
 export default function RootLayout({
