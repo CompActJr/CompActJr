@@ -5,6 +5,7 @@ import Apoiadores from '../components/Apoiadores'
 import Indicadores from '../components/Indicadores'
 import BackgroundGlow from '../components/BackgroundGlow'
 import About from '../components/About'
+import Clientes from "@/src/components/Clientes";
 
 /**
  * EXPLICAÇÃO TÉCNICA (Capacitação da Equipe):
@@ -49,6 +50,7 @@ export default function Home() {
                 <Apoiadores />
                 <Indicadores />
                 <About />
+                <Clientes />
                 <div className="h-[50vh]"></div>
             </div>
         }

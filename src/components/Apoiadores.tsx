@@ -2,7 +2,7 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import Image from 'next/image' // Mantido para uso futuro com logos reais
-import './Apoiadores.css'
+import './BannerParceiros.css'
 
 /**
  * COMPONENTE APOIADORES (Social Proof / Carrossel Infinito)
