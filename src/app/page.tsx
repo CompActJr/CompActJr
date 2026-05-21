@@ -10,6 +10,7 @@ import Services from "@/src/components/Services";
 import Watermark from "@/src/components/Watermark";
 import SectionsWithWatermark from "@/src/components/SectionsWithWatermark";
 import Pillars from "@/src/components/Pillars";
+import Values from "@/src/components/Values";
 
 /**
  * EXPLICAÇÃO TÉCNICA (Capacitação da Equipe):
@@ -56,11 +57,10 @@ export default function Home() {
                 <About />
                 <Clientes />
 
-                {/* Apenas as seções que devem ter watermark ficam dentro do wrapper */}
                 <SectionsWithWatermark>
                     <Services />
                     <Pillars />
-                    {/* futuras seções: Exemplo <Portfolio />, <Contato />, etc. */}
+                    <Values />
                 </SectionsWithWatermark>
 
                 <div className="h-[50vh]"></div>

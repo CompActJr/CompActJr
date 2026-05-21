@@ -1,14 +1,13 @@
 'use client'
 import React from 'react'
 import { motion } from 'framer-motion'
-import Watermark from './Watermark'
 import './Pillars.css'
 
 /**
  * COMPONENTE DE PILARES E VALORES (Missão, Negócio, Visão)
  * @description Apresenta a base institucional da EJ em um layout de grade com degraus
  * (staggered grid). Mantém a interatividade 3D herdada da seção de Serviços.
- * @author Equipe de Projetos CompAct Jr.
+ * @kayualins Equipe de Projetos CompAct Jr.
  */
 export default function Pillars() {
     // CONFIGURAÇÃO DOS CARDS INSTITUCIONAIS
