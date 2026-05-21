@@ -1,7 +1,8 @@
 import { Metadata } from 'next'
 import Header from '../components/Header'
 import Hero from '../components/Hero'
-import Indicators from '../components/Indicators'
+import Apoiadores from '../components/Apoiadores'
+import Indicadores from '../components/Indicadores'
 
 /**
  * EXPLICAÇÃO TÉCNICA (Capacitação da Equipe):
@@ -40,10 +41,6 @@ export default function Home() {
     return (
         <main className="relative bg-preto min-h-screen">
 
-            {/* CONTAINER DE LUZES (ISOLAMENTO)
-                A classe inset-0 faz essa div ter o tamanho exato da página.
-                O overflow-hidden atua como uma "tesoura", cortando qualquer luz que tente
-                vazar da tela, resolvendo de vez o problema de barras de rolagem fantasmas. */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
                 <div className="glow-purple top-[-10%] left-[-20%]"></div>
                 <div className="glow-blue top-[20%] right-[-10%]"></div>
@@ -53,7 +50,8 @@ export default function Home() {
             <div className="relative z-10">
                 <Header />
                 <Hero />
-                <Indicators />
+                <Apoiadores />
+                <Indicadores />
 
                 <div className="h-[50vh]"></div>
             </div>

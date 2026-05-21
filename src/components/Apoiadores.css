@@ -1,0 +1,55 @@
+/* IMPORTAÇÃO BASE DO TAILWIND V4 */
+@reference "../app/globals.css";
+
+/* DIV MÃE COM PADDING HORIZONTAL RESPONSIVO */
+.supporters-section {
+    @apply w-full px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16;
+}
+
+/* FAIXA DE APOIADORES: mobile coluna, desktop linha, fundo branco com sombra */
+.supporters-banner {
+    @apply flex flex-col md:flex-row items-center justify-between bg-branco shadow-lg overflow-hidden;
+}
+
+/* CONTAINER DO TÍTULO: largura total no mobile, 35% no desktop, alinhado à direita */
+.supporters-title-container {
+    @apply w-full md:w-[35%] lg:w-[30%] bg-branco py-6 px-8 flex justify-center md:justify-end z-10;
+}
+
+/* TÍTULO: fonte principal, tamanho base no mobile, maior no desktop, caixa alta */
+.supporters-title {
+    @apply font-titulo text-base md:text-xl font-extrabold text-preto uppercase tracking-widest text-center md:text-right;
+}
+
+/* CONTAINER DO CARROSSEL: máscara nas laterais para efeito "fade out" */
+.supporters-carousel-container {
+    @apply w-full md:w-[65%] lg:w-[70%] overflow-hidden relative flex items-center h-24;
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+/* TRILHA INFINITA: animação linear de 20s, pausa ao passar o mouse */
+.supporters-carousel-track {
+    @apply flex items-center gap-12 w-max;
+    animation: scroll 20s linear infinite;
+}
+
+.supporters-carousel-track:hover {
+    animation-play-state: paused;
+}
+
+/* ENVOLTÓRIO DAS LOGOS: largura fixa mínima para evitar tremores na animação */
+.supporter-logo-wrapper {
+    @apply flex items-center justify-center min-w-[150px];
+}
+
+/* PLACEHOLDER ATUAL: escurecido, com hover que restaura cor e opacidade */
+.supporter-placeholder {
+    @apply flex items-center justify-center w-full h-12 grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300;
+}
+
+/* ANIMAÇÃO: move a trilha em -50% para criar loop infinito (JS triplicou os itens) */
+@keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}

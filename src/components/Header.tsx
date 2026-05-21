@@ -52,7 +52,7 @@ export default function Header() {
                             <Image
                                 src="/logo-compact.png"
                                 alt="CompAct Jr. Logo"
-                                width={120}
+                                width={96}
                                 height={40}
                                 priority // 'priority' faz a logo carregar imediatamente, melhorando o LCP (SEO)
                                 style={{ width: 'auto', height: 'auto' }}
