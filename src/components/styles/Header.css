@@ -1,7 +1,7 @@
 /* IMPORTAÇÃO BASE DO TAILWIND V4
    Isso permite que o arquivo CSS reconheça cores como 'bg-preto' e fontes como 'font-principal'
    definidas globalmente no app/globals.css */
-@reference "../app/globals.css";
+@reference "../../app/globals.css";
 
 /* CLASSES GERAIS DO HEADER */
 .header-container {

@@ -2,7 +2,7 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
-import './BannerParceiros.css'   // Reaproveita o mesmo CSS do componente Apoiadores
+import './styles/BannerParceiros.css'   // Reaproveita o mesmo CSS do componente Apoiadores
 
 /**
  * COMPONENTE CLIENTES (Social Proof / Carrossel de Clientes)

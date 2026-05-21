@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
 import { motion } from 'framer-motion'
-import './Hero.css'
+import './styles/Hero.css'
 
 /**
  * COMPONENTE HERO SECTION

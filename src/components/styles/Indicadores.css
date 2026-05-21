@@ -1,5 +1,5 @@
 /* IMPORTAÇÃO BASE DO TAILWIND V4 */
-@reference "../app/globals.css";
+@reference "../../app/globals.css";
 
 /* SEÇÃO PRINCIPAL: transparente para herdar efeitos globais, com padding responsivo */
 .indicators-section {

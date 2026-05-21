@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
 import { motion } from 'framer-motion'
-import './Pillars.css'
+import './styles/Pillars.css'
 
 /**
  * COMPONENTE DE PILARES E VALORES (Missão, Negócio, Visão)

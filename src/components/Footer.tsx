@@ -2,7 +2,7 @@
 import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import './Footer.css'
+import './styles/Footer.css'
 
 /**
  * COMPONENTE DE RODAPÉ (FOOTER)

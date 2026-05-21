@@ -2,7 +2,7 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
-import './Team.css'
+import './styles/Team.css'
 
 /**
  * COMPONENTE DA EQUIPA (TIME COMPACT)

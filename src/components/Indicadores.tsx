@@ -1,7 +1,7 @@
 'use client'
 import React, { useEffect, useState, useRef } from 'react'
 import { motion } from 'framer-motion'
-import './Indicadores.css'
+import './styles/Indicadores.css'
 
 /**
  * COMPONENTE DE INDICADORES (Social Proof / Métricas)
@@ -44,7 +44,7 @@ const CountUpNumber = ({ target, suffix = '' }: { target: number; suffix: string
                     return () => clearInterval(timer)
                 }
             },
-            { threshold: 0.5, once: true } // Dispara quando 50% do card estiver visível
+            { threshold: 0.5 } // Dispara quando 50% do card estiver visível
         )
 
         if (ref.current) observer.observe(ref.current)

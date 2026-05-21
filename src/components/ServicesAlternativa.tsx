@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
 import { motion } from 'framer-motion'
-import './ServicesAlternativa.css'
+import './styles/ServicesAlternativa.css'
 
 /**
  * COMPONENTE DE SERVIÇOS (SERVICES SECTION)

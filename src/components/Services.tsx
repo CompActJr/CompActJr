@@ -2,7 +2,7 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
-import './Services.css'
+import './styles/Services.css'
 
 /**
  * COMPONENTE DE SERVIÇOS (Layout orgânico com efeito 3D)

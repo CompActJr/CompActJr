@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
 import { motion } from 'framer-motion'
-import './Contact.css'
+import './styles/Contact.css'
 
 /**
  * COMPONENTE DE CONTATO (CONTACT SECTION)

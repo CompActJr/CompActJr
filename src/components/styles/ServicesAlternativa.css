@@ -1,5 +1,5 @@
 /* IMPORTAÇÃO DO TAILWIND V4 */
-@reference "../app/globals.css";
+@reference "../../app/globals.css";
 
 .services-section {
     @apply relative w-full py-20 lg:py-32;
@@ -67,7 +67,7 @@
 /* DECORAÇÃO (LOGO COMPACT NO BACKGROUND) */
 .service-decoration {
     @apply absolute -bottom-10 -right-10 w-40 h-40 opacity-10 pointer-events-none;
-    background-image: url('../../public/logo-compact.png'); /* Versão simplificada do logo */
+    background-image: url('../../../public/logo-compact.png'); /* Versão simplificada do logo */
     background-size: contain;
     background-repeat: no-repeat;
 }

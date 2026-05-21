@@ -1,7 +1,7 @@
 'use client'
 import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import './FloatingButton.css'
+import './styles/FloatingButton.css'
 
 /**
  * COMPONENTE BOTÃO FLUTUANTE (WHATSAPP)
@@ -61,9 +61,9 @@ export default function FloatingButton() {
 
                         <WhatsAppIcon />
 
-                        {/* Tooltip de contexto visível apenas no desktop ao passar o rato */}
+                        {/* Tooltip de contexto visível apenas no desktop ao passar o mouse */}
                         <span className="fab-tooltip">
-                            Fale connosco
+                            Fale conosco
                         </span>
                     </a>
                 </motion.div>

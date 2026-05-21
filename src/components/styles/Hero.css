@@ -1,6 +1,6 @@
 /* IMPORTAÇÃO DO TAILWIND V4
    Permite o uso da diretiva @apply integrada com as variáveis do globals.css */
-@reference "../app/globals.css";
+@reference "../../app/globals.css";
 
 /* ESTRUTURA PRINCIPAL */
 .hero-section {

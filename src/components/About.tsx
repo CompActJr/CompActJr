@@ -2,7 +2,7 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
-import './About.css'
+import './styles/About.css'
 
 /**
  * COMPONENTE QUEM SOMOS (Seção Institucional)

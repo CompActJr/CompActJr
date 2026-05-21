@@ -1,5 +1,5 @@
 /* IMPORTAÇÃO DO TAILWIND V4 */
-@reference "../app/globals.css";
+@reference "../../app/globals.css";
 
 /* ESTRUTURA PRINCIPAL */
 .about-section {

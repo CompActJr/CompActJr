@@ -1,5 +1,5 @@
 /* IMPORTAÇÃO BASE DO TAILWIND V4 */
-@reference "../app/globals.css";
+@reference "../../app/globals.css";
 
 /* SECÇÃO PRINCIPAL */
 .values-section {

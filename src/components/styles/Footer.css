@@ -1,5 +1,5 @@
 /* IMPORTAÇÃO BASE DO TAILWIND V4 */
-@reference "../app/globals.css";
+@reference "../../app/globals.css";
 
 .footer-container {
     @apply relative w-full bg-preto border-t border-branco/10 pt-12 md:pt-16 pb-8 z-20;

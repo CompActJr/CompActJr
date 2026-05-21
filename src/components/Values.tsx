@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
 import { motion } from 'framer-motion'
-import './Values.css'
+import './styles/Values.css'
 
 /**
  * COMPONENTE DE VALORES (Princípios da empresa)
