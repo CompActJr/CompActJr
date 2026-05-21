@@ -3,6 +3,7 @@ import Header from '../components/Header'
 import Hero from '../components/Hero'
 import Apoiadores from '../components/Apoiadores'
 import Indicadores from '../components/Indicadores'
+import BackgroundGlow from '../components/BackgroundGlow'
 
 /**
  * EXPLICAÇÃO TÉCNICA (Capacitação da Equipe):
@@ -40,21 +41,15 @@ export const metadata: Metadata = {
 export default function Home() {
     return (
         <main className="relative bg-preto min-h-screen">
-
-            <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
-                <div className="glow-purple top-[-10%] left-[-20%]"></div>
-                <div className="glow-blue top-[20%] right-[-10%]"></div>
-                <div className="glow-purple top-[80%] left-[-15%] opacity-30"></div>
-            </div>
-
+            <BackgroundGlow />  {
             <div className="relative z-10">
                 <Header />
                 <Hero />
                 <Apoiadores />
                 <Indicadores />
-
                 <div className="h-[50vh]"></div>
             </div>
+        }
         </main>
     )
 }
