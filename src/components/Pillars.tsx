@@ -65,16 +65,21 @@ export default function Pillars() {
                                 viewport={{ once: true, margin: "-100px" }}
                                 transition={{
                                     duration: 0.6,
-                                    delay: index * 0.2, // Entrada em cascata sequencial
+                                    delay: index * 0.2,
                                     ease: "easeOut"
                                 }}
                                 whileHover={{
                                     ...pillar.hover3D,
                                     transition: { duration: 0.4, ease: "easeOut" }
                                 }}
+                                whileTap={{
+                                    scale: 1.02,                      // Leve aumento
+                                    rotateX: 3,                       // Pequena inclinação (opcional)
+                                    rotateY: pillar.id === 'missao' ? 3 : (pillar.id === 'visao' ? -3 : 0),
+                                    transition: { duration: 0.1 }
+                                }}
                             >
                                 <div className="pillar-card-content">
-                                    {/* No protótipo, a descrição vem antes do título nesta seção */}
                                     <p className="pillar-description">{pillar.description}</p>
                                     <h3 className="pillar-title">{pillar.title}</h3>
                                 </div>
