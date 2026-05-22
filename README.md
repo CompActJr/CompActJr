@@ -3,7 +3,7 @@ Projeto oficial da nova Landing Page da CompAct Jr., desenvolvido para atuar com
 
 Links Oficiais:
 
-Ambiente de Produção (Deploy): Vercel - CompAct Jr.
+Ambiente de Produção (Deploy): Vercel - https://project-nextjs-one-rose.vercel.app/
 
 Repositório Oficial: GitHub - ProjectNextjs
 
