@@ -1,6 +1,7 @@
 'use client'
 import React from 'react'
 import { motion } from 'framer-motion'
+import Link from 'next/link';
 import './styles/Hero.css'
 
 /**
@@ -11,7 +12,7 @@ import './styles/Hero.css'
  */
 export default function Hero() {
     return (
-        <section className="hero-section">
+        <section id="hero" className="hero-section">
 
             {/* EFEITOS DE LUZ DE FUNDO (GLOWS)
                 A separação em divs individuais permite posicionamento flexível e controle de
@@ -52,9 +53,9 @@ export default function Hero() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
                     >
-                        <button className="hero-btn">
+                        <Link href="#contato" className="hero-btn" scroll={true}>
                             Entre em contato conosco
-                        </button>
+                        </Link>
                     </motion.div>
                 </motion.div>
             </div>

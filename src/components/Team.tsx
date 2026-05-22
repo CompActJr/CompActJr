@@ -72,7 +72,7 @@ export default function Team() {
     ]
 
     return (
-        <section id="equipa" className="team-section">
+        <section id="equipe" className="team-section">
 
             <div className="container mx-auto px-6 max-w-7xl relative z-10">
 
