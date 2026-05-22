@@ -17,7 +17,7 @@ export default function Watermark() {
                     alt="Marca d'água CompAct Jr"
                     width={400}
                     height={400}
-                    className="object-contain w-full h-full"
+                    className="watermark-image"
                 />
             </div>
         </div>

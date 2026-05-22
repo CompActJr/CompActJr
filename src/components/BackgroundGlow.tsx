@@ -12,7 +12,7 @@ export default function BackgroundGlow() {
     return (
         // A classe 'fixed' em vez de 'absolute' garante que o fundo cubra sempre o monitor,
         // não importando o quão longe o utilizador role a página.
-        <div className="fixed inset-0 w-screen h-screen overflow-hidden pointer-events-none z-0">
+        <div className="fixed inset-0 w-full h-full overflow-hidden pointer-events-none z-0">
 
             {/* Mancha Roxa - Superior Esquerda */}
             <motion.div

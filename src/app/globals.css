@@ -40,5 +40,13 @@
 @layer base {
     body {
         @apply bg-preto text-branco font-principal antialiased;
+        /* Esconde a barra no Firefox e IE/Edge */
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+
+    /* Esconde a barra no Chrome, Safari e Opera */
+    body::-webkit-scrollbar {
+        display: none;
     }
 }

@@ -50,6 +50,7 @@ export default function Footer() {
                                 alt="CompAct Jr. Logo"
                                 width={250}
                                 height={45}
+                                style={{ width: 'auto', height: 'auto' }}
                                 className="object-contain"
                             />
                         </Link>

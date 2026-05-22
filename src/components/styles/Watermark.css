@@ -16,5 +16,5 @@
 }
 
 .watermark-sticky-container img {
-    @apply w-auto h-full max-w-full object-contain;
+    @apply object-contain w-full h-full;
 }
