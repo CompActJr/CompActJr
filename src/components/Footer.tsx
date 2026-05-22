@@ -73,7 +73,7 @@ export default function Footer() {
                                 <Link href="/" className="footer-link">Homepage</Link>
                                 <Link href="#sobre" className="footer-link">Quem Somos</Link>
                                 <Link href="#servicos" className="footer-link">Serviços</Link>
-                                <Link href="#equipe" className="footer-link">Time</Link>
+                                <Link href="#portfolio" className="footer-link">Portfólio</Link>
                             </div>
                         </nav>
                     </div>

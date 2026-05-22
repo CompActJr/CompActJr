@@ -42,7 +42,6 @@ export default function Header() {
                     {/* 'shrink-0' impede que os links sejam "esmagados" quando a tela diminui */}
                     <nav className="hidden lg:flex items-center lg:gap-6 xl:gap-10 lg:w-[45%] xl:w-[40%] justify-end shrink-0">
                         <Link href="#hero" className="nav-link">Homepage</Link>
-                        {/*<Link href="#" className="nav-link nav-link-muted">Portfólio</Link>*/}
                         <Link href="#servicos" className="nav-link">Serviços</Link>
                     </nav>
 
@@ -67,7 +66,7 @@ export default function Header() {
                         <nav className="flex items-center lg:gap-4 xl:gap-8">
                             <Link href="#sobre" className="nav-link ">Quem Somos</Link>
                             {/*<Link href="#blog" className="nav-link ">Blog</Link>*/}
-                            <Link href="#equipe" className="nav-link ">Time</Link>
+                            <Link href="#portfolio" className="nav-link ">Portfólio</Link>
                         </nav>
 
                         {/* Divisor vertical sutil ('border-l') separando os links dos botões de ação */}
@@ -133,7 +132,7 @@ export default function Header() {
                     <Link href="/" onClick={() => setMenuAberto(false)} className="nav-link nav-link-mobile text-secundaria">Homepage</Link>
                     <Link href="#servicos" onClick={() => setMenuAberto(false)} className="nav-link nav-link-mobile">Serviços</Link>
                     <Link href="#sobre" onClick={() => setMenuAberto(false)} className="nav-link nav-link-mobile">Quem Somos</Link>
-                    <Link href="#equipe" onClick={() => setMenuAberto(false)} className="nav-link nav-link-mobile">Time</Link>
+                    <Link href="#portfolio" onClick={() => setMenuAberto(false)} className="nav-link nav-link-mobile">Portfólio</Link>
 
                     {/* Ícones Auxiliares reposicionados para a tela mobile */}
                     <div className="flex items-center gap-8 my-2">
