@@ -11,7 +11,7 @@
 
 .header-scroll-active {
     /* Efeito "Glassmorphism": Fundo preto 90% opaco com desfoque traseiro (backdrop-blur) */
-    @apply bg-preto/90 backdrop-blur-md h-20 shadow-2xl border-b border-branco/5;
+    @apply bg-preto/80 backdrop-blur-md h-20 shadow-2xl border-b border-branco/5;
 }
 
 .header-scroll-inactive {
@@ -42,7 +42,7 @@
 /* ANIMAÇÃO DA LOGO */
 .logo-img {
     /* Efeito simples de "respiro" ao passar o mouse por cima */
-    @apply transition-transform duration-300 hover:scale-105 shrink-0;
+    @apply transition-transform duration-300 hover:scale-130 shrink-0;
 }
 
 /* ÍCONES AUXILIARES (TEMA / LINGUAGEM) */

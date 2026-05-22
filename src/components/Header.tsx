@@ -36,7 +36,7 @@ export default function Header() {
                 {/* LÓGICA DE GRID RESPONSIVA:
                     Mobile (< 1024px): 'grid grid-cols-3' -> Divide em 3 partes para centralizar a logo.
                     Desktop (>= 1024px): 'lg:flex lg:justify-between' -> Volta ao alinhamento lateral padrão. */}
-                <div className="container mx-auto px-6 max-w-7xl h-full grid grid-cols-3 items-center lg:flex lg:justify-between ">
+                <div className="container mx-auto px-6 max-w-7xl h-full grid grid-cols-3 items-center lg:flex lg:justify-between">
 
                     {/* COLUNA 1: NAVEGAÇÃO ESQUERDA (DESKTOP) */}
                     {/* 'shrink-0' impede que os links sejam "esmagados" quando a tela diminui */}
@@ -52,7 +52,7 @@ export default function Header() {
                             <Image
                                 src="/logo-compact.png"
                                 alt="CompAct Jr. Logo"
-                                width={96}
+                                width={50}
                                 height={40}
                                 priority // 'priority' faz a logo carregar imediatamente, melhorando o LCP (SEO)
                                 style={{ width: 'auto', height: 'auto' }}
