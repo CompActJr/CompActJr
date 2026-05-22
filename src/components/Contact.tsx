@@ -1,12 +1,13 @@
 'use client'
-import React from 'react'
-import { motion } from 'framer-motion'
+import React, { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import './styles/Contact.css'
 
 /**
  * COMPONENTE DE CONTATO (CONTACT SECTION)
  * @description Seção final de conversão.
  * Layout de 2 colunas: Informações e Mapa dedicado à esquerda, Formulário Glassmorphism à direita.
+ * Inclui estado de sucesso interativo após submissão.
  * @kayualins - Equipe de Projetos CompAct Jr.
  */
 
@@ -19,8 +20,23 @@ const MailIcon = () => (
 const MapPinIcon = () => (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="contact-icon-small"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
 )
+const CheckCircleIcon = () => (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-16 h-16 text-secundaria mb-6 mx-auto"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+)
 
 export default function Contact() {
+    // ESTADO: Controla se o formulário foi enviado com sucesso
+    const [isSubmitted, setIsSubmitted] = useState(false)
+
+    // FUNÇÃO DE SUBMISSÃO
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault()
+
+        // Aqui futuramente entrará a lógica de envio de e-mail (ex: Fetch API para o Formspree)
+        // Simulando a conclusão do envio:
+        setIsSubmitted(true)
+    }
+
     return (
         <section id="contato" className="contact-section">
             <div className="container mx-auto px-6 max-w-7xl relative z-10 flex flex-col lg:flex-row gap-12 lg:gap-16 items-start pt-24 pb-32">
@@ -43,7 +59,7 @@ export default function Contact() {
                             <div className="flex items-start gap-3">
                                 <MapPinIcon />
                                 <p className="contact-address-text">
-                                    Av. Roraima, 1000 - CT - Sala 212<br />
+                                    Av. Roraima, 1000 - CT - Sala 317<br />
                                     Campus Camobi, Santa Maria/RS<br />
                                     CEP 97105-900
                                 </p>
@@ -51,11 +67,11 @@ export default function Contact() {
                         </div>
 
                         <div className="contact-social-links">
-                            <a href="#" className="contact-social-btn group" aria-label="WhatsApp">
+                            <a href="https://wa.me/555599730802?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20os%20serviços%20da%20CompAct%20Jr." className="contact-social-btn group" target="_blank" aria-label="WhatsApp">
                                 <div className="contact-icon-wrapper"><WhatsAppIcon /></div>
                                 <span className="contact-social-label">Chame no WhatsApp</span>
                             </a>
-                            <a href="#" className="contact-social-btn group" aria-label="E-mail">
+                            <a href="https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox?compose=GTvVlcSHvbJMXWTCkLMlBVkmdGJtbRCkBndzXwxggljsFQsLpmlrXQXRbfmXcDKmlchJHHXnVGQkB" target="_blank" className="contact-social-btn group" aria-label="E-mail">
                                 <div className="contact-icon-wrapper"><MailIcon /></div>
                                 <span className="contact-social-label">Envie um E-mail</span>
                             </a>
@@ -65,7 +81,6 @@ export default function Contact() {
                     {/* MAPA INTERATIVO DESOBSTRUÍDO COM ALFINETE */}
                     <div className="contact-map-box">
                         <iframe
-                            /* O parâmetro q= define a busca exata, forçando o Google a colocar o alfinete vermelho. */
                             src="https://maps.google.com/maps?q=Centro+de+Tecnologia+UFSM+Santa+Maria&t=&z=15&ie=UTF8&iwloc=&output=embed"
                             width="100%"
                             height="100%"
@@ -86,43 +101,79 @@ export default function Contact() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
                 >
-                    <form className="contact-form" onSubmit={(e) => e.preventDefault()}>
-                        <div className="contact-form-header">
-                            <h3 className="contact-form-title">Ou preencha o formulário</h3>
-                            <p className="contact-form-subtitle">Que entraremos em contato com você o mais rápido possível.</p>
-                        </div>
+                    {/* O formulário mantém as classes de design, mas o conteúdo interno altera com a submissão */}
+                    <div className="contact-form">
+                        <AnimatePresence mode="wait">
+                            {!isSubmitted ? (
+                                // ESTADO 1: FORMULÁRIO PARA PREENCHER
+                                <motion.form
+                                    key="form"
+                                    onSubmit={handleSubmit}
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    exit={{ opacity: 0, y: -20 }}
+                                    transition={{ duration: 0.3 }}
+                                >
+                                    <div className="contact-form-header">
+                                        <h3 className="contact-form-title">Ou preencha o formulário</h3>
+                                        <p className="contact-form-subtitle">Que entraremos em contato com você o mais rápido possível.</p>
+                                    </div>
 
-                        <div className="contact-input-grid">
-                            <div className="contact-input-group">
-                                <label htmlFor="nome">Nome</label>
-                                <input type="text" id="nome" placeholder="Seu nome completo" required />
-                            </div>
-                            <div className="contact-input-group">
-                                <label htmlFor="empresa">Empresa</label>
-                                <input type="text" id="empresa" placeholder="Nome do seu negócio" />
-                            </div>
-                        </div>
+                                    <div className="contact-input-grid">
+                                        <div className="contact-input-group">
+                                            <label htmlFor="nome">Nome</label>
+                                            <input type="text" id="nome" placeholder="Seu nome completo" required />
+                                        </div>
+                                        <div className="contact-input-group">
+                                            <label htmlFor="empresa">Empresa</label>
+                                            <input type="text" id="empresa" placeholder="Nome do seu negócio" />
+                                        </div>
+                                    </div>
 
-                        <div className="contact-input-grid">
-                            <div className="contact-input-group">
-                                <label htmlFor="email">E-mail</label>
-                                <input type="email" id="email" placeholder="seu@email.com" required />
-                            </div>
-                            <div className="contact-input-group">
-                                <label htmlFor="telefone">Telefone</label>
-                                <input type="tel" id="telefone" placeholder="(55) 90000-0000" required />
-                            </div>
-                        </div>
+                                    <div className="contact-input-grid">
+                                        <div className="contact-input-group">
+                                            <label htmlFor="email">E-mail</label>
+                                            <input type="email" id="email" placeholder="seu@email.com" required />
+                                        </div>
+                                        <div className="contact-input-group">
+                                            <label htmlFor="telefone">Telefone</label>
+                                            <input type="tel" id="telefone" placeholder="(55) 90000-0000" required />
+                                        </div>
+                                    </div>
 
-                        <div className="contact-input-group">
-                            <label htmlFor="mensagem">Nos explique sua necessidade</label>
-                            <textarea id="mensagem" rows={4} placeholder="Como a CompAct Jr. pode ajudar o seu negócio a crescer?" required></textarea>
-                        </div>
+                                    <div className="contact-input-group">
+                                        <label htmlFor="mensagem">Nos explique sua necessidade</label>
+                                        <textarea id="mensagem" rows={4} placeholder="Como a CompAct Jr. pode ajudar o seu negócio a crescer?" required></textarea>
+                                    </div>
 
-                        <button type="submit" className="contact-submit-btn">
-                            Enviar Mensagem
-                        </button>
-                    </form>
+                                    <button type="submit" className="contact-submit-btn">
+                                        Enviar Mensagem
+                                    </button>
+                                </motion.form>
+                            ) : (
+                                // ESTADO 2: MENSAGEM DE SUCESSO (Renderizada após submissão)
+                                <motion.div
+                                    key="success"
+                                    className="flex flex-col items-center justify-center text-center py-12 md:py-20 h-full"
+                                    initial={{ opacity: 0, scale: 0.9 }}
+                                    animate={{ opacity: 1, scale: 1 }}
+                                    transition={{ duration: 0.5, delay: 0.2 }}
+                                >
+                                    <CheckCircleIcon />
+                                    <h3 className="contact-form-title text-secundaria mb-4">Mensagem Enviada!</h3>
+                                    <p className="contact-form-subtitle text-base leading-relaxed max-w-md mx-auto">
+                                        Agradecemos o seu contato. A nossa equipe analisará a sua necessidade e retornará em breve com a melhor solução para você.
+                                    </p>
+                                    <button
+                                        onClick={() => setIsSubmitted(false)}
+                                        className="mt-8 font-principal text-sm text-branco/50 hover:text-branco underline underline-offset-4 transition-colors cursor-pointer"
+                                    >
+                                        Enviar outra mensagem
+                                    </button>
+                                </motion.div>
+                            )}
+                        </AnimatePresence>
+                    </div>
                 </motion.div>
 
             </div>
