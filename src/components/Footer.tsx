@@ -33,6 +33,12 @@ const GithubIcon = () => (
     </svg>
 )
 
+const FacebookIcon = () => (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="footer-social-icon">
+        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+    </svg>
+)
+
 export default function Footer() {
     const currentYear = new Date().getFullYear()
 
@@ -67,7 +73,7 @@ export default function Footer() {
                                 <Link href="/" className="footer-link">Homepage</Link>
                                 <Link href="#sobre" className="footer-link">Quem Somos</Link>
                                 <Link href="#servicos" className="footer-link">Serviços</Link>
-                                <Link href="#contato" className="footer-link">Contato</Link>
+                                <Link href="#equipe" className="footer-link">Time</Link>
                             </div>
                         </nav>
                     </div>
@@ -78,14 +84,17 @@ export default function Footer() {
                         <p className="footer-contact-item">contato@compactjr.com.br</p>
 
                         <div className="footer-social-row">
-                            <a href="#" className="footer-social-btn" aria-label="Instagram">
+                            <a href="https://www.instagram.com/compact.jr/" target="_blank" className="footer-social-btn" aria-label="Instagram">
                                 <InstagramIcon />
                             </a>
-                            <a href="#" className="footer-social-btn" aria-label="LinkedIn">
+                            <a href="https://br.linkedin.com/company/compactjr" target="_blank" className="footer-social-btn" aria-label="LinkedIn">
                                 <LinkedInIcon />
                             </a>
-                            <a href="#" className="footer-social-btn" aria-label="GitHub">
-                                <GithubIcon />
+                            {/*<a href="#" className="footer-social-btn" aria-label="GitHub">
+                                <GithubIcon/>
+                            </a>*/}
+                            <a href="https://www.facebook.com/compactjr/?locale=pt_BR" target="_blank" className="footer-social-btn" aria-label="GitHub">
+                                <FacebookIcon />
                             </a>
                         </div>
                     </div>

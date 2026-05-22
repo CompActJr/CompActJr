@@ -1,0 +1,112 @@
+/* IMPORTAÇÃO BASE DO TAILWIND V4 */
+@reference "../app/globals.css";
+
+/* SEÇÃO PRINCIPAL */
+.portfolio-section {
+    @apply relative w-full py-24 lg:py-32 z-10;
+}
+
+/* CABEÇALHO */
+.portfolio-header {
+    @apply mb-12 flex flex-col items-start;
+}
+
+.portfolio-kicker {
+    @apply font-principal text-sm text-secundaria font-bold uppercase tracking-[4px] mb-2;
+}
+
+.portfolio-main-title {
+    @apply font-titulo text-4xl md:text-5xl font-black uppercase text-branco tracking-wider;
+}
+
+/* =========================================
+   BENTO GRID (O MOSAICO ASSIMÉTRICO)
+   ========================================= */
+
+.portfolio-bento-grid {
+    /* Cria uma malha de 3 colunas.
+      O auto-rows-[250px] fixa a altura base das linhas.
+      No mobile, vira 1 coluna com altura de 300px para cada.
+    */
+    @apply grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 auto-rows-[300px] md:auto-rows-[280px];
+}
+
+/* BLOCO INDIVIDUAL DE PROJETO */
+.portfolio-item {
+    @apply relative rounded-sm overflow-hidden cursor-pointer shadow-2xl;
+    /* translate-z-0 força aceleração de hardware para o hover da imagem não travar */
+    transform: translateZ(0);
+}
+
+/* ÁREA DA IMAGEM */
+.portfolio-image-wrapper {
+    @apply absolute inset-0 w-full h-full transition-transform duration-700 ease-out;
+}
+
+/* No hover, a imagem do projeto cresce levemente ao fundo */
+.portfolio-item:hover .portfolio-image-wrapper {
+    transform: scale(1.08);
+}
+
+/* OVERLAY (Fundo de Vidro Escuro) */
+.portfolio-overlay {
+    /* Degrade que escurece do fundo para o topo para dar leitura aos textos */
+    @apply absolute inset-0 bg-gradient-to-t from-preto via-preto/60 to-transparent opacity-60 transition-opacity duration-500 z-10;
+}
+
+.portfolio-item:hover .portfolio-overlay {
+    /* Fica mais escuro no hover para destacar as informações que irão surgir */
+    @apply opacity-90 backdrop-blur-sm;
+}
+
+/* =========================================
+   ELEMENTOS DE TEXTO E INTERAÇÃO
+   ========================================= */
+
+/* Etiqueta de Categoria (ex: Web App) - Sempre visível */
+.portfolio-badge {
+    @apply absolute top-6 left-6 z-20 bg-branco/10 backdrop-blur-md border border-branco/20 text-branco font-principal text-[10px] md:text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full;
+}
+
+/* Container que guarda o texto e o botão */
+.portfolio-content {
+    @apply absolute inset-x-0 bottom-0 p-6 md:p-8 z-20 flex justify-between items-end gap-4;
+}
+
+/* Bloco de Texto */
+.portfolio-text-block {
+    @apply flex flex-col gap-1 md:gap-2;
+}
+
+.portfolio-client {
+    @apply font-principal text-sm text-secundaria font-bold uppercase tracking-widest opacity-0 -translate-y-4 transition-all duration-500 ease-out;
+}
+
+.portfolio-title {
+    @apply font-titulo text-xl md:text-2xl lg:text-3xl font-bold text-branco leading-tight opacity-0 translate-y-4 transition-all duration-500 ease-out;
+    text-wrap: balance;
+}
+
+/* Botão Redondo com Seta */
+.portfolio-action-btn {
+    @apply w-12 h-12 md:w-14 md:h-14 flex-shrink-0 rounded-full bg-branco text-preto flex items-center justify-center opacity-0 scale-50 transition-all duration-500 ease-out;
+}
+
+/* =========================================
+   ANIMAÇÃO DO CONTEÚDO NO HOVER
+   ========================================= */
+
+.portfolio-item:hover .portfolio-client,
+.portfolio-item:hover .portfolio-title {
+    @apply opacity-100 translate-y-0;
+}
+
+/* O delay cria um efeito de "cascata" (O título entra logo depois do cliente) */
+.portfolio-item:hover .portfolio-title {
+    transition-delay: 50ms;
+}
+
+.portfolio-item:hover .portfolio-action-btn {
+    @apply opacity-100 scale-100 hover:bg-secundaria hover:text-branco;
+    transition-delay: 100ms;
+}
