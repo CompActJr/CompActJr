@@ -52,7 +52,7 @@ export const metadata: Metadata = {
 
 export default function Home() {
     return (
-        <main className="relative bg-preto min-h-screen w-full max-w-[100vw] overflow-x-hidden flex flex-col">
+        <main className="relative bg-preto min-h-screen w-full max-w-[100vw] overflow-x-clip flex flex-col">
             <BackgroundGlow />
             <div className="relative z-10 w-full">
                 <Header />
