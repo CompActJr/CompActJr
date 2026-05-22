@@ -3,6 +3,7 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import './styles/About.css'
+import Link from "next/link";
 
 /**
  * COMPONENTE QUEM SOMOS (Seção Institucional)
@@ -40,7 +41,10 @@ export default function About() {
                         </p>
                     </div>
 
-                    <button className="about-btn">saiba mais</button>
+                    <Link href="#historia">
+                        <button className="about-btn">saiba mais</button>
+                    </Link>
+
                 </motion.div>
 
                 {/* COLUNA DIREITA: FOTO DA EQUIPE COM ANIMAÇÃO (entrada pela direita) */}
