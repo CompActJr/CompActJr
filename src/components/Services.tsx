@@ -69,12 +69,18 @@ export default function Services() {
                                 viewport={{ once: true, margin: "-100px" }}
                                 transition={{
                                     duration: 0.6,
-                                    delay: index * 0.1,    // Stagger effect suave
+                                    delay: index * 0.1,
                                     ease: "easeOut"
                                 }}
                                 whileHover={{
                                     ...service.hover3D,
                                     transition: { duration: 0.4, ease: "easeOut" }
+                                }}
+                                whileTap={{
+                                    scale: 1.02,          // Leve aumento
+                                    rotateX: 3,           // Pequena inclinação (opcional)
+                                    rotateY: service.id === 'sites' ? 2 : (service.id === 'chatbots' ? -2 : 0),
+                                    transition: { duration: 0.1 }
                                 }}
                             >
                                 <div className="service-card-content">
