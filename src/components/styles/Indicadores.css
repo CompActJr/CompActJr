@@ -13,7 +13,21 @@
 
 /* CARTÃO INDIVIDUAL: fundo branco, sombra, centralizado, com efeito de elevação ao hover */
 .stat-card {
-    @apply bg-branco flex flex-col items-center justify-center py-12 px-6 text-center shadow-lg transition-transform duration-300 hover:-translate-y-2;
+    @apply bg-branco flex flex-col items-center justify-center py-12 px-6 text-center shadow-lg transition-all duration-300;
+}
+
+@media (hover: hover) {
+    .stat-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+}
+
+/* Efeito de clique (mobile e desktop) */
+.stat-card:active {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    transition-duration: 0.1s; /* Resposta mais rápida ao toque */
 }
 
 /* NÚMEROS (COUNTUP): fonte de título, tamanho grande, preto, com margem inferior */
