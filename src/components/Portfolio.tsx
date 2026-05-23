@@ -2,7 +2,7 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
-import './Portfolio.css'
+import './styles/Portfolio.css'
 
 /**
  * COMPONENTE DE PORTFÓLIO (BENTO GRID)

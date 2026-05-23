@@ -106,7 +106,7 @@ export default function Footer() {
                         &copy; {currentYear} CompAct Jr. Todos os direitos reservados.
                     </p>
                     <p className="footer-legal">
-                        CNPJ: 24.341.248/0001-31 | Desenvolvido com excelência acadêmica.
+                        Desenvolvido com excelência acadêmica.
                     </p>
                 </div>
 

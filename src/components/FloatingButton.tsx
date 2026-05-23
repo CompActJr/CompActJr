@@ -50,7 +50,7 @@ export default function FloatingButton() {
                 >
                     <a
                         // Substitua pelo número real da EJ. O formato deve ser: 55 + DDD + Numero
-                        href="https://wa.me/5599999999999?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20os%20serviços%20da%20CompAct%20Jr."
+                        href="https://wa.me/555596018036?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20os%20serviços%20da%20CompAct%20Jr."
                         target="_blank"
                         rel="noopener noreferrer"
                         className="fab-button group"

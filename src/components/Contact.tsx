@@ -67,7 +67,7 @@ export default function Contact() {
                         </div>
 
                         <div className="contact-social-links">
-                            <a href="https://wa.me/555599730802?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20os%20serviços%20da%20CompAct%20Jr." className="contact-social-btn group" target="_blank" aria-label="WhatsApp">
+                            <a href="https://wa.me/555596018036?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20os%20serviços%20da%20CompAct%20Jr." className="contact-social-btn group" target="_blank" aria-label="WhatsApp">
                                 <div className="contact-icon-wrapper"><WhatsAppIcon /></div>
                                 <span className="contact-social-label">Chame no WhatsApp</span>
                             </a>
