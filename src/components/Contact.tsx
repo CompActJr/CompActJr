@@ -71,7 +71,7 @@ export default function Contact() {
                                 <div className="contact-icon-wrapper"><WhatsAppIcon /></div>
                                 <span className="contact-social-label">Chame no WhatsApp</span>
                             </a>
-                            <a href="https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox?compose=GTvVlcSHvbJMXWTCkLMlBVkmdGJtbRCkBndzXwxggljsFQsLpmlrXQXRbfmXcDKmlchJHHXnVGQkB" target="_blank" className="contact-social-btn group" aria-label="E-mail">
+                            <a href="https://mail.google.com/mail/u/0/?view=cm&tf=1&to=email@exemplo.com&su=Assunto%20do%20Email&body=Olá,%20tudo%20bem?%0A%0AEsta%20é%20a%20minha%20mensagem%20pré-preenchida." target="_blank" className="contact-social-btn group" aria-label="E-mail">
                                 <div className="contact-icon-wrapper"><MailIcon /></div>
                                 <span className="contact-social-label">Envie um E-mail</span>
                             </a>
