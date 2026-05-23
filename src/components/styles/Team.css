@@ -55,7 +55,7 @@
 .team-card-inner {
     /* Borda sólida a toda a volta do cartão. O overflow-hidden aqui cortaria o balão de hover,
        por isso aplicamo-lo apenas na imagem. */
-    @apply flex flex-col w-full h-full border-2 transition-transform duration-300;
+    @apply relative flex flex-col h-full overflow-hidden border-2 transition-transform duration-300;
 }
 
 /* Efeito de levitação no cartão todo */
@@ -103,7 +103,7 @@
 
 /* ÁREA DE TEXTO (NOME E CARGO) */
 .team-info {
-    @apply p-2 md:p-3 flex flex-col justify-center min-h-[60px] md:min-h-[70px];
+    @apply flex-1 flex flex-col items-center justify-center p-1 text-center z-10;
 }
 
 /* FUNDO DO TEXTO ACOMPANHA A REGRA DE NEGÓCIO DO CARTÃO */

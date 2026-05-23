@@ -13,9 +13,11 @@ import './styles/BannerParceiros.css'   // Reaproveita o mesmo CSS do componente
 export default function Clientes() {
     // DADOS DOS CLIENTES (substituir pelas logos reais futuramente)
     const clientes = [
-        { name: 'Empresa Alpha', src: '/cliente-alpha.png' },
-        { name: 'Startup Beta', src: '/cliente-beta.png' },
-        { name: 'Tech Gama', src: '/cliente-gama.png' },
+        { name: 'Caduceu', src: '/cliente-alpha.png' },
+        { name: 'Mirinay', src: '/cliente-beta.png' },
+        { name: 'Equilíbrio', src: '/cliente-gama.png' },
+        { name: 'Nicole Mundstock', src: '/cliente-gama.png' },
+        { name: 'Sobrac', src: '/cliente-gama.png' },
         // Adicione quantos forem necessários
     ]
 

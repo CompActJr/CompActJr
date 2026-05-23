@@ -22,9 +22,9 @@ export default function Apoiadores() {
     // DADOS ESTÁTICOS DOS APOIADORES (FÁCIL MANUTENÇÃO)
     // Futuro: Substituir os placeholders por <Image> com src real
     const supporters = [
-        { name: 'Caduceu Jr', src: '/caduceu-logo.png' },
-        { name: 'Totem Vestibulares', src: '/totem-logo.png' },
-        { name: 'FEJERS', src: '/fejers-logo.png' },
+        { name: 'UFSM', src: '/caduceu-logo.png' },
+        { name: 'Inovatech', src: '/totem-logo.png' },
+        { name: 'Atitude Idiomas', src: '/fejers-logo.png' },
     ]
 
     return (
