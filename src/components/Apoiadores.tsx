@@ -8,7 +8,7 @@ import './styles/BannerParceiros.css'
  * COMPONENTE APOIADORES (Social Proof / Carrossel Infinito)
  * @description Seção que exibe parceiros estratégicos da empresa.
  * Imagens com redirecionamento em nova aba e efeito hover.
- * @author Equipe de Projetos CompAct Jr.
+ * @kayualins Equipe de Projetos CompAct Jr.
  */
 
 export default function Apoiadores() {
