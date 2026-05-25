@@ -1,34 +1,26 @@
 'use client'
 import React from 'react'
 import { motion } from 'framer-motion'
-import Image from 'next/image' // Mantido para uso futuro com logos reais
+import Image from 'next/image'
 import './styles/BannerParceiros.css'
 
 /**
  * COMPONENTE APOIADORES (Social Proof / Carrossel Infinito)
- * @description Seção que exibe parceiros estratégicos da empresa em um carrossel infinito.
- *
- * Funcionalidades:
- * - Carrossel horizontal com animação contínua e suave (scroll infinito)
- * - Pausa ao passar o mouse (melhora acessibilidade e UX)
- * - Máscara de gradiente nas laterais (efeito "fade out" das bordas)
- * - Layout responsivo: carrossel ocupa 65% (desktop) / 100% (mobile)
- * - Placeholders de texto (substituíveis por imagens reais futuramente)
- *
- * @kayualins - Equipe de Projetos CompAct Jr.
+ * @description Seção que exibe parceiros estratégicos da empresa.
+ * Imagens com redirecionamento em nova aba e efeito hover.
+ * @author Equipe de Projetos CompAct Jr.
  */
 
 export default function Apoiadores() {
-    // DADOS ESTÁTICOS DOS APOIADORES (FÁCIL MANUTENÇÃO)
-    // Futuro: Substituir os placeholders por <Image> com src real
+    // ADICIONADO: Propriedade 'url' com os links reais de cada parceiro
     const supporters = [
-        { name: 'UFSM', src: '/caduceu-logo.png' },
-        { name: 'Inovatech', src: '/totem-logo.png' },
-        { name: 'Atitude Idiomas', src: '/fejers-logo.png' },
+        { name: 'UFSM', src: '/logos/apoiadores/ufsm.png', url: 'https://www.ufsm.br/' },
+        { name: 'Inovatech', src: '/logos/apoiadores/inovatech.png', url: 'https://inovatech.ufsm.br/' },
+        { name: 'Atitude Idiomas', src: '/logos/apoiadores/atitudeIdiomas.png', url: 'https://www.atitudeidiomas.com.br/' },
+        { name: 'Fejers', src: '/logos/apoiadores/fejers.png', url: 'https://fejers.org.br/' },
     ]
 
     return (
-        // Animaçāo de entrada (Framer Motion): surgir com fade+subida quando aparecer na viewport
         <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -37,25 +29,44 @@ export default function Apoiadores() {
             className="px-12 sm:px-12 md:px-8 lg:px-12 xl:px-40"
         >
 
-            {/* ESTRUTURA PRINCIPAL: Banner com fundo branco e sombra */}
             <div className="supporters-banner">
 
-                {/* LADO ESQUERDO (DESKTOP): CARROSSEL INFINITO */}
                 <div className="supporters-carousel-container">
                     <div className="supporters-carousel-track">
                         {[...supporters, ...supporters, ...supporters].map((supporter, index) => (
-                            <div key={index} className="supporter-logo-wrapper">
-                                <div className="supporter-placeholder">
-                                    <span className="font-titulo text-sm text-preto/50 font-bold uppercase">
-                                        {supporter.name}
-                                    </span>
-                                </div>
+                            <div key={index} className="supporter-logo-wrapper flex items-center justify-center">
+
+                                {/* ANCORA (Link): Envolve a imagem inteira */}
+                                <a
+                                    href={supporter.url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    aria-label={`Visitar o site parceiro: ${supporter.name}`}
+                                    // Movemos o efeito de scale para o botão 'a' inteiro
+                                    className="transition-transform duration-300 hover:scale-110 block"
+                                >
+                                    {supporter.src ? (
+                                        <Image
+                                            src={supporter.src}
+                                            alt={`Logo da ${supporter.name}`}
+                                            width={120}
+                                            height={60}
+                                            className="object-contain"
+                                        />
+                                    ) : (
+                                        <div className="supporter-placeholder">
+                                            <span className="font-titulo text-sm text-preto/50 font-bold uppercase">
+                                                {supporter.name}
+                                            </span>
+                                        </div>
+                                    )}
+                                </a>
+
                             </div>
                         ))}
                     </div>
                 </div>
 
-                {/* LADO DIREITO (DESKTOP): TÍTULO FIXO */}
                 <div className="supporters-title-container">
                     <h2 className="supporters-title">NOSSOS APOIADORES</h2>
                 </div>
