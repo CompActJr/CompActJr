@@ -1,12 +1,14 @@
 'use client'
 import React from 'react'
 import { motion } from 'framer-motion'
+import TiltCard from './TiltCard' // Importando o nosso componente mágico
 import './styles/Values.css'
 
 /**
  * COMPONENTE DE VALORES (Princípios da empresa)
- * @description Exibe 6 valores em grid (4 na primeira linha, 2 centralizados na segunda) com efeitos 3D no hover.
- * @kayualins - Equipe de Projetos CompAct Jr.
+ * @description Exibe 6 valores em grid (4 na primeira linha, 2 centralizados na segunda)
+ * com o TiltCard (tracking 3D do rato).
+ * @author Equipe de Projetos CompAct Jr.
  */
 
 // ÍCONES SVG DE FUNDO PARA CADA VALOR (translúcidos, atrás do texto)
@@ -30,49 +32,43 @@ const renderCardIcon = (id: string) => {
 };
 
 export default function Values() {
-    // CONFIGURAÇÃO DOS CARDS: título, descrição, tema (cor) e ângulo 3D no hover
+    // Configuração estrutural apenas (rotação transferida para o TiltCard)
     const valuesList = [
         {
             id: 'etica',
             title: 'Ética',
             description: 'Agimos com transparência, responsabilidade e integridade em todas as nossas ações.',
-            theme: 'dark',
-            hover3D: { rotateY: 10, rotateX: -5, scale: 1.05 }
+            theme: 'dark'
         },
         {
             id: 'liberdade',
             title: 'Liberdade',
             description: 'Confiamos nas pessoas e damos espaço para que tomem decisões, inovem e cresçam com responsabilidade.',
-            theme: 'accent',
-            hover3D: { rotateY: -8, rotateX: 5, scale: 1.05 }
+            theme: 'accent'
         },
         {
             id: 'empatia',
             title: 'Empatia',
             description: 'Colocamo-nos no lugar do outro para entender e ajudar nas necessidades de todos.',
-            theme: 'accent',
-            hover3D: { rotateY: 8, rotateX: 5, scale: 1.05 }
+            theme: 'accent'
         },
         {
             id: 'resiliencia',
             title: 'Resiliência',
             description: 'Adaptamo-nos às mudanças e superamos os obstáculos com determinação.',
-            theme: 'light',
-            hover3D: { rotateY: -10, rotateX: -5, scale: 1.05 }
+            theme: 'light'
         },
         {
             id: 'cafe',
             title: 'Café e Foco',
             description: 'Energia e máxima concentração para entregar os melhores resultados possíveis.',
-            theme: 'dark',
-            hover3D: { rotateY: 5, rotateX: 10, scale: 1.05 }
+            theme: 'dark'
         },
         {
             id: 'bem-estar',
             title: 'Bem Estar',
             description: 'Prezamos pela saúde física e mental da nossa equipa em todos os momentos.',
-            theme: 'light',
-            hover3D: { rotateY: -5, rotateX: 10, scale: 1.05 }
+            theme: 'light'
         }
     ];
 
@@ -89,40 +85,39 @@ export default function Values() {
                 {/* GRADE DE VALORES: flexbox que quebra em 4 itens na primeira linha e centraliza os 2 restantes */}
                 <div className="values-grid">
                     {valuesList.map((val, index) => (
-                        // perspective no wrapper é essencial para o efeito 3D
-                        <div
+                        // A perspectiva DEVE estar na div que envolve o TiltCard
+                        <motion.div
                             key={val.id}
                             className="value-card-wrapper"
                             style={{ perspective: '1200px' }}
+
+                            // Animação de entrada sequencial (Scroll Reveal)
+                            initial={{ opacity: 0, y: 60 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: "-50px" }}
+                            transition={{
+                                duration: 0.6,
+                                delay: index * 0.1,
+                                ease: "easeOut"
+                            }}
                         >
-                            <motion.div
-                                className={`value-card group ${val.theme}`}
-                                initial={{ opacity: 0, y: 60 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true, margin: "-50px" }}
-                                transition={{
-                                    duration: 0.6,
-                                    delay: index * 0.1, // Stagger effect sequencial
-                                    ease: "easeOut"
-                                }}
-                                whileHover={{
-                                    ...val.hover3D,
-                                    transition: { duration: 0.4, ease: "easeOut" }
-                                }}
-                            >
-                                {/* Ícone decorativo translúcido (fundo) */}
+                            {/* O NOSSO COMPONENTE DE TRACKING ENVOLVENDO O CARTÃO */}
+                            <TiltCard className={`value-card group ${val.theme}`}>
+
+                                {/* Ícone decorativo translúcido */}
                                 {renderCardIcon(val.id)}
 
-                                {/* Overlay escuro que surge no hover para garantir contraste do texto */}
+                                {/* Overlay escuro (glassmorphism) que surge no hover */}
                                 <div className="value-card-overlay"></div>
 
-                                {/* CONTEÚDO PRINCIPAL */}
-                                <div className="value-card-content">
+                                {/* CONTEÚDO PRINCIPAL (Protegido do mouse tracking) */}
+                                <div className="value-card-content pointer-events-none">
                                     <h3 className="value-title">{val.title}</h3>
                                     <p className="value-description">{val.description}</p>
                                 </div>
-                            </motion.div>
-                        </div>
+
+                            </TiltCard>
+                        </motion.div>
                     ))}
                 </div>
             </div>
