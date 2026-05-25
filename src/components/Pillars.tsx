@@ -1,17 +1,17 @@
 'use client'
 import React from 'react'
 import { motion } from 'framer-motion'
+import TiltCard from './TiltCard' // Importação do nosso componente de Tracking 3D
 import './styles/Pillars.css'
 
 /**
  * COMPONENTE DE PILARES E VALORES (Missão, Negócio, Visão)
  * @description Apresenta a base institucional da EJ em um layout de grade com degraus
- * (staggered grid). Mantém a interatividade 3D herdada da seção de Serviços.
- * @kayualins - Equipe de Projetos CompAct Jr.
+ * (staggered grid). Utiliza o TiltCard para interação orgânica de rastreio 3D com o rato.
+ * @author Equipe de Projetos CompAct Jr.
  */
 export default function Pillars() {
-    // CONFIGURAÇÃO DOS CARDS INSTITUCIONAIS
-    // O 'alignment' dita a altura do card simulando uma escada no desktop (mt-0, mt-16, mt-32)
+    // A configuração hover3D fixa foi removida, pois o TiltCard calcula isso dinamicamente
     const pillars = [
         {
             id: 'missao',
@@ -19,7 +19,6 @@ export default function Pillars() {
             description: 'Construir oportunidades aos estudantes, por meio de experiências profissionais, apresentando visões empreendedoras no meio acadêmico e deixando como legado uma cultura de vivências para todos, sendo uma EJ plural.',
             theme: 'light',
             alignment: 'md:mt-32', // Degrau mais baixo
-            hover3D: { rotateY: 10, rotateX: 5, scale: 1.05 }
         },
         {
             id: 'negocio',
@@ -27,7 +26,6 @@ export default function Pillars() {
             description: 'Prover soluções em TI que engrandecem a vivência empresarial dos membros, oferecendo serviços de qualidade e preços justos.',
             theme: 'dark',
             alignment: 'md:mt-16', // Degrau intermediário
-            hover3D: { rotateX: 10, scale: 1.05 }
         },
         {
             id: 'visao',
@@ -35,12 +33,13 @@ export default function Pillars() {
             description: 'Voltar a ser reconhecida pelo MEJ, se consolidar como referência estadual como empresa júnior e ser protagonista.',
             theme: 'light',
             alignment: 'md:mt-0', // Degrau mais alto
-            hover3D: { rotateY: -10, rotateX: 5, scale: 1.05 }
         }
     ]
 
     return (
         <section id="pilares" className="pillars-section">
+
+            {/* CABEÇALHO */}
             <div className="container mx-auto px-6 max-w-6xl relative z-10">
                 <header className="pillars-header text-center md:text-right border-r-0 md:border-r-2 border-branco pr-0 md:pr-6">
                     <h2 className="pillars-main-title">Nossos Pilares</h2>
@@ -52,39 +51,35 @@ export default function Pillars() {
                 {/* GRADE EM ESCADARIA (3 Colunas) */}
                 <div className="pillars-grid">
                     {pillars.map((pillar, index) => (
-                        // O wrapper com perspective garante que a rotação ocorra em 3D
-                        <div
+                        <motion.div
                             key={pillar.id}
                             className={`w-full ${pillar.alignment}`}
+                            // A perspectiva precisa estar no elemento pai para criar a profundidade do TiltCard
                             style={{ perspective: '1200px' }}
+
+                            // Animação de entrada inicial quando a tela rola
+                            initial={{ opacity: 0, y: 80 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: "-100px" }}
+                            transition={{
+                                duration: 0.6,
+                                delay: index * 0.2, // Cria o efeito de cascata (1, 2, 3)
+                                ease: "easeOut"
+                            }}
                         >
-                            <motion.div
-                                className={`pillar-card ${pillar.theme}`}
-                                initial={{ opacity: 0, y: 80 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true, margin: "-100px" }}
-                                transition={{
-                                    duration: 0.6,
-                                    delay: index * 0.2,
-                                    ease: "easeOut"
-                                }}
-                                whileHover={{
-                                    ...pillar.hover3D,
-                                    transition: { duration: 0.4, ease: "easeOut" }
-                                }}
-                                whileTap={{
-                                    scale: 1.02,                      // Leve aumento
-                                    rotateX: 3,                       // Pequena inclinação (opcional)
-                                    rotateY: pillar.id === 'missao' ? 3 : (pillar.id === 'visao' ? -3 : 0),
-                                    transition: { duration: 0.1 }
-                                }}
-                            >
-                                <div className="pillar-card-content">
+
+                            {/* O NOSSO COMPONENTE MÁGICO ENVOLVENDO O CARTÃO */}
+                            <TiltCard className={`pillar-card ${pillar.theme}`}>
+
+                                {/* pointer-events-none adicionado para que os textos não engasguem a leitura do rato */}
+                                <div className="pillar-card-content pointer-events-none">
                                     <p className="pillar-description">{pillar.description}</p>
                                     <h3 className="pillar-title">{pillar.title}</h3>
                                 </div>
-                            </motion.div>
-                        </div>
+
+                            </TiltCard>
+
+                        </motion.div>
                     ))}
                 </div>
 
