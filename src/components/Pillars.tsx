@@ -8,7 +8,7 @@ import './styles/Pillars.css'
  * COMPONENTE DE PILARES E VALORES (Missão, Negócio, Visão)
  * @description Apresenta a base institucional da EJ em um layout de grade com degraus
  * (staggered grid). Utiliza o TiltCard para interação orgânica de rastreio 3D com o rato.
- * @author Equipe de Projetos CompAct Jr.
+ * @kayualins Equipe de Projetos CompAct Jr.
  */
 export default function Pillars() {
     // A configuração hover3D fixa foi removida, pois o TiltCard calcula isso dinamicamente

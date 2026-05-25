@@ -7,7 +7,7 @@ import './styles/Services.css'
 /**
  * COMPONENTE DE SERVIÇOS (Layout orgânico)
  * @description Cards assimétricos utilizando o TiltCard para interação 3D.
- * @author Equipe de Projetos CompAct Jr.
+ * @kayualins Equipe de Projetos CompAct Jr.
  */
 export default function Services() {
     const services = [

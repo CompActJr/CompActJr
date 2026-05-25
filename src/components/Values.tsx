@@ -1,17 +1,15 @@
 'use client'
 import React from 'react'
 import { motion } from 'framer-motion'
-import TiltCard from './TiltCard' // Importando o nosso componente mágico
+import TiltCard from './TiltCard'
 import './styles/Values.css'
 
 /**
  * COMPONENTE DE VALORES (Princípios da empresa)
- * @description Exibe 6 valores em grid (4 na primeira linha, 2 centralizados na segunda)
- * com o TiltCard (tracking 3D do rato).
- * @author Equipe de Projetos CompAct Jr.
+ * @description Exibe 6 valores em grid com o TiltCard integrado.
+ * @kyualins Equipe de Projetos CompAct Jr.
  */
 
-// ÍCONES SVG DE FUNDO PARA CADA VALOR (translúcidos, atrás do texto)
 const renderCardIcon = (id: string) => {
     switch (id) {
         case 'etica':
@@ -32,85 +30,39 @@ const renderCardIcon = (id: string) => {
 };
 
 export default function Values() {
-    // Configuração estrutural apenas (rotação transferida para o TiltCard)
     const valuesList = [
-        {
-            id: 'etica',
-            title: 'Ética',
-            description: 'Agimos com transparência, responsabilidade e integridade em todas as nossas ações.',
-            theme: 'dark'
-        },
-        {
-            id: 'liberdade',
-            title: 'Liberdade',
-            description: 'Confiamos nas pessoas e damos espaço para que tomem decisões, inovem e cresçam com responsabilidade.',
-            theme: 'accent'
-        },
-        {
-            id: 'empatia',
-            title: 'Empatia',
-            description: 'Colocamo-nos no lugar do outro para entender e ajudar nas necessidades de todos.',
-            theme: 'accent'
-        },
-        {
-            id: 'resiliencia',
-            title: 'Resiliência',
-            description: 'Adaptamo-nos às mudanças e superamos os obstáculos com determinação.',
-            theme: 'light'
-        },
-        {
-            id: 'cafe',
-            title: 'Café e Foco',
-            description: 'Energia e máxima concentração para entregar os melhores resultados possíveis.',
-            theme: 'dark'
-        },
-        {
-            id: 'bem-estar',
-            title: 'Bem Estar',
-            description: 'Prezamos pela saúde física e mental da nossa equipa em todos os momentos.',
-            theme: 'light'
-        }
+        { id: 'etica', title: 'Ética', description: 'Agimos com transparência, responsabilidade e integridade em todas as nossas ações.', theme: 'dark' },
+        { id: 'liberdade', title: 'Liberdade', description: 'Confiamos nas pessoas e damos espaço para que tomem decisões, inovem e cresçam com responsabilidade.', theme: 'accent' },
+        { id: 'empatia', title: 'Empatia', description: 'Colocamo-nos no lugar do outro para entender e ajudar nas necessidades de todos.', theme: 'accent' },
+        { id: 'resiliencia', title: 'Resiliência', description: 'Adaptamo-nos às mudanças e superamos os obstáculos com determinação.', theme: 'light' },
+        { id: 'cafe', title: 'Café e Foco', description: 'Energia e máxima concentração para entregar os melhores resultados possíveis.', theme: 'dark' },
+        { id: 'bem-estar', title: 'Bem Estar', description: 'Prezamos pela saúde física e mental da nossa equipa em todos os momentos.', theme: 'light' }
     ];
 
     return (
         <section id="valores" className="values-section">
-
             <div className="container mx-auto px-6 max-w-7xl relative z-10">
 
-                {/* CABEÇALHO DA SEÇÃO */}
                 <header className="values-header">
                     <h2 className="values-main-title">Nossos Valores</h2>
                 </header>
 
-                {/* GRADE DE VALORES: flexbox que quebra em 4 itens na primeira linha e centraliza os 2 restantes */}
                 <div className="values-grid">
                     {valuesList.map((val, index) => (
-                        // A perspectiva DEVE estar na div que envolve o TiltCard
                         <motion.div
                             key={val.id}
                             className="value-card-wrapper"
                             style={{ perspective: '1200px' }}
-
-                            // Animação de entrada sequencial (Scroll Reveal)
                             initial={{ opacity: 0, y: 60 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true, margin: "-50px" }}
-                            transition={{
-                                duration: 0.6,
-                                delay: index * 0.1,
-                                ease: "easeOut"
-                            }}
+                            transition={{ duration: 0.6, delay: index * 0.1, ease: "easeOut" }}
                         >
-                            {/* O NOSSO COMPONENTE DE TRACKING ENVOLVENDO O CARTÃO */}
                             <TiltCard className={`value-card group ${val.theme}`}>
 
-                                {/* Ícone decorativo translúcido */}
                                 {renderCardIcon(val.id)}
-
-                                {/* Overlay escuro (glassmorphism) que surge no hover */}
                                 <div className="value-card-overlay"></div>
 
-                                {/* CONTEÚDO PRINCIPAL (Protegido do mouse tracking) */}
                                 <div className="value-card-content pointer-events-none">
                                     <h3 className="value-title">{val.title}</h3>
                                     <p className="value-description">{val.description}</p>

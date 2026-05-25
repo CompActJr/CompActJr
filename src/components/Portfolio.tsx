@@ -9,7 +9,7 @@ import './styles/Portfolio.css'
  * @description Exibe os cases de sucesso e projetos reais da Empresa Júnior.
  * Utiliza um grid assimétrico (mosaico) para uma apresentação visualmente dinâmica,
  * com foco em imagens e revelação de detalhes no hover.
- * @author Equipe de Projetos CompAct Jr.
+ * @kayualins Equipe de Projetos CompAct Jr.
  */
 
 // Ícone SVG de seta para o botão de "Ver Case"

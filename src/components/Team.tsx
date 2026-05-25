@@ -9,7 +9,7 @@ import './styles/Team.css'
  * @description Secção que apresenta os membros organizados por diretoria.
  * Implementa renderização condicional para redes sociais: o ícone só aparece
  * se a URL correspondente estiver preenchida no objeto do membro.
- * @author Equipa de Projetos CompAct Jr.
+ * @kayualins Equipa de Projetos CompAct Jr.
  */
 
 const InstagramIcon = () => (
