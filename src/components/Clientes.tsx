@@ -15,11 +15,11 @@ export default function Clientes() {
     // DADOS DOS CLIENTES
     // Caminhos organizados e urls adicionadas para os sites/redes sociais dos clientes
     const clientes = [
-        { name: 'Caduceu JR', src: '/logos/clientes/caduceujr.png', url: 'https://www.instagram.com/caduceujr' },
-        { name: 'Mirinay', src: '/logos/clientes/mirinay.png', url: '#' },
-        { name: 'Equilíbrio JR', src: '/logos/clientes/equilibrio.png', url: 'https://www.instagram.com/equilibriojr' },
-        { name: 'Nicole Mundstock', src: '/logos/clientes/nicole.png', url: '#' },
-        { name: 'Sobrac', src: '/logos/clientes/sobrac.png', url: '#' },
+        { name: 'Caduceu JR', src: '/logosParceiros/clientes/caduceujr.png', url: 'https://www.instagram.com/caduceujr' },
+        { name: 'Mirinay', src: '/logosParceiros/clientes/mirinay.png', url: '#' },
+        { name: 'Equilíbrio JR', src: '/logosParceiros/clientes/equilibrio.png', url: 'https://www.instagram.com/equilibriojr' },
+        { name: 'Nicole Mundstock', src: '/logosParceiros/clientes/nicole.png', url: '#' },
+        { name: 'Sobrac', src: '/logosParceiros/clientes/sobrac.png', url: '#' },
     ]
 
     return (

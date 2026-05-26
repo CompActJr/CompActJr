@@ -11,33 +11,86 @@ import './styles/History.css'
  */
 export default function History() {
     // ESTADO: índice do cartão ativo (central)
-    const [activeIndex, setActiveIndex] = useState(2)
+    const [activeIndex, setActiveIndex] = useState(9)
 
     // DADOS DOS MARCOS HISTÓRICOS (ano, título, descrição, imagem)
     const historyData = [
         {
-            year: 2019,
-            title: 'O Início de Tudo',
-            description: 'A CompAct Jr. dá os seus primeiros passos com um grupo de alunos focados em transformar o ecossistema universitário.',
-            image: '/historia-2019.jpg'
+            year: 2015,
+            title: 'O Início: A Inconformidade que Virou Ação',
+            description: 'Tudo começou quando quatro jovens inconformados com o curso decidiram tomar a iniciativa e fundar a CompAct. Desde o princípio, a equipe construiu uma cultura de estar sempre unida e presente nos eventos do Movimento Empresa Júnior (MEJ)',
+            image: '/historia/historia-2015.webp'
         },
         {
+            year: 2016,
+            title: 'Estruturação e o Primeiro Contrato',
+            description: 'Este foi o ano de estruturar o futuro da empresa, marcado pela construção do planejamento estratégico de 3 anos e a celebração do primeiro contrato fechado. A CompAct também comemorou sua federação e marcou presença em grandes eventos da rede.',
+            image: '/historia/historia-2016.webp'
+        },
+        {
+            year: 2017,
+            title: 'A Nossa Salinha e Prêmios Conquistados',
+            description: 'A equipe finalmente conquistou um espaço físico, uma "salinha para chamar de nossa". O ano foi de Alto Crescimento logo no mês de maio , com a empresa ganhando prêmios e mais prêmios , o que resultou em um fim de ano perfeito',
+            image: '/historia/historia-2017.webp'
+        },
+        {
+            year: 2018,
+            title: 'Reflexão e Superação de Resultados',
+            description: 'Apesar de o ano ter começado de forma ótima, foi um período que exigiu parar, pensar e mudar as estratégias. Mesmo com os desafios, o fim de ano deu motivos para a equipe comemorar, alcançando a marca de 26 mil reais em faturamento.',
+            image: '/historia/historia-2018.webp'
+        },
+        {
+            year: 2019,
+            title: 'Projetos Incessantes e Faturamento Histórico',
+            description: 'Um ano muito ativo onde os projetos não paravam, e a CompAct também não. A empresa realizou os maiores processos seletivos da UFSM na época e marcou presença em eventos como o EDL e o Empodera. Todo o esforço culminou no dia da premiação com o maior faturamento da história até então: 43 mil reais.',
+            image: '/historia/historia-2019.webp'
+        },
+        {
+            year: 2020,
+            title: 'Adaptação e Resiliência na Pandemia',
+            description: 'A CompAct iniciou o ano imparável , mas precisou se reinventar rapidamente quando a UFSM suspendeu as atividades presenciais em março. A solução foi a realização do primeiro processo seletivo 100% online, demonstrando forte adaptação em um mundo perturbado.',
+            image: '/historia/historia-2020.webp'
+        },
+        /*
+        {
+            year: 2021,
+            title: 'O Desafio à Distância e o Retorno',
+            description: 'Foi um período de grande superação, liderado por uma diretoria composta por apenas quatro membros enfrentando a realidade do trabalho à distância. Contudo, o ano também trouxe alívio com a tão aguardada volta ao formato presencial.',
+            image: '/historia/historia-200.webp'
+        },
+
+        {
             year: 2022,
-            title: 'Reestruturação',
-            description: 'Novos processos e a adoção de metodologias ágeis preparam a empresa para desafios maiores e projetos mais complexos no mercado.',
-            image: '/historia-2022.jpg'
+            title: 'A Provação Máxima',
+            description: 'A história da empresa enfrentou seu momento mais crítico e desafiador: a CompAct se viu sem nenhum membro, sem processos em andamento e com o caixa zerado. Muitos questionaram se seria o fim.',
+            image: '/historia/historia-200.webp'
+        },
+        */
+
+
+        {
+            year: 2023,
+            title: 'O Renascimento e Novas Metas',
+            description: 'Após ficar sem membros, a FEJERS, com o apoio do Politécnico e do curso de SPI, recrutou novos alunos para fazer com que a história da empresa continuasse sendo escrita. A CompAct não apenas voltou à ativa, mas retornou batendo suas metas.',
+            image: '/historia/historia-2023.webp'
+        },
+        {
+            year: 2024,
+            title: 'Recordes e Retomada de Presença',
+            description: 'A nova geração provou sua força ao bater o prêmio de Alto Crescimento mais rápido da história da empresa. A CompAct também voltou a marcar forte presença em eventos de peso, como LIDERA, ENEJ e EGEJ.',
+            image: '/historia/historia-2024.webp'
         },
         {
             year: 2025,
-            title: 'Voltamos com tudo!',
-            description: 'Com planejamento, engajamento e muita vontade de crescer, os primeiros resultados começaram a aparecer, projetos em andamento, cultura interna fortalecida e um novo sentimento de pertencimento. A chama está acesa novamente. Em 2025, provamos que a CompAct não apenas voltou - ela voltou para fazer história.',
-            image: '/historia-2025.jpg'
+            title: 'O Topo é o Limite',
+            description: 'A essência e a cultura da empresa se mantêm vivas: ser formada por pessoas que não se conformam e querem sempre alcançar o topo. Seguindo esse legado, o sentimento da atual geração é claro: "agora é com a gente".',
+            image: '/historia/historia-2025.webp'
         },
         {
             year: 2026,
             title: 'Crescimento Exponencial',
             description: 'Consolidação como referência no Movimento Empresa Júnior, entregando soluções tecnológicas de alto impacto para a sociedade.',
-            image: '/historia-2026.jpg'
+            image: '/historia/historia-2026.webp'
         }
     ]
 
