@@ -50,7 +50,7 @@ export default function Header() {
                     <div className="flex justify-center items-center col-start-2 lg:col-auto lg:px-2 xl:px-10 z-[70] shrink-0">
                         <Link href="/" className="relative block">
                             <Image
-                                src="/logo-compact.png"
+                                src="/logos/logo-compact.webp"
                                 alt="CompAct Jr. Logo"
                                 width={50}
                                 height={40}

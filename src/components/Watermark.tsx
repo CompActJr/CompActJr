@@ -13,7 +13,7 @@ export default function Watermark() {
         <div className="watermark-wrapper">
             <div className="watermark-sticky-container">
                 <Image
-                    src="/logo-compact.png"
+                    src="/logos/logo-compact.webp"
                     alt="Marca d'água CompAct Jr"
                     fill
                     className="object-contain"

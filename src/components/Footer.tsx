@@ -52,7 +52,7 @@ export default function Footer() {
                     <div className="footer-info-col">
                         <Link href="/" className="footer-logo-link">
                             <Image
-                                src="/logo-h.png"
+                                src="/logos/logo-h.webp"
                                 alt="CompAct Jr. Logo"
                                 width={250}
                                 height={45}
