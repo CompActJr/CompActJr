@@ -1,5 +1,5 @@
 CompAct Jr. - Landing Page Corporativa
-Projeto oficial da nova Landing Page da CompAct Jr., desenvolvido para atuar como o principal canal de conversão e vitrine institucional da Empresa Júnior. A aplicação foi construída com foco em altíssima performance, SEO técnico avançado e microinterações de interface fluidas.
+Projeto oficial da nova Landing Page da CompAct Jr., desenvolvido para atuar como o principal canal de conversão e vitrine institucional da Empresa Júnior. A aplicação foi construída com foco em altíssima performance, SEO técnico avançado, integração de back-end nativa e microinterações de interface fluidas.
 
 Links Oficiais:
 
@@ -19,6 +19,8 @@ Linguagem: TypeScript
 Estilização: Tailwind CSS v4 (Híbrido com CSS Modular)
 
 Animações: Framer Motion
+
+Back-end e Transacional: Next.js Route Handlers e Resend SDK
 
 2. Arquitetura e Padrões de Projeto
    2.1. Server Components vs Client Components
@@ -55,21 +57,21 @@ Watermark (Single Source of Truth): Componente isolado com position: sticky apli
 
 Services: Layout orgânico em zigue-zague com aplicação de rotação 3D (perspective: 1200px e rotateY/X) via Framer Motion no estado de hover.
 
-Pillars: Estrutura em escadaria horizontal (staircase grid) alcançada através de margens assimétricas no desktop, empilhando de forma responsiva no mobile.
-
-Values: Layout flexível (4 itens no topo, 2 centralizados na base) utilizando flex-wrap e pseudo-classes. Implementação de overlay em glassmorphism e revelação de texto via utilitário .group do Tailwind.
+Values: Layout flexível utilizando flex-wrap. A interatividade física 3D (<TiltCard/>) separa matematicamente as lógicas de Pointer Move (acompanhamento contínuo no Desktop) e Pointer Down/Up (inclinação exata ao toque no Mobile), revelando o conteúdo sem conflitos de scroll.
 
 Portfolio: Layout assimétrico em Mosaico (Bento Grid) focado na exibição de cases reais. Utiliza grid-area para destacar elementos específicos e revela informações do projeto através de efeitos de opacidade no hover.
+
+Apoiadores e Clientes: Carrosséis horizontais de loop infinito (Social Proof). Construídos com o componente nativo <Image/> do Next.js, garantindo conversão automática para formatos modernos (WebP/AVIF), lazy loading nativo e entrega via CDN da Vercel. Incluem links externos ancorados de forma segura (noopener noreferrer).
 
 History: Carrossel interativo baseado em cálculo de índices (Index-based Carousel). A posição (eixo X), escala e desfoque lateral (blur) de cada cartão são calculados matematicamente pela distância (offset) em relação ao índice ativo. A régua cronológica utiliza o layoutId do Framer Motion para transições fluidas do indicador.
 
 Team: Aplicação direta de Regras de Negócio (RN). O mapeamento de dados condiciona as bordas e cores institucionais (Azul para Diretores, Branco para Membros). Inclui barra de redes sociais animada com recorte geométrico (clip-path).
 
-Contact: Arquitetura limpa com formulário em glassmorphism ao lado de um mapa dedicado e interativo (com filtros nativos aplicados via CSS para simular Dark Mode). Inclui controle de estado de sucesso (Feedback State) através do <AnimatePresence>.
+Contact (Full-stack): Arquitetura com formulário em glassmorphism e mapa dedicado. Implementa uma Route Handler própria (/api/contact) que recebe a carga via método POST, realiza validação de integridade dos campos obrigatórios e utiliza a API do Resend para o disparo do lead. O componente client-side gerencia os estados interativos de carregamento e sucesso utilizando <AnimatePresence>.
 
 Footer: Mapa do site semântico com links âncora para todas as seções. Ocultação inteligente de blocos não essenciais e centralização automática em dispositivos móveis.
 
-FloatingButton (FAB): Botão de ação direta (WhatsApp) com animação contínua de pulso. Um listener de janela (window.addEventListener) controla a sua renderização, garantindo que só fique visível após 400px de rolagem (preservando a introdução visual da Hero Section).
+FloatingButton (FAB): Botão de ação direta (WhatsApp) com animação contínua de pulso. Um listener de janela controla a sua renderização, garantindo que só fique visível após 400px de rolagem.
 
 4. Otimização para Motores de Busca (SEO)
    A infraestrutura técnica foi preparada para indexação orgânica máxima:
@@ -88,10 +90,15 @@ Clone o repositório:
 Bash
 git clone https://github.com/kayualins/ProjectNextjs.git
 cd ProjectNextjs
-Instale as dependências contidas no package.json:
+Instale as dependências:
 
 Bash
 npm install
+Configuração de Variáveis de Ambiente:
+Crie um arquivo .env.local na raiz do projeto para habilitar o envio do formulário de contato.
+
+Plaintext
+RESEND_API_KEY=re_chave
 Inicie o servidor local:
 
 Bash
@@ -101,8 +108,8 @@ Acesse http://localhost:3000 no seu navegador.
 6. Próximos Passos (Backlog)
    Tarefas recomendadas para futuras iterações da aplicação:
 
-Integração de E-mail: Conectar a submissão do <Contact /> a um serviço de back-end (ex: Resend, Formspree) ou API própria para captação real de leads.
+Substituição de Ativos Visuais: O ecossistema de otimização de imagens estáticas já está estruturalmente configurado. O próximo passo prático é substituir as imagens de placeholder pelas fotografias oficiais e redigir o copywriting final (textos definitivos).
 
-Substituição de Ativos Visuais: Inserir as fotografias finais do time e dos projetos (.webp) e alterar os textos de placeholder pelo copywriting oficial.
+Gerenciamento de Conteúdo (CMS): Avaliar a futura implementação de um Headless CMS (como Strapi ou Sanity) para permitir atualizações de portfólio, timeline histórica e membros da equipe pela diretoria comercial/marketing, sem necessidade de alterações no código-fonte.
 
-Gerenciamento de Conteúdo: Avaliar a futura implementação de um Headless CMS para permitir atualizações de portfólio e membros da equipe por usuários não-técnicos.
+Dark/Light Mode Dinâmico: A aplicação possui identidade nativa estrita no Cinematic Dark Mode. Uma versão futura pode mapear o chaveamento das variáveis CSS root para suportar um modo claro, alterando o estado globalmente.
