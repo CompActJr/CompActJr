@@ -7,7 +7,7 @@ import './styles/Contact.css'
  * COMPONENTE DE CONTATO (CONTACT SECTION)
  * @description Seção final de conversão.
  * Layout de 2 colunas: Informações e Mapa dedicado à esquerda, Formulário Glassmorphism à direita.
- * Inclui estado de sucesso interativo após submissão.
+ * Inclui estado de sucesso interativo após submissão e integração com API de e-mail.
  * @kayualins - Equipe de Projetos CompAct Jr.
  */
 
@@ -25,16 +25,45 @@ const CheckCircleIcon = () => (
 )
 
 export default function Contact() {
-    // ESTADO: Controla se o formulário foi enviado com sucesso
+    // ESTADO: Controla a exibição visual da tela de sucesso
     const [isSubmitted, setIsSubmitted] = useState(false)
 
-    // FUNÇÃO DE SUBMISSÃO
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault()
+    // ESTADO: Controla os dados digitados pelo usuário
+    const [formData, setFormData] = useState({
+        nome: '', empresa: '', email: '', telefone: '', mensagem: ''
+    })
 
-        // Aqui futuramente entrará a lógica de envio de e-mail (ex: Fetch API para o Formspree)
-        // Simulando a conclusão do envio:
-        setIsSubmitted(true)
+    // ESTADO: Controla o status do carregamento (loading/error)
+    const [status, setStatus] = useState<'idle' | 'loading' | 'error'>('idle')
+
+    // FUNÇÃO: Atualiza os dados conforme o usuário digita
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value })
+    }
+
+    // FUNÇÃO DE SUBMISSÃO (Conectada à Rota API)
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault()
+        setStatus('loading')
+
+        try {
+            const response = await fetch('/api/contact', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData)
+            })
+
+            if (response.ok) {
+                // Sucesso: Mostra a tela verde e limpa o formulário
+                setIsSubmitted(true)
+                setStatus('idle')
+                setFormData({ nome: '', empresa: '', email: '', telefone: '', mensagem: '' })
+            } else {
+                setStatus('error')
+            }
+        } catch (error) {
+            setStatus('error')
+        }
     }
 
     return (
@@ -101,7 +130,6 @@ export default function Contact() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
                 >
-                    {/* O formulário mantém as classes de design, mas o conteúdo interno altera com a submissão */}
                     <div className="contact-form">
                         <AnimatePresence mode="wait">
                             {!isSubmitted ? (
@@ -122,32 +150,41 @@ export default function Contact() {
                                     <div className="contact-input-grid">
                                         <div className="contact-input-group">
                                             <label htmlFor="nome">Nome</label>
-                                            <input type="text" id="nome" placeholder="Seu nome completo" required />
+                                            <input type="text" id="nome" name="nome" value={formData.nome} onChange={handleChange} placeholder="Seu nome completo" required />
                                         </div>
                                         <div className="contact-input-group">
                                             <label htmlFor="empresa">Empresa</label>
-                                            <input type="text" id="empresa" placeholder="Nome do seu negócio" />
+                                            <input type="text" id="empresa" name="empresa" value={formData.empresa} onChange={handleChange} placeholder="Nome do seu negócio" />
                                         </div>
                                     </div>
 
                                     <div className="contact-input-grid">
                                         <div className="contact-input-group">
                                             <label htmlFor="email">E-mail</label>
-                                            <input type="email" id="email" placeholder="seu@email.com" required />
+                                            <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} placeholder="seu@email.com" required />
                                         </div>
                                         <div className="contact-input-group">
                                             <label htmlFor="telefone">Telefone</label>
-                                            <input type="tel" id="telefone" placeholder="(55) 90000-0000" required />
+                                            <input type="tel" id="telefone" name="telefone" value={formData.telefone} onChange={handleChange} placeholder="(55) 90000-0000" required />
                                         </div>
                                     </div>
 
                                     <div className="contact-input-group">
                                         <label htmlFor="mensagem">Nos explique sua necessidade</label>
-                                        <textarea id="mensagem" rows={4} placeholder="Como a CompAct Jr. pode ajudar o seu negócio a crescer?" required></textarea>
+                                        <textarea id="mensagem" name="mensagem" value={formData.mensagem} onChange={handleChange} rows={4} placeholder="Como a CompAct Jr. pode ajudar o seu negócio a crescer?" required></textarea>
                                     </div>
 
-                                    <button type="submit" className="contact-submit-btn">
-                                        Enviar Mensagem
+                                    {/* Feedback de Erro */}
+                                    {status === 'error' && (
+                                        <p className="text-red-400 text-sm mb-4 font-principal">Ocorreu um erro ao enviar. Tente novamente.</p>
+                                    )}
+
+                                    <button
+                                        type="submit"
+                                        className="contact-submit-btn disabled:opacity-50 disabled:cursor-not-allowed"
+                                        disabled={status === 'loading'}
+                                    >
+                                        {status === 'loading' ? 'Enviando...' : 'Enviar Mensagem'}
                                     </button>
                                 </motion.form>
                             ) : (
