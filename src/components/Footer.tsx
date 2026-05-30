@@ -81,7 +81,7 @@ export default function Footer() {
                     {/* COLUNA 3: CONTATOS RÁPIDOS E REDES SOCIAIS */}
                     <div className="footer-social-col">
                         <h3 className="footer-col-title">Conecte-se</h3>
-                        <p className="footer-contact-item">contato@compactjr.com.br (Verificar)</p>
+                        <p className="footer-contact-item">comercial@compactjr.com</p>
 
                         <div className="footer-social-row">
                             <a href="https://www.instagram.com/compact.jr/" target="_blank" className="footer-social-btn" aria-label="Instagram">
