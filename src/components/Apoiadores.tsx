@@ -15,10 +15,10 @@ export default function Apoiadores() {
     // ADICIONADO: Propriedade 'url' com os links reais de cada parceiro
     const supporters = [
         { name: 'UFSM', src: '/logosParceiros/apoiadores/ufsm.webp', url: 'https://www.ufsm.br/' },
-        { name: 'Inovatech', src: '/logosParceiros/apoiadores/inovatech.webp', url: 'https://inovatech.ufsm.br/' },
+        { name: 'Inovatech', src: '/logosParceiros/apoiadores/inovatech.webp', url: 'https://www.ufsm.br/orgaos-suplementares/inovatec' },
         { name: 'Atitude Idiomas', src: '/logosParceiros/apoiadores/atitudeIdiomas.webp', url: 'https://www.atitudeidiomas.com.br/' },
         { name: 'Fejers', src: '/logosParceiros/apoiadores/fejers.webp', url: 'https://fejers.org.br/' },
-        { name: 'Brasil JR', src: '/logosParceiros/apoiadores/brasiljr.webp', url: '#' },
+        { name: 'Brasil JR', src: '/logosParceiros/apoiadores/brasiljr.webp', url: 'https://brasiljunior.org.br/' },
     ]
 
     return (
