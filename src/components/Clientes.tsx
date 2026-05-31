@@ -20,6 +20,7 @@ export default function Clientes() {
         { name: 'Equilíbrio JR', src: '/logosParceiros/clientes/equilibrio.webp', url: 'https://www.equilibrioufrgs.com/' },
         { name: 'Nicole Mundstock', src: '/logosParceiros/clientes/nicole.webp', url: 'https://www.instagram.com/arq.nicolemundstock/' },
         { name: 'Sobrac', src: '/logosParceiros/clientes/sobrac.webp', url: 'https://acustica.org.br/' },
+        { name: 'Totem', src: '/logosParceiros/clientes/totem.webp', url: 'https://acustica.org.br/' },
     ]
 
     return (
