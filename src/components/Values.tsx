@@ -7,7 +7,7 @@ import './styles/Values.css'
 /**
  * COMPONENTE DE VALORES (Princípios da empresa)
  * @description Exibe 6 valores em grid com o TiltCard integrado.
- * @kyualins Equipe de Projetos CompAct Jr.
+ * @kayualins Equipe de Projetos CompAct Jr.
  */
 
 const renderCardIcon = (id: string) => {
