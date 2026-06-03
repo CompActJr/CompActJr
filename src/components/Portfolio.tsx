@@ -1,5 +1,5 @@
 'use client'
-import React from 'react'
+import React, { useState } from 'react'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import './styles/Portfolio.css'
@@ -7,7 +7,8 @@ import './styles/Portfolio.css'
 /**
  * COMPONENTE DE PORTFÓLIO (BENTO GRID)
  * @description Exibe os cases de sucesso reais da EJ.
- * Atualmente focado em Soluções Web, mas estruturado para receber Apps e Automações.
+ * Implementa lógica de "Double Tap" nativa para dispositivos móveis,
+ * garantindo que o usuário consiga ler os detalhes antes de ser redirecionado.
  * @kayualins Equipe de Projetos CompAct Jr.
  */
 
@@ -16,7 +17,9 @@ const ArrowUpRightIcon = () => (
 )
 
 export default function Portfolio() {
-    // DADOS REAIS DOS PROJETOS
+    // ESTADO: Controla qual projeto foi tocado no mobile
+    const [tappedId, setTappedId] = useState<string | null>(null)
+
     const projects = [
         {
             id: 'proj-1',
@@ -24,7 +27,7 @@ export default function Portfolio() {
             title: 'Portal Educacional Completo',
             category: 'Plataforma Institucional',
             url: 'https://totemvestibulares.compactjr.com/',
-            image: '/portfolio/totem-vest.pnggit',
+            image: '/portfolio/totem-vest.png',
             gridArea: 'md:col-span-2', // Ocupa as duas colunas (Destaque Principal)
             delay: 0.1
         },
@@ -86,48 +89,65 @@ export default function Portfolio() {
                 </motion.header>
 
                 <div className="portfolio-bento-grid">
-                    {projects.map((project) => (
-                        <motion.a
-                            key={project.id}
-                            href={project.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className={`portfolio-item block group ${project.gridArea}`}
-                            initial={{ opacity: 0, scale: 0.95 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            viewport={{ once: true, margin: "-50px" }}
-                            transition={{ duration: 0.5, delay: project.delay, ease: "easeOut" }}
-                        >
-                            <div className="portfolio-image-wrapper">
-                                {/* Voltamos para o object-cover. Como a caixa agora é 16:9, ele vai preencher 100% sem cortar nada! */}
-                                <Image
-                                    src={project.image}
-                                    alt={`Case de Sucesso: ${project.client} - ${project.title}`}
-                                    fill
-                                    className="object-cover object-center"
-                                    sizes="(max-width: 1920px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                                />
-                            </div>
+                    {projects.map((project) => {
+                        const isTapped = tappedId === project.id;
 
-                            <div className="portfolio-overlay"></div>
+                        return (
+                            <motion.a
+                                key={project.id}
+                                href={project.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                onClick={(e) => {
+                                    // Previne erros durante a renderização no servidor do Next.js
+                                    if (typeof window !== 'undefined') {
+                                        // Verifica se o aparelho de acesso NÃO suporta mouse/hover (Mobile)
+                                        const isTouchDevice = window.matchMedia('(hover: none)').matches;
 
-                            <div className="portfolio-badge">
-                                {project.category}
-                            </div>
-
-                            <div className="portfolio-content">
-                                <div className="portfolio-text-block">
-                                    <p className="portfolio-client">{project.client}</p>
-                                    <h3 className="portfolio-title">{project.title}</h3>
+                                        if (isTouchDevice && !isTapped) {
+                                            e.preventDefault(); // Impede o link de abrir
+                                            setTappedId(project.id); // Simula o hover
+                                        }
+                                        // Se isTapped for verdadeiro (2º toque), a função deixa o clique passar normalmente.
+                                    }
+                                }}
+                                // Adiciona a classe 'is-tapped' se foi tocado no mobile
+                                className={`portfolio-item block group ${project.gridArea} ${isTapped ? 'is-tapped' : ''}`}
+                                initial={{ opacity: 0, scale: 0.95 }}
+                                whileInView={{ opacity: 1, scale: 1 }}
+                                viewport={{ once: true, margin: "-50px" }}
+                                transition={{ duration: 0.5, delay: project.delay, ease: "easeOut" }}
+                            >
+                                <div className="portfolio-image-wrapper">
+                                    <Image
+                                        src={project.image}
+                                        alt={`Case de Sucesso: ${project.client} - ${project.title}`}
+                                        fill
+                                        className="object-cover object-center"
+                                        sizes="(max-width: 1768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                    />
                                 </div>
 
-                                <div className="portfolio-action-btn">
-                                    <ArrowUpRightIcon />
-                                </div>
-                            </div>
+                                <div className="portfolio-overlay"></div>
 
-                        </motion.a>
-                    ))}
+                                <div className="portfolio-badge">
+                                    {project.category}
+                                </div>
+
+                                <div className="portfolio-content">
+                                    <div className="portfolio-text-block">
+                                        <p className="portfolio-client">{project.client}</p>
+                                        <h3 className="portfolio-title">{project.title}</h3>
+                                    </div>
+
+                                    <div className="portfolio-action-btn">
+                                        <ArrowUpRightIcon />
+                                    </div>
+                                </div>
+
+                            </motion.a>
+                        )
+                    })}
                 </div>
 
             </div>

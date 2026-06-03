@@ -24,13 +24,11 @@
    ========================================= */
 
 .portfolio-bento-grid {
-    /* Grid de 2 colunas. A altura fixa foi removida para permitir a adaptação à imagem. */
     @apply grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6;
 }
 
 /* BLOCO INDIVIDUAL DE PROJETO */
 .portfolio-item {
-    /* O 'aspect-video' força a caixa a ter exatamente a proporção 16:9 das suas fotos */
     @apply relative rounded-sm overflow-hidden cursor-pointer shadow-2xl aspect-video;
     transform: translateZ(0);
 }
@@ -40,8 +38,9 @@
     @apply absolute inset-0 w-full h-full transition-transform duration-700 ease-out;
 }
 
-/* No hover, a imagem do projeto cresce levemente ao fundo */
-.portfolio-item:hover .portfolio-image-wrapper {
+/* Interação Mouse (Desktop) E Toque (Mobile) */
+.portfolio-item:hover .portfolio-image-wrapper,
+.portfolio-item.is-tapped .portfolio-image-wrapper {
     transform: scale(1.05);
 }
 
@@ -50,7 +49,8 @@
     @apply absolute inset-0 bg-gradient-to-t from-preto via-preto/60 to-transparent opacity-60 transition-opacity duration-500 z-10;
 }
 
-.portfolio-item:hover .portfolio-overlay {
+.portfolio-item:hover .portfolio-overlay,
+.portfolio-item.is-tapped .portfolio-overlay {
     @apply opacity-90 backdrop-blur-sm;
 }
 
@@ -79,24 +79,29 @@
     text-wrap: balance;
 }
 
+/* Botão Redondo com Seta. Adicionado o comportamento hover no próprio botão */
 .portfolio-action-btn {
-    @apply w-12 h-12 md:w-14 md:h-14 flex-shrink-0 rounded-full bg-branco text-preto flex items-center justify-center opacity-0 scale-50 transition-all duration-500 ease-out;
+    @apply w-12 h-12 md:w-14 md:h-14 flex-shrink-0 rounded-full bg-branco text-preto flex items-center justify-center opacity-0 scale-50 transition-all duration-500 ease-out hover:bg-secundaria hover:text-branco;
 }
 
 /* =========================================
-   ANIMAÇÃO DO CONTEÚDO NO HOVER
+   ANIMAÇÃO DO CONTEÚDO NO HOVER/TOQUE
    ========================================= */
 
 .portfolio-item:hover .portfolio-client,
-.portfolio-item:hover .portfolio-title {
+.portfolio-item:hover .portfolio-title,
+.portfolio-item.is-tapped .portfolio-client,
+.portfolio-item.is-tapped .portfolio-title {
     @apply opacity-100 translate-y-0;
 }
 
-.portfolio-item:hover .portfolio-title {
+.portfolio-item:hover .portfolio-title,
+.portfolio-item.is-tapped .portfolio-title {
     transition-delay: 50ms;
 }
 
-.portfolio-item:hover .portfolio-action-btn {
-    @apply opacity-100 scale-100 hover:bg-secundaria hover:text-branco;
+.portfolio-item:hover .portfolio-action-btn,
+.portfolio-item.is-tapped .portfolio-action-btn {
+    @apply opacity-100 scale-100;
     transition-delay: 100ms;
 }
