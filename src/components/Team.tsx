@@ -25,6 +25,7 @@ const GithubIcon = () => (
 export default function Team() {
     // ESTRUTURA DE DADOS OTIMIZADA PARA MANUTENÇÃO
     // Para adicionar ou remover redes, basta preencher ou apagar a string dentro do objeto "socials".
+    // id's disponíveis: 6, 14, 31
     const teamData = [
         {
             department: 'PRESIDÊNCIA',
@@ -90,18 +91,6 @@ export default function Team() {
                         instagram: 'https://instagram.com/angelo_rt_'
                     }
                 },
-                {
-                    id: 6,
-                    name: 'Thalisson Luz',
-                    role: 'Membro',
-                    isDirector: false,
-                    image: '/timeCompact/thalisson.webp',
-                    socials: {
-                        instagram: 'https://instagram.com/thalissonsouza__',
-                        linkedin: 'https://www.linkedin.com/in/thalissonsouza-/',
-                        github: 'https://github.com/Thalisson-Souza'
-                    }
-                }
             ]
         },
         {
@@ -170,7 +159,8 @@ export default function Team() {
                     isDirector: false,
                     image: '/timeCompact/gabriel.webp',
                     socials: {
-
+                        instagram: 'https://www.instagram.com/_gabriel_chant',
+                        linkedin: 'https://www.linkedin.com/in/gabriel-de-azeredo-reginato-040a51404/',
                     }
                 },
                 {
@@ -180,18 +170,8 @@ export default function Team() {
                     isDirector: false,
                     image: '/timeCompact/pedrob.webp',
                     socials: {
-                        instagram: 'https://instagram.com/_pedrodebastos'
-                    }
-                },
-                {
-                    id: 14,
-                    name: 'Dionatan Correa Rodrigues',
-                    role: 'Membro',
-                    isDirector: false,
-                    image: '/timeCompact/dionatan.webp',
-                    socials: {
-                        instagram: 'https://instagram.com/_dionatan.r',
-                        github: 'https://github.com/Dionatan2019Rodrigues'
+                        instagram: 'https://instagram.com/_pedrodebastos',
+                        linkedin: 'https://www.linkedin.com/in/pedro-de-bastos/',
                     }
                 },
                 {
@@ -218,7 +198,9 @@ export default function Team() {
                     isDirector: true,
                     image: '/timeCompact/maga.webp',
                     socials: {
-                        instagram: 'https://instagram.com/marianacb.zip'
+                        instagram: 'https://instagram.com/marianacb.zip',
+                        linkedin: 'https://www.linkedin.com/in/mariana-ciervo-borges-15b07626a/',
+                        github: 'https://github.com/MarianaCiervoB',
                     }
                 },
                 {
@@ -229,6 +211,7 @@ export default function Team() {
                     image: '/timeCompact/lenno.webp',
                     socials: {
                         instagram: 'https://instagram.com/lenno_rhoden',
+                        linkedin: 'https://www.linkedin.com/in/lenno-rhoden-a475b62b1/',
                         github: 'https://github.com/Lenno-R'
                     }
                 },
@@ -260,7 +243,9 @@ export default function Team() {
                     isDirector: false,
                     image: '/timeCompact/dinei.webp',
                     socials: {
-                        instagram: 'https://instagram.com/dineidellagiustin'
+                        instagram: 'https://www.instagram.com/dinei_della_giustina/',
+                        linkedin: 'https://www.linkedin.com/in/dinei-jo%C3%A3o-della-giustina/',
+
                     }
                 },
                 {
@@ -323,6 +308,7 @@ export default function Team() {
                     image: '/timeCompact/fabricio.webp',
                     socials: {
                         instagram: 'https://instagram.com/faduzera1',
+                        linkedin: 'https://www.linkedin.com/in/fabricioduarte12/',
                         github: 'https://github.com/fabricioduarte12'
                     }
                 },
@@ -390,17 +376,6 @@ export default function Team() {
                     }
                 },
                 {
-                    id: 31,
-                    name: 'Maria Gonçalves',
-                    role: 'Membro',
-                    isDirector: false,
-                    image: '/timeCompact/malu.webp',
-                    socials: {
-                        instagram: 'https://instagram.com/maaluvs',
-                        linkedin: 'https://www.linkedin.com/in/mariagdeoliveira/'
-                    }
-                },
-                {
                     id: 32,
                     name: 'Helena Cardoso',
                     role: 'Membro',
@@ -420,6 +395,7 @@ export default function Team() {
                     image: '/timeCompact/mariac.webp',
                     socials: {
                         instagram: 'https://instagram.com/ck_iwi_',
+                        linkedin: 'https://www.linkedin.com/in/maria-carolina-meier-da-silva-366976375/',
                         github: 'https://github.com/MCarolMeier'
                     }
                 },
