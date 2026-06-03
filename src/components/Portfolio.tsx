@@ -17,8 +17,6 @@ const ArrowUpRightIcon = () => (
 
 export default function Portfolio() {
     // DADOS REAIS DOS PROJETOS
-    // Etiquetagem focada no "Objetivo do Site" para gerar variedade visual.
-    // Futuramente, basta trocar a 'category' para 'Mobile App' ou 'Chatbot'.
     const projects = [
         {
             id: 'proj-1',
@@ -26,8 +24,8 @@ export default function Portfolio() {
             title: 'Portal Educacional Completo',
             category: 'Plataforma Institucional',
             url: 'https://totemvestibulares.compactjr.com/',
-            image: '/portfolio/totem-vest.png',
-            gridArea: 'md:col-span-2 md:row-span-2', // Destaque Principal
+            image: '/portfolio/totem-vest.pnggit',
+            gridArea: 'md:col-span-2', // Ocupa as duas colunas (Destaque Principal)
             delay: 0.1
         },
         {
@@ -36,8 +34,8 @@ export default function Portfolio() {
             title: 'Posicionamento e Identidade',
             category: 'Portfólio Profissional',
             url: 'https://nicole-mundstock.compactjr.com/',
-            image: '/portfolio/nicole.png',
-            gridArea: 'md:col-span-1 md:row-span-1', // Quadrado Lateral
+            image: '/portfolio/nicole.webp',
+            gridArea: 'md:col-span-1', // Metade da tela
             delay: 0.2
         },
         {
@@ -46,8 +44,8 @@ export default function Portfolio() {
             title: 'Sistema de Acesso e Gestão',
             category: 'Web App',
             url: 'https://conecta.compactjr.com/',
-            image: '/portfolio/conecta.png',
-            gridArea: 'md:col-span-1 md:row-span-1', // Quadrado Lateral
+            image: '/portfolio/conecta.webp',
+            gridArea: 'md:col-span-1', // Metade da tela
             delay: 0.3
         },
         {
@@ -56,8 +54,8 @@ export default function Portfolio() {
             title: 'Esfera Econômica',
             category: 'Landing Page de Conversão',
             url: 'https://www.equilibrioufrgs.com/',
-            image: '/portfolio/equilibrio.png',
-            gridArea: 'md:col-span-2 md:row-span-1', // Panorâmico na Base
+            image: '/portfolio/equilibrio.webp',
+            gridArea: 'md:col-span-1', // Metade da tela
             delay: 0.4
         },
         {
@@ -66,8 +64,8 @@ export default function Portfolio() {
             title: 'Sistema de Recepção',
             category: 'Solução Operacional',
             url: 'https://totementrada.compactjr.com/',
-            image: '/portfolio/totem.png',
-            gridArea: 'md:col-span-1 md:row-span-1', // Quadrado Base
+            image: '/portfolio/totem.webp',
+            gridArea: 'md:col-span-1', // Metade da tela
             delay: 0.5
         }
     ]
@@ -89,7 +87,6 @@ export default function Portfolio() {
 
                 <div className="portfolio-bento-grid">
                     {projects.map((project) => (
-                        // Transformado em uma tag 'a' animada para navegação externa
                         <motion.a
                             key={project.id}
                             href={project.url}
@@ -102,13 +99,13 @@ export default function Portfolio() {
                             transition={{ duration: 0.5, delay: project.delay, ease: "easeOut" }}
                         >
                             <div className="portfolio-image-wrapper">
-                                {/* Componente de imagem nativo do Next.js implementado */}
+                                {/* Voltamos para o object-cover. Como a caixa agora é 16:9, ele vai preencher 100% sem cortar nada! */}
                                 <Image
                                     src={project.image}
                                     alt={`Case de Sucesso: ${project.client} - ${project.title}`}
                                     fill
-                                    className="object-contain object-center"
-                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                    className="object-cover object-center"
+                                    sizes="(max-width: 1920px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                 />
                             </div>
 

@@ -20,21 +20,18 @@
 }
 
 /* =========================================
-   BENTO GRID (O MOSAICO ASSIMÉTRICO)
+   GRID PROPORCIONAL
    ========================================= */
 
 .portfolio-bento-grid {
-    /* Cria uma malha de 3 colunas.
-      O auto-rows-[250px] fixa a altura base das linhas.
-      No mobile, vira 1 coluna com altura de 300px para cada.
-    */
-    @apply grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 auto-rows-[300px] md:auto-rows-[280px];
+    /* Grid de 2 colunas. A altura fixa foi removida para permitir a adaptação à imagem. */
+    @apply grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6;
 }
 
 /* BLOCO INDIVIDUAL DE PROJETO */
 .portfolio-item {
-    @apply relative rounded-sm overflow-hidden cursor-pointer shadow-2xl;
-    /* translate-z-0 força aceleração de hardware para o hover da imagem não travar */
+    /* O 'aspect-video' força a caixa a ter exatamente a proporção 16:9 das suas fotos */
+    @apply relative rounded-sm overflow-hidden cursor-pointer shadow-2xl aspect-video;
     transform: translateZ(0);
 }
 
@@ -45,17 +42,15 @@
 
 /* No hover, a imagem do projeto cresce levemente ao fundo */
 .portfolio-item:hover .portfolio-image-wrapper {
-    transform: scale(1.08);
+    transform: scale(1.05);
 }
 
 /* OVERLAY (Fundo de Vidro Escuro) */
 .portfolio-overlay {
-    /* Degrade que escurece do fundo para o topo para dar leitura aos textos */
     @apply absolute inset-0 bg-gradient-to-t from-preto via-preto/60 to-transparent opacity-60 transition-opacity duration-500 z-10;
 }
 
 .portfolio-item:hover .portfolio-overlay {
-    /* Fica mais escuro no hover para destacar as informações que irão surgir */
     @apply opacity-90 backdrop-blur-sm;
 }
 
@@ -63,17 +58,14 @@
    ELEMENTOS DE TEXTO E INTERAÇÃO
    ========================================= */
 
-/* Etiqueta de Categoria (ex: Web App) - Sempre visível */
 .portfolio-badge {
     @apply absolute top-6 left-6 z-20 bg-branco/10 backdrop-blur-md border border-branco/20 text-branco font-principal text-[10px] md:text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full;
 }
 
-/* Container que guarda o texto e o botão */
 .portfolio-content {
     @apply absolute inset-x-0 bottom-0 p-6 md:p-8 z-20 flex justify-between items-end gap-4;
 }
 
-/* Bloco de Texto */
 .portfolio-text-block {
     @apply flex flex-col gap-1 md:gap-2;
 }
@@ -87,7 +79,6 @@
     text-wrap: balance;
 }
 
-/* Botão Redondo com Seta */
 .portfolio-action-btn {
     @apply w-12 h-12 md:w-14 md:h-14 flex-shrink-0 rounded-full bg-branco text-preto flex items-center justify-center opacity-0 scale-50 transition-all duration-500 ease-out;
 }
@@ -101,7 +92,6 @@
     @apply opacity-100 translate-y-0;
 }
 
-/* O delay cria um efeito de "cascata" (O título entra logo depois do cliente) */
 .portfolio-item:hover .portfolio-title {
     transition-delay: 50ms;
 }
