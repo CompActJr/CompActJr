@@ -64,7 +64,7 @@ export default function Header() {
                     {/* COLUNA 3: NAVEGAÇÃO DIREITA E AÇÕES (DESKTOP) */}
                     <div className="hidden lg:flex items-center lg:gap-5 xl:gap-10 lg:w-[45%] xl:w-[40%] justify-start shrink-0">
                         <nav className="flex items-center lg:gap-4 xl:gap-8">
-                            <Link href="#sobre" className="nav-link ">Quem Somos</Link>
+                            <Link href="/sobre" className="nav-link ">Quem Somos</Link>
                             {/*<Link href="#blog" className="nav-link ">Blog</Link>*/}
                             <Link href="#portfolio" className="nav-link ">Portfólio</Link>
                         </nav>
@@ -133,7 +133,7 @@ export default function Header() {
                 <nav className="flex flex-col items-center gap-8 mt-10">
                     <Link href="/" onClick={() => setMenuAberto(false)} className="nav-link nav-link-mobile text-secundaria">Homepage</Link>
                     <Link href="#servicos" onClick={() => setMenuAberto(false)} className="nav-link nav-link-mobile">Serviços</Link>
-                    <Link href="#sobre" onClick={() => setMenuAberto(false)} className="nav-link nav-link-mobile">Quem Somos</Link>
+                    <Link href="/sobre" onClick={() => setMenuAberto(false)} className="nav-link nav-link-mobile">Quem Somos</Link>
                     <Link href="#portfolio" onClick={() => setMenuAberto(false)} className="nav-link nav-link-mobile">Portfólio</Link>
 
                     {/* Ícones Auxiliares reposicionados para a tela mobile */}
