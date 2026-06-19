@@ -41,7 +41,7 @@ export default function About() {
                         </p>
                     </div>
 
-                    <Link href="#historia">
+                    <Link href="/sobre">
                         <button className="about-btn">saiba mais</button>
                     </Link>
 

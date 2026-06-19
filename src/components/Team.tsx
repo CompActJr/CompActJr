@@ -149,6 +149,7 @@ export default function Team() {
                     image: '/timeCompact/leonardo.webp',
                     socials: {
                         instagram: 'https://instagram.com/leon_cns',
+                        linkedin: 'https://www.linkedin.com/in/leonardo-nielsen-0659b027a/',
                         github: 'https://github.com/Leon-CN'
                     }
                 },
@@ -250,7 +251,7 @@ export default function Team() {
                 },
                 {
                     id: 21,
-                    name: 'Pedro Menezes',
+                    name: 'Pedro Vitalis',
                     role: 'Membro',
                     isDirector: false,
                     image: '/timeCompact/pedrom.webp',
@@ -272,7 +273,7 @@ export default function Team() {
                     isDirector: true,
                     image: '/timeCompact/jonas.webp',
                     socials: {
-                        instagram: 'https://instagram.com/jonas_lara',
+                        instagram: 'https://instagram.com/jonas_silva_de_lara',
                         linkedin: 'https://www.linkedin.com/in/jonas-silva-de-lara',
                         github: 'https://github.com/Jonas-SLara'
                     }
@@ -406,7 +407,7 @@ export default function Team() {
                     isDirector: false,
                     image: '/timeCompact/alice.webp',
                     socials: {
-                        instagram: 'https://instagram.com/ec-ila'
+                        github: 'https://github.com/ec-ila'
                     }
                 },
                 {

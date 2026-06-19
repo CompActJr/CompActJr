@@ -14,6 +14,7 @@ import Values from '../../components/Values'
 import History from '../../components/History'
 import Team from '../../components/Team'
 import Footer from '../../components/Footer'
+import Header from "@/src/components/Header";
 
 export const metadata = {
     title: 'Quem Somos | CompAct Jr.',
@@ -23,7 +24,7 @@ export const metadata = {
 export default function SobrePage() {
     return (
         <main className="relative min-h-screen bg-preto overflow-x-clip text-branco selection:bg-secundaria selection:text-branco">
-
+            <Header />
             <BackgroundGlow />
 
             <Watermark text="CULTURA" />
