@@ -1,34 +1,35 @@
 'use client'
 import React, { useState } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
+import { useRouter } from 'next/navigation' // O motor de navegação suave do Next
 import { motion } from 'framer-motion'
 import './styles/Portfolio.css'
 
 /**
- * COMPONENTE DE PORTFÓLIO (BENTO GRID)
- * @description Exibe os cases de sucesso reais da EJ.
- * Implementa lógica de "Double Tap" nativa para dispositivos móveis,
- * garantindo que o usuário consiga ler os detalhes antes de ser redirecionado.
+ * COMPONENTE DE PORTFÓLIO HOMEPAGE (TEASERS)
+ * @description Vitrine reduzida (3 itens) para a Home.
+ * Atua como topo de funil: atrai visualmente e direciona o tráfego para a página /portfolio.
  * @kayualins Equipe de Projetos CompAct Jr.
  */
 
-const ArrowUpRightIcon = () => (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+const ArrowRightIcon = () => (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
 )
 
 export default function Portfolio() {
-    // ESTADO: Controla qual projeto foi tocado no mobile
     const [tappedId, setTappedId] = useState<string | null>(null)
+    const router = useRouter()
 
-    const projects = [
+    // Selecionamos cirurgicamente apenas os 3 projetos de maior impacto visual
+    const teaserProjects = [
         {
             id: 'proj-1',
             client: 'Totem Vestibulares',
             title: 'Portal Educacional Completo',
             category: 'Plataforma Institucional',
-            url: 'https://totemvestibulares.compactjr.com/',
             image: '/portfolio/totem-vest.png',
-            gridArea: 'md:col-span-2', // Ocupa as duas colunas (Destaque Principal)
+            gridArea: 'md:col-span-2', // Ocupa a linha inteira (Gatilho de Autoridade)
             delay: 0.1
         },
         {
@@ -36,40 +37,18 @@ export default function Portfolio() {
             client: 'Nicole Mundstock',
             title: 'Posicionamento e Identidade',
             category: 'Portfólio Profissional',
-            url: 'https://nicole-mundstock.compactjr.com/',
             image: '/portfolio/nicole.webp',
-            gridArea: 'md:col-span-1', // Metade da tela
+            gridArea: 'md:col-span-1', // Divide a segunda linha
             delay: 0.2
         },
         {
             id: 'proj-3',
             client: 'Conecta',
             title: 'Sistema de Acesso e Gestão',
-            category: 'Web App',
-            url: 'https://conecta.compactjr.com/',
+            category: 'Web App Transacional',
             image: '/portfolio/conecta.webp',
-            gridArea: 'md:col-span-1', // Metade da tela
+            gridArea: 'md:col-span-1', // Divide a segunda linha
             delay: 0.3
-        },
-        {
-            id: 'proj-4',
-            client: 'Equilíbrio JR',
-            title: 'Esfera Econômica',
-            category: 'Landing Page de Conversão',
-            url: 'https://www.equilibrioufrgs.com/',
-            image: '/portfolio/equilibrio.webp',
-            gridArea: 'md:col-span-1', // Metade da tela
-            delay: 0.4
-        },
-        {
-            id: 'proj-5',
-            client: 'Totem Entrada',
-            title: 'Sistema de Recepção',
-            category: 'Solução Operacional',
-            url: 'https://totementrada.compactjr.com/',
-            image: '/portfolio/totem.webp',
-            gridArea: 'md:col-span-1', // Metade da tela
-            delay: 0.5
         }
     ]
 
@@ -77,41 +56,46 @@ export default function Portfolio() {
         <section id="portfolio" className="portfolio-section">
             <div className="container mx-auto px-6 max-w-7xl relative z-10">
 
+                {/* CABEÇALHO REPOSICIONADO COM LINK DISCRETO */}
                 <motion.header
-                    className="portfolio-header"
+                    className="portfolio-header flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12"
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6 }}
                 >
-                    <span className="portfolio-kicker">Nosso Trabalho</span>
-                    <h2 className="portfolio-main-title">Projetos em Destaque</h2>
+                    <div>
+                        <span className="portfolio-kicker">Amostra de Capacidade</span>
+                        <h2 className="portfolio-main-title">Projetos em Destaque</h2>
+                    </div>
+
+                    <Link
+                        href="/portfolio"
+                        className="hidden md:flex items-center gap-2 font-principal text-xs uppercase tracking-[2px] text-branco/60 hover:text-secundaria transition-colors font-bold pb-2"
+                    >
+                        Ver todos os 6+ cases →
+                    </Link>
                 </motion.header>
 
                 <div className="portfolio-bento-grid">
-                    {projects.map((project) => {
+                    {teaserProjects.map((project) => {
                         const isTapped = tappedId === project.id;
 
                         return (
-                            <motion.a
+                            <motion.div
                                 key={project.id}
-                                href={project.url}
-                                target="_blank"
-                                rel="noopener noreferrer"
                                 onClick={(e) => {
-                                    // Previne erros durante a renderização no servidor do Next.js
                                     if (typeof window !== 'undefined') {
-                                        // Verifica se o aparelho de acesso NÃO suporta mouse/hover (Mobile)
                                         const isTouchDevice = window.matchMedia('(hover: none)').matches;
 
                                         if (isTouchDevice && !isTapped) {
-                                            e.preventDefault(); // Impede o link de abrir
-                                            setTappedId(project.id); // Simula o hover
+                                            setTappedId(project.id);
+                                        } else {
+                                            // Roteamento SPA do Next (Instantâneo, sem piscar a tela)
+                                            router.push('/portfolio');
                                         }
-                                        // Se isTapped for verdadeiro (2º toque), a função deixa o clique passar normalmente.
                                     }
                                 }}
-                                // Adiciona a classe 'is-tapped' se foi tocado no mobile
                                 className={`portfolio-item block group ${project.gridArea} ${isTapped ? 'is-tapped' : ''}`}
                                 initial={{ opacity: 0, scale: 0.95 }}
                                 whileInView={{ opacity: 1, scale: 1 }}
@@ -119,20 +103,11 @@ export default function Portfolio() {
                                 transition={{ duration: 0.5, delay: project.delay, ease: "easeOut" }}
                             >
                                 <div className="portfolio-image-wrapper">
-                                    <Image
-                                        src={project.image}
-                                        alt={`Case de Sucesso: ${project.client} - ${project.title}`}
-                                        fill
-                                        className="object-cover object-center"
-                                        sizes="(max-width: 1768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                                    />
+                                    <Image src={project.image} alt={project.title} fill className="object-cover object-center" />
                                 </div>
 
-                                <div className="portfolio-overlay"></div>
-
-                                <div className="portfolio-badge">
-                                    {project.category}
-                                </div>
+                                <div className="portfolio-overlay" />
+                                <div className="portfolio-badge">{project.category}</div>
 
                                 <div className="portfolio-content">
                                     <div className="portfolio-text-block">
@@ -140,15 +115,32 @@ export default function Portfolio() {
                                         <h3 className="portfolio-title">{project.title}</h3>
                                     </div>
 
+                                    {/* Seta trocada para a direita (indica "Entrar na Galeria") */}
                                     <div className="portfolio-action-btn">
-                                        <ArrowUpRightIcon />
+                                        <ArrowRightIcon />
                                     </div>
                                 </div>
-
-                            </motion.a>
+                            </motion.div>
                         )
                     })}
                 </div>
+
+                {/* BOTÃO MONUMENTAL DE CHAMADA PARA AÇÃO (CTA) */}
+                <motion.div
+                    className="mt-16 flex justify-center"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 0.4 }}
+                >
+                    <Link href="/portfolio" className="portfolio-magnetic-cta group">
+                        <span className="cta-glare" />
+                        <span className="relative z-10 flex items-center gap-3">
+                            Explorar Portfólio Completo
+                            <svg className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1.5 text-secundaria group-hover:text-preto" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                        </span>
+                    </Link>
+                </motion.div>
 
             </div>
         </section>

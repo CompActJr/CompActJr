@@ -84,24 +84,60 @@
     @apply w-12 h-12 md:w-14 md:h-14 flex-shrink-0 rounded-full bg-branco text-preto flex items-center justify-center opacity-0 scale-50 transition-all duration-500 ease-out hover:bg-secundaria hover:text-branco;
 }
 
-/* =========================================
-   ANIMAÇÃO DO CONTEÚDO NO HOVER/TOQUE
-   ========================================= */
+/* =========================================================================
+   1. ESTILOS ACIONADOS POR TOQUE NO MOBILE
+   ========================================================================= */
 
-.portfolio-item:hover .portfolio-client,
-.portfolio-item:hover .portfolio-title,
+.portfolio-item.is-tapped .portfolio-image-wrapper {
+    transform: scale(1.05);
+}
+
+.portfolio-item.is-tapped .portfolio-overlay {
+    @apply opacity-90 backdrop-blur-sm;
+}
+
 .portfolio-item.is-tapped .portfolio-client,
 .portfolio-item.is-tapped .portfolio-title {
     @apply opacity-100 translate-y-0;
 }
 
-.portfolio-item:hover .portfolio-title,
-.portfolio-item.is-tapped .portfolio-title {
-    transition-delay: 50ms;
-}
-
-.portfolio-item:hover .portfolio-action-btn,
 .portfolio-item.is-tapped .portfolio-action-btn {
     @apply opacity-100 scale-100;
-    transition-delay: 100ms;
+}
+
+
+/* =========================================================================
+   2. ESTILOS ACIONADOS POR MOUSE NO DESKTOP
+   ========================================================================= */
+
+@media (hover: hover) and (pointer: fine) {
+    .portfolio-item:hover .portfolio-image-wrapper {
+        transform: scale(1.05);
+    }
+
+    .portfolio-item:hover .portfolio-overlay {
+        @apply opacity-90 backdrop-blur-sm;
+    }
+
+    .portfolio-item:hover .portfolio-client,
+    .portfolio-item:hover .portfolio-title {
+        @apply opacity-100 translate-y-0;
+    }
+
+    .portfolio-item:hover .portfolio-action-btn {
+        @apply opacity-100 scale-100;
+    }
+}
+
+/* =========================================
+   SUPER CTA MAGNÉTICO (RODAPÉ DA SEÇÃO)
+   ========================================= */
+
+.portfolio-magnetic-cta {
+    @apply relative overflow-hidden rounded-full bg-gradient-to-r from-branco/10 via-branco/15 to-branco/10 border border-branco/20 px-8 md:px-12 py-4 md:py-5 font-principal text-xs md:text-sm font-bold uppercase tracking-[2px] text-branco shadow-2xl backdrop-blur-md transition-all duration-500 hover:border-secundaria hover:shadow-[0_0_35px_rgba(var(--color-secundaria),0.35)] hover:text-preto hover:bg-secundaria;
+}
+
+/* O reflexo de vidro passando por dentro do botão a 60 FPS */
+.cta-glare {
+    @apply absolute -top-12 -left-12 w-8 h-32 bg-branco/40 rotate-12 opacity-0 group-hover:opacity-100 group-hover:translate-x-[450px] transition-all duration-1000 ease-in-out pointer-events-none;
 }

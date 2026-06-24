@@ -255,13 +255,13 @@ export default function PortfolioShowcase() {
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
                                 <div className="bg-branco/5 p-5 rounded-xl border border-branco/5">
                                     <h4 className="font-titulo text-sm uppercase text-branco/40 tracking-wider mb-2 flex items-center gap-2">
-                                        <span>⚠️</span> O Gargalo
+                                        O Gargalo
                                     </h4>
                                     <p className="font-principal text-sm text-branco/80 leading-relaxed">{activeModalProject.challenge}</p>
                                 </div>
                                 <div className="bg-secundaria/5 p-5 rounded-xl border border-secundaria/20">
                                     <h4 className="font-titulo text-sm uppercase text-secundaria tracking-wider mb-2 flex items-center gap-2">
-                                        <span>💡</span> Nossa Solução
+                                        Nossa Solução
                                     </h4>
                                     <p className="font-principal text-sm text-branco/80 leading-relaxed">{activeModalProject.solution}</p>
                                 </div>
@@ -286,7 +286,7 @@ export default function PortfolioShowcase() {
                                     rel="noopener noreferrer"
                                     className="w-full sm:w-auto px-8 py-3.5 rounded-full bg-branco hover:bg-secundaria text-preto hover:text-branco font-principal text-sm font-bold uppercase tracking-wider text-center transition-all shadow-lg shrink-0"
                                 >
-                                    Acessar Projeto ↗
+                                    Acessar Projeto
                                 </a>
                             </div>
 
