@@ -21,9 +21,11 @@ export const metadata = {
 export default function PortfolioPage() {
     return (
         <main className="relative min-h-screen bg-preto overflow-x-clip text-branco selection:bg-secundaria selection:text-branco">
-            <Header />
             <BackgroundGlow />
+            <Header />
+
             <Watermark text="ACERVO" />
+
 
             <div className="relative z-10 pb-32">
                 <PortfolioShowcase />

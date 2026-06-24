@@ -2,6 +2,7 @@
 import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
+import { usePathname } from 'next/navigation'
 import './styles/Footer.css'
 
 /**
@@ -41,16 +42,23 @@ const FacebookIcon = () => (
 
 export default function Footer() {
     const currentYear = new Date().getFullYear()
+    const pathname = usePathname()
+
+    // Intercepta cliques em links da própria página para rolar suavemente ao topo
+    const handleSamePageScroll = (e: React.MouseEvent<HTMLAnchorElement>, targetPath: string) => {
+        if (pathname === targetPath) {
+            e.preventDefault()
+            window.scrollTo({ top: 0, behavior: 'smooth' })
+        }
+    }
 
     return (
         <footer className="footer-container">
             <div className="container mx-auto px-6 max-w-7xl relative z-10">
-
                 <div className="footer-main-grid">
 
-                    {/* COLUNA 1: LOGO E DESCRIÇÃO */}
                     <div className="footer-info-col">
-                        <Link href="/" className="footer-logo-link">
+                        <Link href="/" onClick={(e) => handleSamePageScroll(e, '/')} className="footer-logo-link">
                             <Image
                                 src="/logos/logo-h.webp"
                                 alt="CompAct Jr. Logo"
@@ -65,42 +73,41 @@ export default function Footer() {
                         </p>
                     </div>
 
-                    {/* COLUNA 2: NAVEGAÇÃO SIMPLIFICADA (Espelho do Header) */}
                     <div className="footer-links-col">
                         <h3 className="footer-col-title">Navegação</h3>
                         <nav className="footer-nav">
                             <div className="footer-nav-group">
-                                <Link href="/" className="footer-link">Homepage</Link>
-                                <Link href="/sobre" className="footer-link">Quem Somos</Link>
-                                <Link href="#servicos" className="footer-link">Serviços</Link>
-                                <Link href="#portfolio" className="footer-link">Portfólio</Link>
+                                <Link href="/" onClick={(e) => handleSamePageScroll(e, '/')} className="footer-link">Homepage</Link>
+                                <Link href="/sobre" onClick={(e) => handleSamePageScroll(e, '/sobre')} className="footer-link">Quem Somos</Link>
+                                <Link href="/#servicos" className="footer-link">Serviços</Link>
+                                <Link href="/portfolio" onClick={(e) => handleSamePageScroll(e, '/portfolio')} className="footer-link">Portfólio</Link>
                             </div>
                         </nav>
                     </div>
 
-                    {/* COLUNA 3: CONTATOS RÁPIDOS E REDES SOCIAIS */}
                     <div className="footer-social-col">
                         <h3 className="footer-col-title">Conecte-se</h3>
                         <p className="footer-contact-item">comercial@compactjr.com</p>
 
                         <div className="footer-social-row">
-                            <a href="https://www.instagram.com/compact.jr/" target="_blank" className="footer-social-btn" aria-label="Instagram">
+                            <a href="https://www.instagram.com/compact.jr/" target="_blank" rel="noopener noreferrer" className="footer-social-btn" aria-label="Instagram">
                                 <InstagramIcon />
                             </a>
-                            <a href="https://br.linkedin.com/company/compactjr" target="_blank" className="footer-social-btn" aria-label="LinkedIn">
+                            <a href="https://br.linkedin.com/company/compactjr" target="_blank" rel="noopener noreferrer" className="footer-social-btn" aria-label="LinkedIn">
                                 <LinkedInIcon />
                             </a>
-                            {/*<a href="#" className="footer-social-btn" aria-label="GitHub">
+                            {/* Funcionalidade futura: GitHub da EJ
+                            <a href="#" target="_blank" rel="noopener noreferrer" className="footer-social-btn" aria-label="GitHub">
                                 <GithubIcon/>
-                            </a>*/}
-                            <a href="https://www.facebook.com/compactjr/?locale=pt_BR" target="_blank" className="footer-social-btn" aria-label="GitHub">
+                            </a>
+                            */}
+                            <a href="https://www.facebook.com/compactjr/?locale=pt_BR" target="_blank" rel="noopener noreferrer" className="footer-social-btn" aria-label="Facebook">
                                 <FacebookIcon />
                             </a>
                         </div>
                     </div>
                 </div>
 
-                {/* BLOCO INFERIOR: COMPLIANCE E DIREITOS AUTORAIS */}
                 <div className="footer-bottom-bar">
                     <p className="footer-copyright">
                         &copy; {currentYear} CompAct Jr. Todos os direitos reservados.
@@ -109,7 +116,6 @@ export default function Footer() {
                         Desenvolvido com excelência acadêmica.
                     </p>
                 </div>
-
             </div>
         </footer>
     )
