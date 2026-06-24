@@ -16,7 +16,6 @@ export default function Clientes() {
     // Caminhos organizados e urls adicionadas para os sites/redes sociais dos clientes
     const clientes = [
         { name: 'Caduceu JR', src: '/logosParceiros/clientes/caduceujr.webp', url: 'https://caduceujr.com.br/' },
-        { name: 'Mirinay', src: '/logosParceiros/clientes/mirinay.webp', url: 'https://www.mirinay.com.br/' },
         { name: 'Equilíbrio JR', src: '/logosParceiros/clientes/equilibrio.webp', url: 'https://www.equilibrioufrgs.com/' },
         { name: 'Nicole Mundstock', src: '/logosParceiros/clientes/nicole.webp', url: 'https://www.instagram.com/arq.nicolemundstock/' },
         { name: 'Sobrac', src: '/logosParceiros/clientes/sobrac.webp', url: 'https://acustica.org.br/' },

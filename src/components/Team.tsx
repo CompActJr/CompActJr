@@ -250,7 +250,7 @@ export default function Team() {
                 },
                 {
                     id: 21,
-                    name: 'Pedro Menezes',
+                    name: 'Pedro Vitalis',
                     role: 'Membro',
                     isDirector: false,
                     image: '/timeCompact/pedrom.webp',
