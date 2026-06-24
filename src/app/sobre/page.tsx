@@ -21,7 +21,7 @@ export default function SobrePage() {
             <Header />
             <BackgroundGlow />
 
-            <Watermark text="CULTURA" />
+            <Watermark />
 
             <AboutHero />
 

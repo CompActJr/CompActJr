@@ -28,7 +28,7 @@ export default function Watermark({ text }: WatermarkProps) {
                         src="/logos/logo-compact.webp"
                         alt="Marca d'água CompAct Jr"
                         fill
-                        className="object-contain opacity-5"
+                        className="object-contain opacity-45"
                     />
                 )}
             </div>

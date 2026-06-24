@@ -24,7 +24,7 @@ export default function PortfolioPage() {
             <BackgroundGlow />
             <Header />
 
-            <Watermark text="ACERVO" />
+            <Watermark />
 
 
             <div className="relative pb-32">
