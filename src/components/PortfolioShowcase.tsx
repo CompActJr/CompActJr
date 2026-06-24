@@ -1,13 +1,14 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 import './styles/PortfolioShowcase.css'
 
 /**
  * COMPONENTE: VITRINE COM FILTROS E MODAL (PORTFOLIO SHOWCASE)
- * @description Gerencia a renderização da grade completa de projetos,
- * a lógica de filtragem animada por categoria e a abertura do modal de case detalhado.
+ * @description Gerencia a renderização da grade de projetos.
+ * Implementa Body Scroll Lock para corrigir bugs de rolagem no Mobile e
+ * Z-index supremo para sobrepor o Header da aplicação.
  * @kayualins Equipe de Projetos CompAct Jr.
  */
 
@@ -105,6 +106,20 @@ export default function PortfolioShowcase() {
     const [selectedCategory, setSelectedCategory] = useState<string>('Todos')
     const [activeModalProject, setActiveModalProject] = useState<Project | null>(null)
 
+    // EFEITO: Trava a rolagem do fundo (body) quando o Modal abre (Correção Mobile)
+    useEffect(() => {
+        if (activeModalProject) {
+            document.body.style.overflow = 'hidden' // Congela o fundo
+        } else {
+            document.body.style.overflow = 'unset' // Libera o fundo
+        }
+
+        // Limpeza de segurança (caso o componente desmonte com o modal aberto)
+        return () => {
+            document.body.style.overflow = 'unset'
+        }
+    }, [activeModalProject])
+
     const filteredProjects = selectedCategory === 'Todos'
         ? projectsData
         : projectsData.filter(project => project.category === selectedCategory)
@@ -112,9 +127,8 @@ export default function PortfolioShowcase() {
     return (
         <section className="container mx-auto px-6 max-w-7xl pt-36">
 
-            {/* CABEÇALHO */}
             <div className="flex flex-col items-center text-center mb-16">
-                <span className="font-principal text-sm text-secundaria font-bold uppercase tracking-[4px] mb-3  text-3xl md:text-3xl">Nosso Orgulho</span>
+                <span className="font-principal text-sm text-secundaria font-bold uppercase tracking-[4px] mb-3 text-3xl md:text-3xl">Nosso Orgulho</span>
                 <h1 className="font-titulo text-4xl md:text-6xl font-black uppercase tracking-wider text-branco mb-4">
                     Acervo de Projetos
                 </h1>
@@ -123,7 +137,6 @@ export default function PortfolioShowcase() {
                 </p>
             </div>
 
-            {/* BARRA DE FILTROS ANIMADA */}
             <div className="flex flex-wrap items-center justify-center gap-2 md:gap-3 mb-16">
                 {categories.map((cat) => {
                     const isActive = selectedCategory === cat;
@@ -148,7 +161,6 @@ export default function PortfolioShowcase() {
                 })}
             </div>
 
-            {/* GRADE DE PROJETOS COM EFEITO LAYOUT */}
             <motion.div
                 layout
                 className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
@@ -157,7 +169,7 @@ export default function PortfolioShowcase() {
                     {filteredProjects.map((project, index) => (
                         <motion.div
                             key={project.id}
-                            layout // Força os cartões a deslizarem suavemente quando a grade muda
+                            layout
                             initial={{ opacity: 0, scale: 0.8 }}
                             animate={{ opacity: 1, scale: 1 }}
                             exit={{ opacity: 0, scale: 0.8 }}
@@ -210,12 +222,10 @@ export default function PortfolioShowcase() {
                 </AnimatePresence>
             </motion.div>
 
-            {/* MODAL DE CASE DETALHADO */}
             <AnimatePresence>
                 {activeModalProject && (
                     <div
-                        className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-preto/80 backdrop-blur-md"
-                        // e.stopPropagation() evita que o clique dentro da caixa branca feche o modal acidentalmente
+                        className="fixed inset-0 z-[99999] flex items-center justify-center p-4 pt-16 sm:p-6 bg-preto/85 backdrop-blur-md"
                         onClick={() => setActiveModalProject(null)}
                     >
                         <motion.div
@@ -223,28 +233,29 @@ export default function PortfolioShowcase() {
                             animate={{ opacity: 1, y: 0, scale: 1 }}
                             exit={{ opacity: 0, y: 30, scale: 0.95 }}
                             onClick={(e) => e.stopPropagation()}
-                            className="bg-[#121212] border border-branco/20 rounded-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto p-6 md:p-10 relative shadow-2xl"
+                            className="bg-[#121212] border border-branco/20 rounded-2xl max-w-3xl w-full max-h-[95vh] md:max-h-[85vh] overflow-y-auto p-6 md:p-10 relative shadow-2xl touch-pan-y"
                         >
                             <button
                                 onClick={() => setActiveModalProject(null)}
-                                className="absolute top-6 right-6 w-10 h-10 rounded-full bg-branco/5 hover:bg-branco/10 flex items-center justify-center text-branco/60 hover:text-branco transition-colors"
+                                className="absolute top-4 right-4 md:top-6 md:right-6 w-10 h-10 rounded-full bg-branco/10 hover:bg-branco/20 flex items-center justify-center text-branco transition-colors z-10"
                             >
                                 ✕
                             </button>
 
-                            <span className="font-principal text-xs font-bold text-secundaria uppercase tracking-[3px]">{activeModalProject.category}</span>
-                            <h2 className="font-titulo text-2xl md:text-4xl font-black text-branco uppercase tracking-wide mt-1 mb-6">
-                                {activeModalProject.client} — {activeModalProject.title}
+                            <span className="font-principal text-xs font-bold text-secundaria uppercase tracking-[3px] pr-8 block">{activeModalProject.category}</span>
+                            <h2 className="font-titulo text-2xl md:text-4xl font-black text-branco uppercase tracking-wide mt-2 mb-6">
+                                {activeModalProject.client} <br className="md:hidden"/>
+                                <span className="hidden md:inline">—</span> {activeModalProject.title}
                             </h2>
 
-                            <div className="aspect-video relative rounded-xl overflow-hidden mb-8 border border-branco/10">
+                            <div className="aspect-video relative rounded-xl overflow-hidden mb-8 border border-branco/10 shrink-0">
                                 <Image src={activeModalProject.image} alt={activeModalProject.title} fill className="object-cover" />
                             </div>
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
                                 <div className="bg-branco/5 p-5 rounded-xl border border-branco/5">
                                     <h4 className="font-titulo text-sm uppercase text-branco/40 tracking-wider mb-2 flex items-center gap-2">
-                                        <span>⚠️</span> O Gargalo (Desafio)
+                                        <span>⚠️</span> O Gargalo
                                     </h4>
                                     <p className="font-principal text-sm text-branco/80 leading-relaxed">{activeModalProject.challenge}</p>
                                 </div>
@@ -267,15 +278,15 @@ export default function PortfolioShowcase() {
                                 </div>
                             </div>
 
-                            <div className="pt-6 border-t border-branco/10 flex flex-col sm:flex-row items-center justify-between gap-4">
-                                <span className="text-xs text-branco/40 font-principal">Desenvolvido sob os padrões de excelência CompAct Jr.</span>
+                            <div className="pt-6 border-t border-branco/10 flex flex-col sm:flex-row items-center justify-between gap-4 pb-2">
+                                <span className="text-[10px] sm:text-xs text-branco/40 font-principal text-center sm:text-left">Desenvolvido sob os padrões de excelência CompAct Jr.</span>
                                 <a
                                     href={activeModalProject.url}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="w-full sm:w-auto px-8 py-3.5 rounded-full bg-branco hover:bg-secundaria text-preto hover:text-branco font-principal text-sm font-bold uppercase tracking-wider text-center transition-all shadow-lg"
+                                    className="w-full sm:w-auto px-8 py-3.5 rounded-full bg-branco hover:bg-secundaria text-preto hover:text-branco font-principal text-sm font-bold uppercase tracking-wider text-center transition-all shadow-lg shrink-0"
                                 >
-                                    Acessar Projeto ao Vivo ↗
+                                    Acessar Projeto ↗
                                 </a>
                             </div>
 

@@ -14,7 +14,7 @@ import PortfolioShowcase from '../../components/PortfolioShowcase'
 import Header from "@/src/components/Header";
 
 export const metadata = {
-    title: 'Portfólio de Cases e Projetos',
+    title: 'Portfólio de Projetos',
     description: 'Explore nosso acervo completo de sites institucionais, web apps, landing pages de conversão e sistemas sob medida.',
 }
 
@@ -27,7 +27,7 @@ export default function PortfolioPage() {
             <Watermark text="ACERVO" />
 
 
-            <div className="relative z-10 pb-32">
+            <div className="relative pb-32">
                 <PortfolioShowcase />
             </div>
 
