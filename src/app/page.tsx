@@ -65,7 +65,6 @@ export default function Home() {
 
                 <SectionsWithWatermark>
                     <Services />
-                    <Pillars />
                 </SectionsWithWatermark>
 
                 <Portfolio />

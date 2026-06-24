@@ -1,9 +1,8 @@
-/* IMPORTAÇÃO BASE DO TAILWIND V4 */
 @reference "../../app/globals.css";
 
 /* SEÇÃO PRINCIPAL */
 .services-section {
-    @apply relative w-full py-24 lg:py-40 pl-3 pr-3;
+    @apply relative w-full py-24 lg:py-36;
 }
 
 /* CABEÇALHO */
@@ -12,54 +11,77 @@
 }
 
 .services-main-title {
-    @apply font-titulo text-3xl md:text-4xl font-bold uppercase text-branco tracking-widest;
+    @apply font-titulo text-4xl md:text-5xl font-black uppercase text-branco tracking-widest;
 }
 
 /* CONTAINER DOS CARDS */
 .services-cascade {
-    @apply flex flex-col gap-18 md:gap-35 relative z-10 w-full;
+    @apply flex flex-col gap-16 md:gap-28 relative z-10 w-full;
 }
 
-/* BASE DOS CARDS */
+/* BASE DO CARD */
 .service-card {
-    @apply w-full p-10 md:p-14 shadow-2xl transition-shadow duration-500 rounded-sm flex flex-col justify-center;
-    min-height: 250px;
+    @apply w-full p-8 sm:p-10 md:p-12 rounded-2xl shadow-2xl border;
     transform-style: preserve-3d;
+
+    /* A REGRA DE OURO: Transicione a cor, a borda e a sombra, mas LIBERTE o transform! */
+    transition: box-shadow 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
+
+    /* will-change avisa o navegador: "Jogue esse elemento para a memória da GPU" */
+    will-change: transform;
 }
 
-.service-card:hover {
-    @apply shadow-2xl shadow-preto/50;
+/* O Segredo do Efeito Inception: O conteúdo interno pula 35px para fora da tela */
+.service-card-content {
+    /* Mantemos fixo a 35px. Removemos a 'transition' daqui para ele cravar no fundo */
+    transform: translateZ(35px);
 }
 
-/* TEMAS */
-.service-card.light { @apply bg-branco text-preto; }
-.service-card.accent { @apply bg-secundaria text-preto; }
-.service-card.dark { @apply bg-marinho text-branco; }
+/* TEMAS DOS CARDS */
+.service-card.light {
+    @apply bg-branco text-preto border-branco;
+}
+.service-card.accent {
+    @apply bg-secundaria text-preto border-secundaria;
+}
+.service-card.dark {
+    @apply bg-[#0f1117] text-branco border-branco/15;
+}
 
-/* TIPOGRAFIA DOS CARDS */
+/* TIPOGRAFIA */
+.service-kicker {
+    @apply font-principal text-xs font-black uppercase tracking-[3px] opacity-60 mb-1;
+}
+
 .service-title {
-    @apply font-titulo text-3xl md:text-4xl font-black mb-4;
+    @apply font-titulo text-3xl sm:text-4xl font-black uppercase tracking-tight mb-3;
 }
 
 .service-description {
-    @apply font-principal text-base md:text-lg font-medium leading-relaxed;
+    @apply font-principal text-sm sm:text-base opacity-80 leading-relaxed font-normal;
     text-wrap: balance;
 }
 
-.service-details-list {
-    @apply list-none space-y-2 mt-6;
+.service-deliverables-list {
+    @apply space-y-2.5;
 }
 
-.service-details-list li {
-    @apply font-principal text-sm md:text-base opacity-90;
+/* =========================================================================
+   PÍLULA DE CASE DE SUCESSO (Rodapé do Card)
+   ========================================================================= */
+
+.service-case-pill {
+    @apply inline-flex items-center gap-2 px-4 py-2.5 rounded-full font-principal text-xs uppercase tracking-wider border transition-all duration-300 shadow-md;
 }
 
-/* ALINHAMENTOS ESPECÍFICOS POR TEMA */
-.service-card.light .service-card-content,
-.service-card.dark .service-card-content {
-    @apply text-center flex flex-col items-center;
+.service-card.light .service-case-pill {
+    @apply bg-preto/5 border-preto/10 text-preto hover:bg-preto hover:text-branco;
 }
 
-.service-card.accent .service-card-content {
-    @apply text-center md:text-right flex flex-col md:items-end;
+.service-card.accent .service-case-pill {
+    @apply bg-preto/10 border-preto/20 text-preto hover:bg-preto hover:text-secundaria;
+}
+
+.service-card.dark .service-case-pill {
+    @apply bg-branco/5 border-branco/10 text-branco hover:bg-branco hover:text-preto;
 }
