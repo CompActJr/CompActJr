@@ -16,7 +16,11 @@ import { Resend } from 'resend';
 
 // Inicialização do client do Resend isolada fora do handler da rota.
 // A chave RESEND_API_KEY deve estar configurada obrigatoriamente na Vercel e no .env.local.
-const resend = new Resend(process.env.RESEND_API_KEY);
+export const dynamic = 'force-dynamic';
+
+const resend = new Resend(process.env.RESEND_API_KEY || 're_dummy_key_bypass_for_build');
+
+export async function POST(request: Request) {
 
 /**
  * Método POST
