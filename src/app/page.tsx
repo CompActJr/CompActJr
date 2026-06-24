@@ -30,9 +30,9 @@ import Portfolio from "@/src/components/Portfolio";
 // METADADOS ESPECÍFICOS DA HOMEPAGE
 // Focado inteiramente em SEO, indexação orgânica e conversão para Tráfego Pago.
 export const metadata: Metadata = {
-    title: 'Desenvolvimento de Software e Sistemas Web em Santa Maria',
+    title: 'Compact Jr.',
     description: 'A CompAct Jr. oferece soluções em TI, sites profissionais e softwares sob medida. Aumente a eficiência do seu negócio com a melhor Empresa Júnior de TI.',
-    keywords: ['Empresa Júnior TI', 'Desenvolvimento Web', 'Santa Maria', 'Sistemas sob medida', 'Aplicativos', 'CompAct Jr'],
+    keywords: ['Empresa Júnior TI', 'Desenvolvimento Web', 'Santa Maria', 'Sistemas sob medida', 'Aplicativos', 'CompAct Jr', 'CompAct', 'Compact', 'Compact jr'],
     openGraph: {
         title: 'CompAct Jr. | Soluções em TI que Transformam Negócios',
         description: 'Desenvolvimento profissional de softwares e sites com a qualidade de uma Empresa Júnior de excelência.',

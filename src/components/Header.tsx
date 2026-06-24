@@ -66,7 +66,7 @@ export default function Header() {
                         <nav className="flex items-center lg:gap-4 xl:gap-8">
                             <Link href="/sobre" className="nav-link ">Quem Somos</Link>
                             {/*<Link href="#blog" className="nav-link ">Blog</Link>*/}
-                            <Link href="#portfolio" className="nav-link ">Portfólio</Link>
+                            <Link href="/portfolio" className="nav-link ">Portfólio</Link>
                         </nav>
 
                         {/* Divisor vertical sutil ('border-l') separando os links dos botões de ação */}
@@ -134,7 +134,7 @@ export default function Header() {
                     <Link href="/" onClick={() => setMenuAberto(false)} className="nav-link nav-link-mobile text-secundaria">Homepage</Link>
                     <Link href="#servicos" onClick={() => setMenuAberto(false)} className="nav-link nav-link-mobile">Serviços</Link>
                     <Link href="/sobre" onClick={() => setMenuAberto(false)} className="nav-link nav-link-mobile">Quem Somos</Link>
-                    <Link href="#portfolio" onClick={() => setMenuAberto(false)} className="nav-link nav-link-mobile">Portfólio</Link>
+                    <Link href="/portfolio" onClick={() => setMenuAberto(false)} className="nav-link nav-link-mobile">Portfólio</Link>
 
                     {/* Ícones Auxiliares reposicionados para a tela mobile */}
                     <div className="flex items-center gap-8 my-2">

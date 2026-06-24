@@ -17,7 +17,7 @@ import Footer from '../../components/Footer'
 import Header from "@/src/components/Header";
 
 export const metadata = {
-    title: 'Quem Somos | CompAct Jr.',
+    title: 'Quem Somos',
     description: 'Conheça a história, a equipe e os valores por trás da CompAct Jr., a Empresa Júnior de TI da UFSM.',
 }
 
