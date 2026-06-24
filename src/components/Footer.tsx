@@ -73,14 +73,16 @@ export default function Footer() {
                         </p>
                     </div>
 
+                    {/* NAVEGAÇÃO 100% SINCRONIZADA COM O HEADER */}
                     <div className="footer-links-col">
                         <h3 className="footer-col-title">Navegação</h3>
                         <nav className="footer-nav">
                             <div className="footer-nav-group">
                                 <Link href="/" onClick={(e) => handleSamePageScroll(e, '/')} className="footer-link">Homepage</Link>
                                 <Link href="/sobre" onClick={(e) => handleSamePageScroll(e, '/sobre')} className="footer-link">Quem Somos</Link>
-                                <Link href="/#servicos" className="footer-link">Serviços</Link>
                                 <Link href="/portfolio" onClick={(e) => handleSamePageScroll(e, '/portfolio')} className="footer-link">Portfólio</Link>
+                                <Link href="/blog" onClick={(e) => handleSamePageScroll(e, '/blog')} className="footer-link">Blog</Link>
+                                <Link href="/#contato" className="footer-link">Contato</Link>
                             </div>
                         </nav>
                     </div>

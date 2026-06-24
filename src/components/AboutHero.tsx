@@ -99,7 +99,6 @@ export default function AboutHero() {
                         whileTap={{ scale: 0.96 }}
                         className="flex items-center gap-2 px-4 py-2 rounded-xl bg-branco/5 border border-branco/10 text-branco font-principal text-xs tracking-wide transition-colors cursor-pointer backdrop-blur-sm"
                     >
-                        <span className="text-base">{badge.icon}</span>
                         <span className="font-medium">{badge.text}</span>
                     </motion.div>
                 ))}

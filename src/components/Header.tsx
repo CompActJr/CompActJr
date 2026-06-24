@@ -44,13 +44,13 @@ export default function Header() {
                 {/* Grid 3 colunas no mobile fixa a logo no centro absoluto; no desktop vira flex-between */}
                 <div className="container mx-auto px-6 max-w-7xl h-full grid grid-cols-3 items-center lg:flex lg:justify-between">
 
-                    {/* shrink-0 impede que os links sejam "esmagados" em resoluções intermediárias */}
+                    {/* COLUNA ESQUERDA: Homepage | Quem Somos */}
                     <nav className="hidden lg:flex items-center lg:gap-6 xl:gap-10 lg:w-[45%] xl:w-[40%] justify-end shrink-0">
                         <Link href="/" onClick={(e) => handleSamePageScroll(e, '/')} className="nav-link">Homepage</Link>
-                        <Link href="/#servicos" className="nav-link">Serviços</Link>
+                        <Link href="/sobre" onClick={(e) => handleSamePageScroll(e, '/sobre')} className="nav-link">Quem Somos</Link>
                     </nav>
 
-                    {/* col-start-2 joga a logo direto para o slot central na grid mobile */}
+                    {/* LOGO CENTRAL */}
                     <div className="flex justify-center items-center col-start-2 lg:col-auto lg:px-2 xl:px-10 z-[70] shrink-0">
                         <Link href="/" onClick={(e) => handleSamePageScroll(e, '/')} className="relative block">
                             <Image
@@ -58,17 +58,18 @@ export default function Header() {
                                 alt="CompAct Jr. Logo"
                                 width={50}
                                 height={40}
-                                priority // Otimização vital para a métrica LCP do Google
+                                priority
                                 style={{ width: 'auto', height: 'auto' }}
                                 className="object-contain logo-img"
                             />
                         </Link>
                     </div>
 
+                    {/* COLUNA DIREITA: Portfólio | Blog + CTA */}
                     <div className="hidden lg:flex items-center lg:gap-5 xl:gap-10 lg:w-[45%] xl:w-[40%] justify-start shrink-0">
                         <nav className="flex items-center lg:gap-4 xl:gap-8">
-                            <Link href="/sobre" onClick={(e) => handleSamePageScroll(e, '/sobre')} className="nav-link">Quem Somos</Link>
                             <Link href="/portfolio" onClick={(e) => handleSamePageScroll(e, '/portfolio')} className="nav-link">Portfólio</Link>
+                            <Link href="/blog" onClick={(e) => handleSamePageScroll(e, '/blog')} className="nav-link">Blog</Link>
                         </nav>
 
                         <div className="flex items-center lg:gap-3 xl:gap-6 border-l border-branco/10 lg:pl-3 xl:pl-6 shrink-0">
@@ -76,7 +77,6 @@ export default function Header() {
                                 <button className="btn-contato">CONTATO</button>
                             </Link>
 
-                            {/* SVGs inline são mantidos aqui por pesarem menos que bibliotecas de ícones */}
                             <div className="header-extra-icons">
                                 {/* Funcionalidade futura: Seletor de Idioma
                                 <button className="icon-btn">
@@ -123,12 +123,12 @@ export default function Header() {
                     <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
                 </button>
 
-                {/* Touch targets ampliados para ergonomia no mobile */}
+                {/* Sequência Mobile Exata */}
                 <nav className="flex flex-col items-center gap-8 mt-10">
                     <Link href="/" onClick={(e) => handleMobileNav(e, '/')} className="nav-link nav-link-mobile text-secundaria">Homepage</Link>
-                    <Link href="/#servicos" onClick={() => setMenuAberto(false)} className="nav-link nav-link-mobile">Serviços</Link>
                     <Link href="/sobre" onClick={(e) => handleMobileNav(e, '/sobre')} className="nav-link nav-link-mobile">Quem Somos</Link>
                     <Link href="/portfolio" onClick={(e) => handleMobileNav(e, '/portfolio')} className="nav-link nav-link-mobile">Portfólio</Link>
+                    <Link href="/blog" onClick={(e) => handleMobileNav(e, '/blog')} className="nav-link nav-link-mobile">Blog</Link>
 
                     <div className="flex items-center gap-8 my-2">
                         {/* Funcionalidade futura: Idioma */}
