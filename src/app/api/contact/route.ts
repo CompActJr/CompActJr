@@ -19,9 +19,6 @@ import { Resend } from 'resend';
 export const dynamic = 'force-dynamic';
 
 const resend = new Resend(process.env.RESEND_API_KEY || 're_dummy_key_bypass_for_build');
-
-export async function POST(request: Request) {
-
 /**
  * Método POST
  * @param {Request} request - O objeto da requisição HTTP recebida do front-end.
