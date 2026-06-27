@@ -25,7 +25,7 @@ const GithubIcon = () => (
 export default function Team() {
     // ESTRUTURA DE DADOS OTIMIZADA PARA MANUTENÇÃO
     // Para adicionar ou remover redes, basta preencher ou apagar a string dentro do objeto "socials".
-    // id's disponíveis: 6, 14, 31
+    // id's disponíveis: 6, 14, 31, 33
     const teamData = [
         {
             department: 'PRESIDÊNCIA',
@@ -33,7 +33,7 @@ export default function Team() {
                 {
                     id: 1,
                     name: 'Arthur Lorenço',
-                    role: 'Presidente',
+                    role: 'Presidente Executivo',
                     isDirector: true,
                     image: '/timeCompact/arthur.webp',
                     socials: {
@@ -50,7 +50,7 @@ export default function Team() {
                 {
                     id: 2,
                     name: 'Arthur Etges',
-                    role: 'Diretor ADM-FIN',
+                    role: 'Diretor ADM-FIN e Vice-Presidente',
                     isDirector: true,
                     image: '/timeCompact/pao.webp',
                     socials: {
@@ -62,7 +62,7 @@ export default function Team() {
                 {
                     id: 3,
                     name: 'Guilherme Martini',
-                    role: 'Membro',
+                    role: 'Assessor Jurídico',
                     isDirector: false,
                     image: '/timeCompact/guilherme.webp',
                     socials: {
@@ -73,8 +73,8 @@ export default function Team() {
                 },
                 {
                     id: 4,
-                    name: 'Miguel Santos',
-                    role: 'Membro',
+                    name: 'Miguel Machry',
+                    role: 'Assessor Administrativo',
                     isDirector: false,
                     image: '/timeCompact/miguel.webp',
                     socials: {
@@ -84,7 +84,7 @@ export default function Team() {
                 {
                     id: 5,
                     name: 'Angelo Tonetto',
-                    role: 'Membro',
+                    role: 'Assessor Financeiro',
                     isDirector: false,
                     image: '/timeCompact/angelo.webp',
                     socials: {
@@ -110,7 +110,7 @@ export default function Team() {
                 {
                     id: 8,
                     name: 'Jean Guerra',
-                    role: 'Membro',
+                    role: 'Assessor Comercial',
                     isDirector: false,
                     image: '/timeCompact/jeanr.webp',
                     socials: {
@@ -122,7 +122,7 @@ export default function Team() {
                 {
                     id: 9,
                     name: 'Anne Dornelles',
-                    role: 'Membro',
+                    role: 'Gerente de Vendas',
                     isDirector: false,
                     image: '/timeCompact/anne.webp',
                     socials: {
@@ -133,8 +133,8 @@ export default function Team() {
                 },
                 {
                     id: 10,
-                    name: 'Laysla Pires',
-                    role: 'Membro',
+                    name: 'Laysla Silva',
+                    role: 'Assessora Comercial',
                     isDirector: false,
                     image: '/timeCompact/laysla.webp',
                     socials: {
@@ -144,7 +144,7 @@ export default function Team() {
                 {
                     id: 11,
                     name: 'Leonardo Nielsen',
-                    role: 'Membro',
+                    role: 'Assessor Comercial',
                     isDirector: false,
                     image: '/timeCompact/leonardo.webp',
                     socials: {
@@ -154,8 +154,8 @@ export default function Team() {
                 },
                 {
                     id: 12,
-                    name: 'Gabriel de Azeredo',
-                    role: 'Membro',
+                    name: 'Gabriel Reginato',
+                    role: 'Gerende de Vendas',
                     isDirector: false,
                     image: '/timeCompact/gabriel.webp',
                     socials: {
@@ -166,7 +166,7 @@ export default function Team() {
                 {
                     id: 13,
                     name: 'Pedro de Bastos',
-                    role: 'Membro',
+                    role: 'Assessor Comercial',
                     isDirector: false,
                     image: '/timeCompact/pedrob.webp',
                     socials: {
@@ -177,7 +177,7 @@ export default function Team() {
                 {
                     id: 15,
                     name: 'Kauan Forgiarini',
-                    role: 'Membro',
+                    role: 'Assessor Comercial',
                     isDirector: false,
                     image: '/timeCompact/kauan.webp',
                     socials: {
@@ -206,7 +206,7 @@ export default function Team() {
                 {
                     id: 17,
                     name: 'Lenno Rhoden',
-                    role: 'Membro',
+                    role: 'Assessor de Processos',
                     isDirector: false,
                     image: '/timeCompact/lenno.webp',
                     socials: {
@@ -217,8 +217,8 @@ export default function Team() {
                 },
                 {
                     id: 18,
-                    name: 'Ramon Studier',
-                    role: 'Membro',
+                    name: 'Ramon Feiteiro',
+                    role: 'Assessor de PDI',
                     isDirector: false,
                     image: '/timeCompact/ramon.webp',
                     socials: {
@@ -229,7 +229,7 @@ export default function Team() {
                 {
                     id: 19,
                     name: 'Thiago Brandão',
-                    role: 'Membro',
+                    role: 'Assessor de PS',
                     isDirector: false,
                     image: '/timeCompact/thiagob.webp',
                     socials: {
@@ -239,7 +239,7 @@ export default function Team() {
                 {
                     id: 20,
                     name: 'Dinei Giustina',
-                    role: 'Membro',
+                    role: 'Assessor de Experiência',
                     isDirector: false,
                     image: '/timeCompact/dinei.webp',
                     socials: {
@@ -251,7 +251,7 @@ export default function Team() {
                 {
                     id: 21,
                     name: 'Pedro Vitalis',
-                    role: 'Membro',
+                    role: 'Assessor Geral',
                     isDirector: false,
                     image: '/timeCompact/pedrom.webp',
                     socials: {
@@ -268,7 +268,7 @@ export default function Team() {
                 {
                     id: 22,
                     name: 'Jonas Silva',
-                    role: 'Diretor Projetos',
+                    role: 'Diretor de Projetos',
                     isDirector: true,
                     image: '/timeCompact/jonas.webp',
                     socials: {
@@ -280,7 +280,7 @@ export default function Team() {
                 {
                     id: 23,
                     name: 'Kauâ Lima',
-                    role: 'Membro',
+                    role: 'Assessor de Projetos',
                     isDirector: false,
                     image: '/timeCompact/kayua.webp',
                     socials: {
@@ -291,8 +291,8 @@ export default function Team() {
                 },
                 {
                     id: 24,
-                    name: 'Zaluar dos Santos',
-                    role: 'Membro',
+                    name: 'Zaluar Junior',
+                    role: 'Assessor de Projetos',
                     isDirector: false,
                     image: '/timeCompact/zaluar.webp',
                     socials: {
@@ -303,7 +303,7 @@ export default function Team() {
                 {
                     id: 25,
                     name: 'Fabrício Duarte',
-                    role: 'Membro',
+                    role: 'Gerente de Projetos',
                     isDirector: false,
                     image: '/timeCompact/fabricio.webp',
                     socials: {
@@ -315,7 +315,7 @@ export default function Team() {
                 {
                     id: 26,
                     name: 'Matheus Ferraz',
-                    role: 'Membro',
+                    role: 'Assessor de Projetos',
                     isDirector: false,
                     image: '/timeCompact/matheus.webp',
                     socials: {
@@ -325,21 +325,9 @@ export default function Team() {
                     }
                 },
                 {
-                    id: 27,
-                    name: 'Maria Marczinski',
-                    role: 'Membro',
-                    isDirector: false,
-                    image: '/timeCompact/mariav.webp',
-                    socials: {
-                        instagram: 'https://instagram.com/mariavitoriamarczinski',
-                        linkedin: 'https://www.linkedin.com/in/maria-vitoria-marczinski',
-                        github: 'https://github.com/Marczinski'
-                    }
-                },
-                {
                     id: 28,
                     name: 'Jean Hoefling',
-                    role: 'Membro',
+                    role: 'Assessor de Projetos',
                     isDirector: false,
                     image: '/timeCompact/jeans.webp',
                     socials: {
@@ -351,7 +339,7 @@ export default function Team() {
                 {
                     id: 29,
                     name: 'Gabriela Rosa',
-                    role: 'Membro',
+                    role: 'Assessora de Projetos',
                     isDirector: false,
                     image: '/timeCompact/gabriela.webp',
                     socials: {
@@ -367,10 +355,10 @@ export default function Team() {
             members: [
                 {
                     id: 30,
-                    name: 'Bianca Dias',
+                    name: 'Maria C. Meier',
                     role: 'Diretora Marketing',
                     isDirector: true,
-                    image: '/timeCompact/bianca.webp',
+                    image: '/timeCompact/mariac.webp',
                     socials: {
                         instagram: 'https://instagram.com/_biagd'
                     }
@@ -378,7 +366,7 @@ export default function Team() {
                 {
                     id: 32,
                     name: 'Helena Cardoso',
-                    role: 'Membro',
+                    role: 'Assessora de Marketing',
                     isDirector: false,
                     image: '/timeCompact/helena.webp',
                     socials: {
@@ -388,21 +376,9 @@ export default function Team() {
                     }
                 },
                 {
-                    id: 33,
-                    name: 'Maria Meier',
-                    role: 'Membro',
-                    isDirector: false,
-                    image: '/timeCompact/mariac.webp',
-                    socials: {
-                        instagram: 'https://instagram.com/ck_iwi_',
-                        linkedin: 'https://www.linkedin.com/in/maria-carolina-meier-da-silva-366976375/',
-                        github: 'https://github.com/MCarolMeier'
-                    }
-                },
-                {
                     id: 34,
                     name: 'Alice Godoi',
-                    role: 'Membro',
+                    role: 'Assessora de Marketing',
                     isDirector: false,
                     image: '/timeCompact/alice.webp',
                     socials: {
@@ -412,11 +388,23 @@ export default function Team() {
                 {
                     id: 35,
                     name: 'Vítor Oliveira da Silva',
-                    role: 'Membro',
+                    role: 'Assessor de Marketing',
                     isDirector: false,
                     image: '/timeCompact/vitor.webp',
                     socials: {
                         instagram: 'https://instagram.com/vi_oliveira.s'
+                    }
+                },
+                {
+                    id: 27,
+                    name: 'Maria V. Marczinski',
+                    role: 'Assessora de Marketing',
+                    isDirector: false,
+                    image: '/timeCompact/mariav.webp',
+                    socials: {
+                        instagram: 'https://instagram.com/mariavitoriamarczinski',
+                        linkedin: 'https://www.linkedin.com/in/maria-vitoria-marczinski',
+                        github: 'https://github.com/Marczinski'
                     }
                 }
             ]
