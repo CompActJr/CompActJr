@@ -44,7 +44,7 @@ export default function AboutHero() {
                 transition={{ duration: 0.5 }}
                 className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-secundaria/10 border border-secundaria/20 text-secundaria font-principal text-xs font-bold tracking-widest uppercase mb-8"
             >
-                <span>✦</span> Movimento Empresa Júnior
+                Movimento Empresa Júnior
             </motion.div>
 
 

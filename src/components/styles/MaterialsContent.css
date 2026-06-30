@@ -1,0 +1,103 @@
+/* IMPORTAÇÃO DO TAILWIND V4 */
+@reference "../../app/globals.css";
+
+/* ESTRUTURA PRINCIPAL */
+.materials-section {
+    @apply relative z-10 flex flex-col gap-16 pb-32 mt-24 px-6 container mx-auto max-w-6xl;
+}
+
+/* HERO SECTION */
+.materials-hero {
+    @apply flex flex-col items-center text-center;
+}
+
+.materials-kicker {
+    @apply inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-secundaria/10 border border-secundaria/20 text-secundaria font-principal text-xs font-bold tracking-widest uppercase mb-6;
+}
+
+.materials-title {
+    @apply font-titulo text-3xl sm:text-4xl md:text-5xl font-black text-branco uppercase tracking-wide leading-tight max-w-3xl;
+}
+
+.materials-title-highlight {
+    @apply text-secundaria drop-shadow-[0_0_25px_rgba(var(--color-secundaria),0.4)];
+}
+
+/* CARDS SECTION */
+.materials-grid {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8;
+}
+
+.materials-card-img-wrapper {
+    @apply h-48 w-full overflow-hidden relative;
+}
+
+.materials-card-overlay {
+    @apply absolute inset-0 bg-preto/40 group-hover:bg-transparent transition-colors z-10;
+}
+
+.materials-card-img {
+    @apply w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700;
+}
+
+.materials-card-content {
+    @apply p-6 flex flex-col flex-grow;
+}
+
+.materials-card-title {
+    @apply font-titulo text-lg font-bold text-branco mb-3 uppercase tracking-wide;
+}
+
+.materials-card-desc {
+    @apply font-principal text-branco/60 text-xs leading-relaxed mb-6 flex-grow;
+}
+
+.materials-card-btn {
+    @apply w-full bg-secundaria/10 border border-secundaria/30 text-secundaria font-principal font-bold uppercase tracking-widest text-[10px] py-3 rounded-lg hover:bg-secundaria hover:text-preto transition-colors;
+}
+
+/* MODAL SECTION */
+.modal-overlay-bg {
+    @apply absolute inset-0 bg-preto/80 backdrop-blur-sm cursor-pointer;
+}
+
+.modal-content {
+    @apply relative w-full max-w-md bg-[#111] border border-branco/10 rounded-2xl p-8 shadow-2xl overflow-y-auto max-h-[90vh] z-10;
+}
+
+.modal-close-btn {
+    @apply absolute top-4 right-4 text-branco/40 hover:text-branco transition-colors cursor-pointer text-xl;
+}
+
+.modal-title {
+    @apply font-titulo text-xl font-black text-branco uppercase tracking-wide mb-2 pr-6;
+}
+
+.modal-subtitle {
+    @apply font-principal text-secundaria text-xs font-bold uppercase tracking-widest mb-6;
+}
+
+/* FORMULÁRIO (MODAL) */
+.modal-form {
+    @apply flex flex-col gap-4 font-principal;
+}
+
+.modal-input-group {
+    @apply flex flex-col gap-1.5;
+}
+
+.modal-label {
+    @apply text-[10px] uppercase tracking-widest text-branco/70 font-semibold;
+}
+
+.modal-input {
+    @apply bg-preto/50 border border-branco/10 rounded-lg px-4 py-2.5 text-sm text-branco focus:outline-none focus:border-secundaria transition-colors;
+}
+
+.modal-submit-btn {
+    @apply mt-2 bg-secundaria text-preto font-principal font-bold uppercase tracking-widest text-xs py-3.5 rounded-lg hover:bg-secundaria/90 transition-colors disabled:opacity-50 cursor-pointer;
+}
+
+.modal-footer-text {
+    @apply text-[10px] text-center text-branco/30 mt-2;
+}

@@ -17,6 +17,7 @@ import Contact from "@/src/components/Contact";
 import Footer from "@/src/components/Footer";
 import FloatingButton from "@/src/components/FloatingButton";
 import Portfolio from "@/src/components/Portfolio";
+import MaterialsTrailer from "@/src/components/MaterialsTrailer";
 
 /**
  * EXPLICAÇÃO TÉCNICA (Capacitação da Equipe):
@@ -68,6 +69,7 @@ export default function Home() {
                 </SectionsWithWatermark>
 
                 <Portfolio />
+                <MaterialsTrailer />
                 <Contact />
                 <Footer />
             </div>

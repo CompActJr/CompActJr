@@ -1,0 +1,49 @@
+/* IMPORTAÇÃO DO TAILWIND V4 */
+@reference "../../app/globals.css";
+
+/* ESTRUTURA PRINCIPAL */
+.trailer-section {
+    /* Padding generoso para respirar na Home e overflow-hidden para conter o glow */
+    @apply relative w-full py-16 lg:py-24 z-10 overflow-hidden;
+}
+
+.trailer-container {
+    @apply container mx-auto px-6 max-w-6xl relative;
+}
+
+/* O CARD GLASSMORPHISM */
+.trailer-card {
+    /* Borda sutil, fundo translúcido e layout responsivo (coluna no mobile, linha no desktop) */
+    @apply relative rounded-3xl bg-branco/5 border border-branco/10 p-8 md:p-12 flex flex-col lg:flex-row items-center justify-between gap-8 md:gap-12 backdrop-blur-md overflow-hidden shadow-2xl;
+}
+
+.trailer-glow {
+    /* Efeito de luz esférica no canto superior direito do card */
+    @apply absolute -top-32 -right-32 w-80 h-80 bg-secundaria/20 rounded-full blur-[80px] pointer-events-none;
+}
+
+/* CONTEÚDO (ESQUERDA) */
+.trailer-content {
+    @apply flex flex-col items-center lg:items-start text-center lg:text-left gap-4 max-w-2xl z-10;
+}
+
+.trailer-badge {
+    @apply inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-secundaria/10 border border-secundaria/20 text-secundaria font-principal text-[10px] font-bold tracking-[2px] uppercase;
+}
+
+.trailer-title {
+    @apply font-titulo text-3xl md:text-4xl font-bold uppercase text-branco leading-tight;
+}
+
+.trailer-desc {
+    @apply font-principal text-sm md:text-base text-branco/70 leading-relaxed;
+}
+
+/* BOTÃO CTA (DIREITA) */
+.trailer-cta-wrapper {
+    @apply shrink-0 z-10 w-full lg:w-auto flex justify-center;
+}
+
+.trailer-btn {
+    @apply inline-flex items-center justify-center gap-3 font-titulo bg-secundaria text-preto px-8 py-4 text-xs md:text-sm uppercase font-bold tracking-[2px] rounded-xl hover:bg-branco hover:text-secundaria hover:scale-105 transition-all duration-300 shadow-lg shadow-secundaria/20 cursor-pointer w-full lg:w-auto;
+}
