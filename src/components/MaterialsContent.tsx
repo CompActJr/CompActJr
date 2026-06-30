@@ -6,8 +6,8 @@ import './styles/MaterialsContent.css'
 
 /**
  * COMPONENTE MATERIAIS EDUCATIVOS (Biblioteca e Captura de Leads)
- * @description Renderiza a vitrine de e-books e gerencia o Modal do formulário de conversão.
- * Estilização abstraída para MaterialsContent.css mantendo o JSX limpo.
+ * @description Renderiza a vitrine de e-books e gerencia o envio de leads
+ * para a API /api/leads.
  * @kayualins - Equipe de Projetos CompAct Jr.
  */
 
@@ -38,40 +38,62 @@ export default function MaterialsContent() {
     const [selectedItem, setSelectedItem] = useState<{ titulo: string } | null>(null)
     const [isSubmitting, setIsSubmitting] = useState(false)
 
-    const handleSubmit = (e: React.FormEvent) => {
+    // Estado para os campos do formulário
+    const [formData, setFormData] = useState({
+        nome: '',
+        email: '',
+        whatsapp: '',
+        empresa: '',
+        cargo: ''
+    })
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }))
+    }
+
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
         setIsSubmitting(true)
-        setTimeout(() => {
+
+        try {
+            const response = await fetch('/api/leads', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    ...formData,
+                    material: selectedItem?.titulo
+                }),
+            })
+
+            if (response.ok) {
+                // Sucesso: resetar formulário e fechar modal
+                setFormData({ nome: '', email: '', whatsapp: '', empresa: '', cargo: '' })
+                setSelectedItem(null)
+                alert("Material enviado com sucesso! Verifique seu e-mail.")
+            } else {
+                throw new Error("Falha no envio")
+            }
+        } catch (error) {
+            console.error("Erro ao enviar lead:", error)
+            alert("Ocorreu um erro ao processar seu download. Tente novamente.")
+        } finally {
             setIsSubmitting(false)
-            setSelectedItem(null)
-        }, 2000)
+        }
     }
 
     return (
         <section className="materials-section">
 
-            {/* HERO SECTION */}
             <div className="materials-hero">
-                <motion.div
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.5 }}
-                    className="materials-kicker"
-                >
-                    Biblioteca de E-books
+                <motion.div className="materials-kicker">
+                    <span>✦</span> Biblioteca de E-books
                 </motion.div>
 
-                <motion.h1
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6 }}
-                    className="materials-title"
-                >
+                <motion.h1 className="materials-title">
                     Acesse materiais gratuitos para <span className="materials-title-highlight">expandir</span> seu negócio.
                 </motion.h1>
             </div>
 
-            {/* CARDS SECTION */}
             <div className="materials-grid">
                 {materiais.map((item, index) => (
                     <motion.div
@@ -80,15 +102,11 @@ export default function MaterialsContent() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.5, delay: index * 0.1 }}
-                        className="materials-card group" /* <--- O group entra aqui! */
+                        className="materials-card group"
                     >
                         <div className="materials-card-img-wrapper">
                             <div className="materials-card-overlay" />
-                            <img
-                                src={item.imagem}
-                                alt={item.titulo}
-                                className="materials-card-img"
-                            />
+                            <img src={item.imagem} alt={item.titulo} className="materials-card-img" />
                         </div>
 
                         <div className="materials-card-content">
@@ -108,7 +126,6 @@ export default function MaterialsContent() {
                 ))}
             </div>
 
-            {/* MODAL SECTION */}
             <AnimatePresence>
                 {selectedItem && (
                     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
@@ -126,41 +143,35 @@ export default function MaterialsContent() {
                             exit={{ opacity: 0, scale: 0.95, y: 20 }}
                             className="modal-content"
                         >
-                            <button
-                                onClick={() => setSelectedItem(null)}
-                                className="modal-close-btn"
-                            >
-                                ✕
-                            </button>
+                            <button onClick={() => setSelectedItem(null)} className="modal-close-btn">✕</button>
 
                             <h3 className="modal-title">Baixar Material</h3>
                             <p className="modal-subtitle">{selectedItem.titulo}</p>
 
-                            {/* FORM SECTION */}
                             <form onSubmit={handleSubmit} className="modal-form">
                                 <div className="modal-input-group">
                                     <label className="modal-label">Nome completo</label>
-                                    <input type="text" required className="modal-input" />
+                                    <input name="nome" value={formData.nome} onChange={handleChange} type="text" required className="modal-input" />
                                 </div>
 
                                 <div className="modal-input-group">
                                     <label className="modal-label">E-mail</label>
-                                    <input type="email" required className="modal-input" />
+                                    <input name="email" value={formData.email} onChange={handleChange} type="email" required className="modal-input" />
                                 </div>
 
                                 <div className="modal-input-group">
                                     <label className="modal-label">WhatsApp</label>
-                                    <input type="tel" required className="modal-input" />
+                                    <input name="whatsapp" value={formData.whatsapp} onChange={handleChange} type="tel" required className="modal-input" />
                                 </div>
 
                                 <div className="grid grid-cols-2 gap-4">
                                     <div className="modal-input-group">
                                         <label className="modal-label">Empresa</label>
-                                        <input type="text" required className="modal-input" />
+                                        <input name="empresa" value={formData.empresa} onChange={handleChange} type="text" required className="modal-input" />
                                     </div>
                                     <div className="modal-input-group">
                                         <label className="modal-label">Cargo</label>
-                                        <input type="text" required className="modal-input" />
+                                        <input name="cargo" value={formData.cargo} onChange={handleChange} type="text" required className="modal-input" />
                                     </div>
                                 </div>
 
@@ -173,10 +184,6 @@ export default function MaterialsContent() {
                                 >
                                     {isSubmitting ? 'Enviando...' : 'Baixar Gratuitamente'}
                                 </motion.button>
-
-                                <p className="modal-footer-text">
-                                    Prometemos não enviar spam. Seus dados estão seguros.
-                                </p>
                             </form>
                         </motion.div>
                     </div>
