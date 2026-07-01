@@ -155,7 +155,7 @@ export default function Team() {
                 {
                     id: 12,
                     name: 'Gabriel Reginato',
-                    role: 'Gerende de Vendas',
+                    role: 'Gerente de Vendas',
                     isDirector: false,
                     image: '/timeCompact/gabriel.webp',
                     socials: {
