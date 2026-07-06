@@ -54,7 +54,7 @@
 }
 
 .service-title {
-    @apply font-titulo text-3xl sm:text-4xl font-black uppercase tracking-tight mb-3;
+    @apply font-titulo text-2xl sm:text-3xl font-black uppercase tracking-tight mb-3;
 }
 
 .service-description {

@@ -7,7 +7,7 @@ import './styles/MaterialsContent.css'
 /**
  * COMPONENTE MATERIAIS EDUCATIVOS (Biblioteca e Captura de Leads)
  * @description Renderiza a vitrine de e-books e gerencia o envio de leads
- * para a API /api/leads.
+ * para a API /api/leads. Simula o download do arquivo após o envio.
  * @kayualins - Equipe de Projetos CompAct Jr.
  */
 
@@ -56,7 +56,7 @@ export default function MaterialsContent() {
         setIsSubmitting(true)
 
         try {
-            const response = await fetch('/api/leads', {
+            const response = await fetch('/api/materiais', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -69,7 +69,11 @@ export default function MaterialsContent() {
                 // Sucesso: resetar formulário e fechar modal
                 setFormData({ nome: '', email: '', whatsapp: '', empresa: '', cargo: '' })
                 setSelectedItem(null)
-                alert("Material enviado com sucesso! Verifique seu e-mail.")
+
+                // SIMULAÇÃO: Abrir um PDF de teste para o usuário em uma nova aba
+                window.open('https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf', '_blank')
+
+                alert("Material enviado com sucesso! O download começará em breve.")
             } else {
                 throw new Error("Falha no envio")
             }
@@ -86,7 +90,7 @@ export default function MaterialsContent() {
 
             <div className="materials-hero">
                 <motion.div className="materials-kicker">
-                    <span>✦</span> Biblioteca de E-books
+                    Biblioteca de E-books
                 </motion.div>
 
                 <motion.h1 className="materials-title">

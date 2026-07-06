@@ -10,14 +10,14 @@ import { Resend } from 'resend';
 
 export const dynamic = 'force-dynamic';
 
-const resend = new Resend(process.env.RESEND_API_KEY || 're_dummy_key_bypass_for_build');
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(request: Request) {
     try {
         const body = await request.json();
         const { nome, email, whatsapp, empresa, cargo, material } = body;
 
-        // Validação de Integridade: Todos os campos são necessários para nutrição de lead
+        // Validação de Integridade
         if (!nome || !email || !whatsapp || !empresa || !cargo) {
             return NextResponse.json(
                 { error: 'Dados incompletos. Por favor, preencha todos os campos.' },
@@ -27,10 +27,8 @@ export async function POST(request: Request) {
 
         // Disparo via SDK do Resend
         const data = await resend.emails.send({
-            // Remetente oficial (domínio configurado no painel)
-            from: 'Acme <onboarding@resend.dev>',
-            // Destino (Usa variável de ambiente para ser flexível sem mudar código)
-            to: [process.env.DESTINATION_EMAIL || 'kauawho@gmail.com'],
+            from: 'CompAct Jr <contato@compactjr.com>',
+            to: ['comercial@compactjr.com'],
 
             subject: `Novo Lead: E-book ${material || 'Material Educativo'}`,
 
