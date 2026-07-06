@@ -11,7 +11,7 @@ import { Resend } from 'resend';
 export const dynamic = 'force-dynamic';
 
 // Inicialização com chave fantasma para o bypass do 'npm run build'
-const resend = new Resend(process.env.RESEND_API_KEY || 're_dummy_key_bypass_for_build');
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(request: Request) {
     try {
@@ -28,8 +28,8 @@ export async function POST(request: Request) {
 
         // Disparo via SDK
         const data = await resend.emails.send({
-            from: 'Acme <onboarding@resend.dev>',
-            to: ['kauawho@gmail.com'], // O e-mail de destino configurado no painel do Resend
+            from: 'CompAct Jr <contato@compactjr.com>',
+            to: [comercial@compactjr.com], // O e-mail de destino configurado no painel do Resend
             subject: `Novo Lead do Site: ${nome} ${empresa ? `(${empresa})` : ''}`,
             html: `
                 <div style="font-family: sans-serif; color: #333; line-height: 1.6; max-width: 600px; margin: 0 auto;">
