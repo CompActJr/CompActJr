@@ -28,7 +28,7 @@ export async function POST(request: Request) {
         // Disparo via SDK do Resend
         const data = await resend.emails.send({
             from: 'CompAct Jr <contato@compactjr.com>',
-            to: ['comercial@compactjr.com'],
+            to: ['kauawho@gmail.com'],
 
             subject: `Novo Lead: E-book ${material || 'Material Educativo'}`,
 
