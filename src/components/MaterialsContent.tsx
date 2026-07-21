@@ -6,12 +6,10 @@ import './styles/MaterialsContent.css'
 
 /**
  * COMPONENTE MATERIAIS EDUCATIVOS (Biblioteca e Captura de Leads)
- * @description Renderiza a vitrine de e-books e gerencia o envio de leads
- * para a API /api/leads. Simula o download do arquivo após o envio.
+ * @description Renderiza a vitrine de e-books e gerencia o envio de leads.
  * @kayualins - Equipe de Projetos CompAct Jr.
  */
 
-// Define a tipagem dos dados vindos do Sanity
 interface MaterialItem {
     _id: string;
     titulo: string;
@@ -40,6 +38,42 @@ export default function MaterialsContent({ materiaisData }: MaterialsContentProp
         setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }))
     }
 
+    const forceDownload = async (url: string, filename: string) => {
+
+        const formattedName = `${filename.replace(/[^a-zA-Z0-9]/g, '-').toLowerCase()}.pdf`;
+
+        try {
+            const response = await fetch(url);
+
+            if (!response.ok) throw new Error("Erro na rede ao buscar o PDF");
+
+            const blob = await response.blob();
+            const blobUrl = window.URL.createObjectURL(blob);
+
+            const a = document.createElement('a');
+            a.style.display = 'none';
+            a.href = blobUrl;
+            a.download = formattedName;
+
+            document.body.appendChild(a);
+            a.click();
+
+            // Limpa a memória do navegador para aquele link temporário
+            window.URL.revokeObjectURL(blobUrl);
+            document.body.removeChild(a);
+
+        } catch (error) {
+            console.error("Erro ao gerar Blob, usando fallback nativo:", error);
+
+            const a = document.createElement('a');
+            a.style.display = 'none';
+            a.href = `${url}?dl=${formattedName}`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }
+    }
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
         setIsSubmitting(true)
@@ -57,9 +91,8 @@ export default function MaterialsContent({ materiaisData }: MaterialsContentProp
             if (response.ok) {
                 setFormData({ nome: '', email: '', whatsapp: '', empresa: '', cargo: '' })
 
-                // Abre o PDF real cadastrado no Sanity em uma nova aba
                 if (selectedItem?.pdfUrl) {
-                    window.open(selectedItem.pdfUrl, '_blank')
+                    await forceDownload(selectedItem.pdfUrl, selectedItem.titulo);
                 }
 
                 setSelectedItem(null)
@@ -77,7 +110,6 @@ export default function MaterialsContent({ materiaisData }: MaterialsContentProp
 
     return (
         <section className="materials-section">
-
             <div className="materials-hero">
                 <motion.div className="materials-kicker">
                     Biblioteca de E-books
@@ -100,7 +132,6 @@ export default function MaterialsContent({ materiaisData }: MaterialsContentProp
                     >
                         <div className="materials-card-img-wrapper">
                             <div className="materials-card-overlay" />
-                            {/* Usa a URL da imagem vinda do Sanity */}
                             <img src={item.imagemUrl} alt={item.titulo} className="materials-card-img object-cover" />
                         </div>
 
