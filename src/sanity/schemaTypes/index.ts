@@ -1,6 +1,7 @@
 import { type SchemaTypeDefinition } from 'sanity'
 import { linkBio } from './linkBio'
+import { materialEducativo } from './materialEducativo'
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [linkBio],
+  types: [linkBio, materialEducativo],
 }

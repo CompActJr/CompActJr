@@ -11,34 +11,23 @@ import './styles/MaterialsContent.css'
  * @kayualins - Equipe de Projetos CompAct Jr.
  */
 
-const materiais = [
-    {
-        titulo: "Fortalecimento de Marca no Digital",
-        resumo: "Estratégias práticas para posicionar sua marca e atrair o público certo na internet.",
-        imagem: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&q=80&w=600"
-    },
-    {
-        titulo: "Boas Práticas e Acessibilidade",
-        resumo: "Como tornar seu site acessível para todos e melhorar sua pontuação de buscas.",
-        imagem: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&q=80&w=600"
-    },
-    {
-        titulo: "Segurança Cibernética",
-        resumo: "Proteja os dados da sua empresa contra as principais ameaças digitais da atualidade.",
-        imagem: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&q=80&w=600"
-    },
-    {
-        titulo: "Otimização de Sistemas",
-        resumo: "Técnicas para deixar sua plataforma mais rápida, eficiente e escalável no mercado.",
-        imagem: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&q=80&w=600"
-    }
-]
+// Define a tipagem dos dados vindos do Sanity
+interface MaterialItem {
+    _id: string;
+    titulo: string;
+    resumo: string;
+    imagemUrl: string;
+    pdfUrl: string;
+}
 
-export default function MaterialsContent() {
-    const [selectedItem, setSelectedItem] = useState<{ titulo: string } | null>(null)
+interface MaterialsContentProps {
+    materiaisData: MaterialItem[];
+}
+
+export default function MaterialsContent({ materiaisData }: MaterialsContentProps) {
+    const [selectedItem, setSelectedItem] = useState<MaterialItem | null>(null)
     const [isSubmitting, setIsSubmitting] = useState(false)
 
-    // Estado para os campos do formulário
     const [formData, setFormData] = useState({
         nome: '',
         email: '',
@@ -66,13 +55,14 @@ export default function MaterialsContent() {
             })
 
             if (response.ok) {
-                // Sucesso: resetar formulário e fechar modal
                 setFormData({ nome: '', email: '', whatsapp: '', empresa: '', cargo: '' })
+
+                // Abre o PDF real cadastrado no Sanity em uma nova aba
+                if (selectedItem?.pdfUrl) {
+                    window.open(selectedItem.pdfUrl, '_blank')
+                }
+
                 setSelectedItem(null)
-
-                // SIMULAÇÃO: Abrir um PDF de teste para o usuário em uma nova aba
-                window.open('https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf', '_blank')
-
                 alert("Material enviado com sucesso! O download começará em breve.")
             } else {
                 throw new Error("Falha no envio")
@@ -99,9 +89,9 @@ export default function MaterialsContent() {
             </div>
 
             <div className="materials-grid">
-                {materiais.map((item, index) => (
+                {materiaisData.map((item, index) => (
                     <motion.div
-                        key={index}
+                        key={item._id}
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
@@ -110,7 +100,8 @@ export default function MaterialsContent() {
                     >
                         <div className="materials-card-img-wrapper">
                             <div className="materials-card-overlay" />
-                            <img src={item.imagem} alt={item.titulo} className="materials-card-img" />
+                            {/* Usa a URL da imagem vinda do Sanity */}
+                            <img src={item.imagemUrl} alt={item.titulo} className="materials-card-img object-cover" />
                         </div>
 
                         <div className="materials-card-content">
