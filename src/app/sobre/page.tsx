@@ -1,5 +1,3 @@
-// src/app/sobre/page.tsx
-
 import Header from '../../components/Header'
 import BackgroundGlow from '../../components/BackgroundGlow'
 import Watermark from '../../components/Watermark'
@@ -17,35 +15,29 @@ export const metadata = {
 }
 
 const queryEquipe = `*[_type == "membroEquipe" && ativo == true] | order(ordem asc) {
-  _id,
-  name,
-  role,
-  department,
-  isDirector,
-  "image": image.asset->url,
-  instagram,
-  linkedin,
-  github
+  _id, name, role, department, isDirector, "image": image.asset->url, instagram, linkedin, github
+}`
+
+const queryHistoria = `*[_type == "marcoHistorico" && ativo == true] | order(year asc) {
+  _id, year, title, description, "image": image.asset->url
 }`
 
 export const dynamic = 'force-dynamic'
 
 export default async function SobrePage() {
-    const equipeDoSanity = await client.fetch(queryEquipe)
+    const [equipeDoSanity, historiaDoSanity] = await Promise.all([
+        client.fetch(queryEquipe),
+        client.fetch(queryHistoria)
+    ])
 
     const ordemDiretorias = [
-        'PRESIDÊNCIA',
-        'ADM-FIN',
-        'COMERCIAL',
-        'GESTÃO DE PESSOAS',
-        'GESTÃO DE PROJETOS',
-        'MARKETING'
+        'PRESIDÊNCIA', 'ADM-FIN', 'COMERCIAL', 'GESTÃO DE PESSOAS', 'GESTÃO DE PROJETOS', 'MARKETING'
     ]
 
     const teamDataOrganizado = ordemDiretorias.map(dept => ({
         department: dept,
         members: equipeDoSanity.filter((m: any) => m.department === dept)
-    })).filter(dept => dept.members.length > 0) // Esconde a diretoria se não tiver ninguém cadastrado ainda
+    })).filter(dept => dept.members.length > 0)
 
     return (
         <main className="relative min-h-screen bg-preto overflow-x-clip text-branco selection:bg-secundaria selection:text-branco">
@@ -56,12 +48,11 @@ export default async function SobrePage() {
 
             <div className="relative z-10 flex flex-col gap-32 pb-32 mt-12">
                 <div id="secao-trajetoria" className="scroll-mt-28">
-                    <History />
+                    <History historyData={historiaDoSanity} />
                 </div>
 
                 <Pillars />
                 <Values />
-
                 <Team teamData={teamDataOrganizado} />
             </div>
 
