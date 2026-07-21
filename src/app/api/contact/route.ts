@@ -28,7 +28,7 @@ export async function POST(request: Request) {
         // Disparo via SDK
         const data = await resend.emails.send({
             from: 'CompAct Jr <contato@compactjr.com>',
-            to: ['kauawho@gmail.com'], // O e-mail de destino configurado no painel do Resend
+            to: ['comercial@compactjr.com'], // O e-mail de destino configurado no painel do Resend
             subject: `Novo Lead do Site: ${nome} ${empresa ? `(${empresa})` : ''}`,
             html: `
                 <div style="font-family: sans-serif; color: #333; line-height: 1.6; max-width: 600px; margin: 0 auto;">
