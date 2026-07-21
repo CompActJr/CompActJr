@@ -9,15 +9,12 @@ import About from '../components/About'
 import Clientes from "@/src/components/Clientes";
 import Services from "@/src/components/Services";
 import SectionsWithWatermark from "@/src/components/SectionsWithWatermark";
-import Pillars from "@/src/components/Pillars";
-import Values from "@/src/components/Values";
-import History from "@/src/components/History";
-import Team from "@/src/components/Team";
 import Contact from "@/src/components/Contact";
 import Footer from "@/src/components/Footer";
 import FloatingButton from "@/src/components/FloatingButton";
 import Portfolio from "@/src/components/Portfolio";
 import MaterialsTrailer from "@/src/components/MaterialsTrailer";
+import { client } from '../sanity/lib/client'
 
 /**
  * EXPLICAÇÃO TÉCNICA (Capacitação da Equipe):
@@ -52,7 +49,20 @@ export const metadata: Metadata = {
     },
 }
 
-export default function Home() {
+const queryTeaser = `*[_type == "projetoPortfolio" && ativo == true] | order(ordem asc)[0...3] {
+  _id,
+  client,
+  title,
+  category,
+  "image": image.asset->url
+}`
+
+export const dynamic = 'force-dynamic'
+
+export default async function Home() {
+    // Busca os dados no CMS antes de montar a página inicial
+    const teaserData = await client.fetch(queryTeaser)
+
     return (
         <main className="relative bg-preto min-h-screen w-full max-w-[100vw] overflow-x-clip flex flex-col">
             <BackgroundGlow />
@@ -68,7 +78,9 @@ export default function Home() {
                     <Services />
                 </SectionsWithWatermark>
 
-                <Portfolio />
+                {/* os 3 projetos aqui */}
+                <Portfolio teaserProjectsData={teaserData} />
+
                 <MaterialsTrailer />
                 <Contact />
                 <Footer />

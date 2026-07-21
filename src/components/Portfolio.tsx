@@ -13,50 +13,30 @@ import './styles/Portfolio.css'
  * @kayualins Equipe de Projetos CompAct Jr.
  */
 
+interface TeaserProject {
+    _id: string;
+    client: string;
+    title: string;
+    category: string;
+    image: string;
+}
+
+interface PortfolioProps {
+    teaserProjectsData: TeaserProject[];
+}
+
 const ArrowRightIcon = () => (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
 )
 
-export default function Portfolio() {
+export default function Portfolio({ teaserProjectsData }: PortfolioProps) {
     const [tappedId, setTappedId] = useState<string | null>(null)
     const router = useRouter()
-
-    // Selecionamos cirurgicamente apenas os 3 projetos de maior impacto visual
-    const teaserProjects = [
-        {
-            id: 'proj-1',
-            client: 'Totem Vestibulares',
-            title: 'Portal Educacional Completo',
-            category: 'Plataforma Institucional',
-            image: '/portfolio/totem-vest.png',
-            gridArea: 'md:col-span-2', // Ocupa a linha inteira (Gatilho de Autoridade)
-            delay: 0.1
-        },
-        {
-            id: 'proj-2',
-            client: 'Nicole Mundstock',
-            title: 'Posicionamento e Identidade',
-            category: 'Portfólio Profissional',
-            image: '/portfolio/nicole.webp',
-            gridArea: 'md:col-span-1', // Divide a segunda linha
-            delay: 0.2
-        },
-        {
-            id: 'proj-3',
-            client: 'Conecta',
-            title: 'Sistema de Acesso e Gestão',
-            category: 'Web App Transacional',
-            image: '/portfolio/conecta.webp',
-            gridArea: 'md:col-span-1', // Divide a segunda linha
-            delay: 0.3
-        }
-    ]
 
     return (
         <section id="portfolio" className="portfolio-section">
             <div className="container mx-auto px-6 max-w-7xl relative z-10">
 
-                {/* CABEÇALHO REPOSICIONADO COM LINK DISCRETO */}
                 <motion.header
                     className="portfolio-header flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12"
                     initial={{ opacity: 0, y: 30 }}
@@ -73,34 +53,38 @@ export default function Portfolio() {
                         href="/portfolio"
                         className="hidden md:flex items-center gap-2 font-principal text-xs uppercase tracking-[2px] text-branco/60 hover:text-secundaria transition-colors font-bold pb-2"
                     >
-                        Ver todos os 6+ cases →
+                        Ver todos os cases →
                     </Link>
                 </motion.header>
 
                 <div className="portfolio-bento-grid">
-                    {teaserProjects.map((project) => {
-                        const isTapped = tappedId === project.id;
+                    {/* Mapeia dinamicamente os 3 primeiros projetos do banco */}
+                    {teaserProjectsData.map((project, index) => {
+                        const isTapped = tappedId === project._id;
+
+                        // Lógica de Grid inteligente: O 1º ocupa 2 colunas, os outros ocupam 1
+                        const gridArea = index === 0 ? 'md:col-span-2' : 'md:col-span-1';
+                        const delay = (index + 1) * 0.1; // 0.1, 0.2, 0.3...
 
                         return (
                             <motion.div
-                                key={project.id}
+                                key={project._id}
                                 onClick={(e) => {
                                     if (typeof window !== 'undefined') {
                                         const isTouchDevice = window.matchMedia('(hover: none)').matches;
 
                                         if (isTouchDevice && !isTapped) {
-                                            setTappedId(project.id);
+                                            setTappedId(project._id);
                                         } else {
-                                            // Roteamento SPA do Next (Instantâneo, sem piscar a tela)
                                             router.push('/portfolio');
                                         }
                                     }
                                 }}
-                                className={`portfolio-item block group ${project.gridArea} ${isTapped ? 'is-tapped' : ''}`}
+                                className={`portfolio-item block group ${gridArea} ${isTapped ? 'is-tapped' : ''} cursor-pointer`}
                                 initial={{ opacity: 0, scale: 0.95 }}
                                 whileInView={{ opacity: 1, scale: 1 }}
                                 viewport={{ once: true, margin: "-50px" }}
-                                transition={{ duration: 0.5, delay: project.delay, ease: "easeOut" }}
+                                transition={{ duration: 0.5, delay: delay, ease: "easeOut" }}
                             >
                                 <div className="portfolio-image-wrapper">
                                     <Image src={project.image} alt={project.title} fill className="object-cover object-center" />
@@ -115,7 +99,6 @@ export default function Portfolio() {
                                         <h3 className="portfolio-title">{project.title}</h3>
                                     </div>
 
-                                    {/* Seta trocada para a direita (indica "Entrar na Galeria") */}
                                     <div className="portfolio-action-btn">
                                         <ArrowRightIcon />
                                     </div>
@@ -125,7 +108,6 @@ export default function Portfolio() {
                     })}
                 </div>
 
-                {/* BOTÃO MONUMENTAL DE CHAMADA PARA AÇÃO (CTA) */}
                 <motion.div
                     className="mt-16 flex justify-center"
                     initial={{ opacity: 0, y: 20 }}

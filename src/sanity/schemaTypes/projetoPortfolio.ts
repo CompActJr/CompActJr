@@ -82,7 +82,7 @@ export const projetoPortfolio = defineType({
         defineField({
             name: 'ordem',
             title: 'Ordem de Exibição',
-            description: 'Projetos com números menores aparecem primeiro (ex: 1, 2, 3).',
+            description: 'Projetos com números menores aparecem primeiro (ex: 1, 2, 3). Obs: Os três primeiros aparecem na homepage ',
             type: 'number',
             validation: (Rule) => Rule.required(),
         }),
