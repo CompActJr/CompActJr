@@ -6,17 +6,15 @@ import './styles/PortfolioShowcase.css'
 
 /**
  * COMPONENTE: VITRINE COM FILTROS E MODAL (PORTFOLIO SHOWCASE)
- * @description Gerencia a renderização da grade de projetos.
- * Implementa Body Scroll Lock para corrigir bugs de rolagem no Mobile e
- * Z-index supremo para sobrepor o Header da aplicação.
+ * @description Gerencia a renderização da grade de projetos consumindo dados do Sanity.
  * @kayualins Equipe de Projetos CompAct Jr.
  */
 
 interface Project {
-    id: string;
+    _id: string;
     client: string;
     title: string;
-    category: 'Plataforma Institucional' | 'Portfólio Profissional' | 'Web App' | 'Landing Page de Conversão' | 'Solução Operacional';
+    category: string;
     image: string;
     description: string;
     challenge: string;
@@ -25,101 +23,29 @@ interface Project {
     url: string;
 }
 
-const projectsData: Project[] = [
-    {
-        id: 'proj-1',
-        client: 'Totem Vestibulares',
-        title: 'Portal Educacional Completo',
-        category: 'Plataforma Institucional',
-        image: '/portfolio/totem-vest.png',
-        description: 'Plataforma de alta escalabilidade desenvolvida para concentrar unidades, bibliotecas e eventos do maior cursinho pré-vestibular da região.',
-        challenge: 'O cliente possuía informações descentralizadas em PDFs e redes sociais, gerando sobrecarga no atendimento do WhatsApp.',
-        solution: 'Construímos um portal com rotas dinâmicas, otimização extrema de imagens e painel de conversão de novos alunos.',
-        stack: ['Next.js', 'Tailwind CSS', 'TypeScript', 'Vercel CDN'],
-        url: 'https://totemvestibulares.compactjr.com/'
-    },
-    {
-        id: 'proj-2',
-        client: 'Nicole Mundstock',
-        title: 'Posicionamento e Identidade',
-        category: 'Portfólio Profissional',
-        image: '/portfolio/nicole.webp',
-        description: 'Site minimalista e focado em design de alto padrão para ditar a autoridade e o requinte do trabalho da arquiteta.',
-        challenge: 'Transmitir a sofisticação física dos projetos de arquitetura para a tela do celular sem perder performance.',
-        solution: 'Aplicação de tipografia premium, paleta monocromática e transições suaves de opacidade no scroll.',
-        stack: ['React', 'Framer Motion', 'Tailwind CSS'],
-        url: 'https://nicole-mundstock.compactjr.com/'
-    },
-    {
-        id: 'proj-3',
-        client: 'Conecta',
-        title: 'Sistema de Acesso e Gestão',
-        category: 'Web App',
-        image: '/portfolio/conecta.webp',
-        description: 'Aplicação web transacional feita para o controle de presença, contagem de métricas e credenciamento de eventos.',
-        challenge: 'O sistema precisava rodar sem travar em conexões 3G de auditórios lotados durante o credenciamento.',
-        solution: 'Desenvolvimento focado em Client-side caching e requisições ultraleves no back-end.',
-        stack: ['Next.js', 'Node.js', 'API REST', 'Tailwind'],
-        url: 'https://conecta.compactjr.com/'
-    },
-    {
-        id: 'proj-4',
-        client: 'Equilíbrio JR',
-        title: 'Esfera Econômica',
-        category: 'Landing Page de Conversão',
-        image: '/portfolio/equilibrio.webp',
-        description: 'Página de altíssima conversão construída para a Empresa Júnior de Economia da UFRGS captar clientes de consultoria.',
-        challenge: 'Ranqueamento orgânico no Google (SEO) e clareza na explicação de serviços financeiros complexos.',
-        solution: 'Estruturação semântica rigorosa, copywriting em blocos em zigue-zague e formulário de lead nativo.',
-        stack: ['React', 'SEO Avançado', 'Figma to Code'],
-        url: 'https://www.equilibrioufrgs.com/'
-    },
-    {
-        id: 'proj-5',
-        client: 'Totem Entrada',
-        title: 'Sistema de Recepção',
-        category: 'Solução Operacional',
-        image: '/portfolio/totem.webp',
-        description: 'Software operacional de interface rápida para totens de autoatendimento e triagem de alunos na portaria física.',
-        challenge: 'Interface precisava ser "à prova de erros" para usuários de todas as idades utilizarem em telas touch.',
-        solution: 'Botões de proporção alargada, fluxos de no máximo 2 cliques e feedback visual de alto contraste.',
-        stack: ['React', 'UI/UX Touch', 'State Management'],
-        url: 'https://totementrada.compactjr.com/'
-    },
-    {
-        id: 'proj-6',
-        client: 'CompAct Labs',
-        title: 'Ecossistema de Automação',
-        category: 'Web App',
-        image: '/portfolio/conecta.webp',
-        description: 'Projeto interno de pesquisa e desenvolvimento de dashboards para análise de dados comerciais da EJ.',
-        challenge: 'Cruzar dados de formulários do site com a base de clientes do CRM comercial.',
-        solution: 'Criação de webhooks customizados e painel de indicadores com gráficos dinâmicos.',
-        stack: ['TypeScript', 'Next.js Route Handlers', 'Chart.js'],
-        url: 'https://compactjr.com/'
-    }
-]
+interface PortfolioShowcaseProps {
+    projectsData: Project[];
+}
 
 const categories = ['Todos', 'Web App', 'Plataforma Institucional', 'Landing Page de Conversão', 'Portfólio Profissional', 'Solução Operacional'] as const;
 
-export default function PortfolioShowcase() {
+export default function PortfolioShowcase({ projectsData }: PortfolioShowcaseProps) {
     const [selectedCategory, setSelectedCategory] = useState<string>('Todos')
     const [activeModalProject, setActiveModalProject] = useState<Project | null>(null)
 
-    // EFEITO: Trava a rolagem do fundo (body) quando o Modal abre (Correção Mobile)
     useEffect(() => {
         if (activeModalProject) {
-            document.body.style.overflow = 'hidden' // Congela o fundo
+            document.body.style.overflow = 'hidden'
         } else {
-            document.body.style.overflow = 'unset' // Libera o fundo
+            document.body.style.overflow = 'unset'
         }
 
-        // Limpeza de segurança (caso o componente desmonte com o modal aberto)
         return () => {
             document.body.style.overflow = 'unset'
         }
     }, [activeModalProject])
 
+    // Filtra baseado nos dados que vieram via Prop
     const filteredProjects = selectedCategory === 'Todos'
         ? projectsData
         : projectsData.filter(project => project.category === selectedCategory)
@@ -168,13 +94,13 @@ export default function PortfolioShowcase() {
                 <AnimatePresence>
                     {filteredProjects.map((project, index) => (
                         <motion.div
-                            key={project.id}
+                            key={project._id}
                             layout
                             initial={{ opacity: 0, scale: 0.8 }}
                             animate={{ opacity: 1, scale: 1 }}
                             exit={{ opacity: 0, scale: 0.8 }}
                             transition={{ duration: 0.4, delay: (index % 3) * 0.08 }}
-                            className="showcase-card group"
+                            className="showcase-card group cursor-pointer"
                             onClick={() => setActiveModalProject(project)}
                         >
                             <div className="showcase-image-container aspect-video relative overflow-hidden rounded-t-xl bg-[#141414]">
@@ -200,12 +126,12 @@ export default function PortfolioShowcase() {
 
                                 <div className="mt-6 pt-4 border-t border-branco/5 flex items-center justify-between">
                                     <div className="flex gap-1.5 overflow-hidden max-w-[70%]">
-                                        {project.stack.slice(0, 2).map((tech, i) => (
+                                        {project.stack?.slice(0, 2).map((tech, i) => (
                                             <span key={i} className="text-[10px] font-principal text-branco/40 bg-branco/5 px-2 py-0.5 rounded">
                                                 {tech}
                                             </span>
                                         ))}
-                                        {project.stack.length > 2 && (
+                                        {project.stack?.length > 2 && (
                                             <span className="text-[10px] font-principal text-secundaria bg-secundaria/10 px-1.5 py-0.5 rounded">
                                                 +{project.stack.length - 2}
                                             </span>
@@ -270,7 +196,7 @@ export default function PortfolioShowcase() {
                             <div className="mb-8">
                                 <h4 className="font-principal text-xs uppercase text-branco/40 tracking-widest mb-3">Stack Tecnológica Empregada</h4>
                                 <div className="flex flex-wrap gap-2">
-                                    {activeModalProject.stack.map((tech, i) => (
+                                    {activeModalProject.stack?.map((tech, i) => (
                                         <span key={i} className="px-3 py-1 rounded-full bg-branco/10 text-branco font-principal text-xs font-medium">
                                             {tech}
                                         </span>

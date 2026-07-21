@@ -12,23 +12,39 @@ import Watermark from '../../components/Watermark'
 import Footer from '../../components/Footer'
 import PortfolioShowcase from '../../components/PortfolioShowcase'
 import Header from "@/src/components/Header";
+import { client } from '../../sanity/lib/client'
 
 export const metadata = {
     title: 'Portfólio de Projetos',
     description: 'Explore nosso acervo completo de sites institucionais, web apps, landing pages de conversão e sistemas sob medida.',
 }
 
-export default function PortfolioPage() {
+const queryProjetos = `*[_type == "projetoPortfolio" && ativo == true] | order(ordem asc) {
+  _id,
+  client,
+  title,
+  category,
+  "image": image.asset->url,
+  description,
+  challenge,
+  solution,
+  stack,
+  url
+}`
+
+export const dynamic = 'force-dynamic'
+
+export default async function PortfolioPage() {
+    const projetosDoSanity = await client.fetch(queryProjetos)
+
     return (
         <main className="relative min-h-screen bg-preto overflow-x-clip text-branco selection:bg-secundaria selection:text-branco">
             <BackgroundGlow />
             <Header />
-
             <Watermark />
 
-
             <div className="relative pb-32">
-                <PortfolioShowcase />
+                <PortfolioShowcase projectsData={projetosDoSanity} />
             </div>
 
             <Footer />
