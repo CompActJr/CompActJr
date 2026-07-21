@@ -26,14 +26,12 @@ export default function History({ historyData }: HistoryProps) {
     // Inicia focado no ÚLTIMO ano cadastrado dinamicamente
     const [activeIndex, setActiveIndex] = useState(Math.max(0, historyData.length - 1))
 
-    // Prevenção de quebra caso o CMS esteja vazio
+
     if (!historyData || historyData.length === 0) return null;
 
-    // RÉGUA DINÂMICA: Descobre qual é o menor e o maior ano cadastrado no banco
     const minYear = Math.min(...historyData.map(d => d.year))
     const maxYear = Math.max(...historyData.map(d => d.year))
 
-    // Garante que a régua comece no mínimo em 2015 e vá até pelo menos o último ano + 2
     const startYear = Math.min(2015, minYear)
     const endYear = Math.max(2028, maxYear + 2)
     const rulerYears = Array.from({ length: endYear - startYear + 1 }, (_, i) => startYear + i)
