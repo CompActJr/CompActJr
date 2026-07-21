@@ -3,7 +3,8 @@ import { linkBio } from './linkBio'
 import { materialEducativo } from './materialEducativo'
 import { projetoPortfolio } from './projetoPortfolio'
 import { artigoBlog } from './artigoBlog'
+import { membroEquipe } from './membroEquipe'
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [linkBio, materialEducativo, projetoPortfolio, artigoBlog],
+  types: [linkBio, materialEducativo, projetoPortfolio, artigoBlog, membroEquipe],
 }
