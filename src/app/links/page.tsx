@@ -9,21 +9,36 @@
 
 import BackgroundGlow from '../../components/BackgroundGlow'
 import LinksTree from '../../components/LinksTree'
+import { client } from '../../sanity/lib/client'
 
 export const metadata = {
     title: 'Links Rápidos',
     description: 'Conecte-se com a CompAct Jr. — Orçamentos de TI, portfólio de sistemas e oportunidades.',
     robots: {
-        index: false, // Blindagem contra indexação acidental no Google
+        index: false,
         follow: true
     }
 }
 
-export default function LinksPage() {
+const queryLinks = `*[_type == "linkBio" && ativo == true] | order(ordem asc) {
+  _id,
+  titulo,
+  subtitulo,
+  url,
+  destaque,
+  badge
+}`
+
+export const dynamic = 'force-dynamic'
+
+export default async function LinksPage() {
+    // Busca os dados no CMS antes de renderizar a tela
+    const linksDoSanity = await client.fetch(queryLinks)
+
     return (
         <main className="relative min-h-screen bg-preto overflow-x-clip selection:bg-secundaria selection:text-branco">
             <BackgroundGlow />
-            <LinksTree />
+            <LinksTree linksData={linksDoSanity} />
         </main>
     )
 }
