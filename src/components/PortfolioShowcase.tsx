@@ -1,5 +1,5 @@
 'use client'
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useMemo } from 'react'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 import './styles/PortfolioShowcase.css'
@@ -7,6 +7,7 @@ import './styles/PortfolioShowcase.css'
 /**
  * COMPONENTE: VITRINE COM FILTROS E MODAL (PORTFOLIO SHOWCASE)
  * @description Gerencia a renderização da grade de projetos consumindo dados do Sanity.
+ * As categorias são geradas dinamicamente com base nos projetos cadastrados.
  * @kayualins Equipe de Projetos CompAct Jr.
  */
 
@@ -27,11 +28,18 @@ interface PortfolioShowcaseProps {
     projectsData: Project[];
 }
 
-const categories = ['Todos', 'Web App', 'Plataforma Institucional', 'Landing Page de Conversão', 'Portfólio Profissional', 'Solução Operacional'] as const;
-
 export default function PortfolioShowcase({ projectsData }: PortfolioShowcaseProps) {
     const [selectedCategory, setSelectedCategory] = useState<string>('Todos')
     const [activeModalProject, setActiveModalProject] = useState<Project | null>(null)
+
+    // GERADOR DINÂMICO DE CATEGORIAS
+    // Lê todos os projetos, extrai as categorias, remove as duplicadas (usando Set) e adiciona o botão "Todos" no início.
+    const dynamicCategories = useMemo(() => {
+        if (!projectsData || projectsData.length === 0) return ['Todos'];
+        const projectCategories = projectsData.map(project => project.category);
+        const uniqueCategories = Array.from(new Set(projectCategories));
+        return ['Todos', ...uniqueCategories];
+    }, [projectsData]);
 
     useEffect(() => {
         if (activeModalProject) {
@@ -63,90 +71,99 @@ export default function PortfolioShowcase({ projectsData }: PortfolioShowcasePro
                 </p>
             </div>
 
-            <div className="flex flex-wrap items-center justify-center gap-2 md:gap-3 mb-16">
-                {categories.map((cat) => {
-                    const isActive = selectedCategory === cat;
-                    return (
-                        <button
-                            key={cat}
-                            onClick={() => setSelectedCategory(cat)}
-                            className={`relative px-5 py-2.5 rounded-full font-principal text-xs md:text-sm font-bold uppercase tracking-wider transition-colors duration-300 ${
-                                isActive ? 'text-preto' : 'text-branco/60 hover:text-branco bg-branco/5 hover:bg-branco/10'
-                            }`}
-                        >
-                            {isActive && (
+            {/* Renderiza apenas se houver projetos */}
+            {projectsData && projectsData.length > 0 ? (
+                <>
+                    <div className="flex flex-wrap items-center justify-center gap-2 md:gap-3 mb-16">
+                        {dynamicCategories.map((cat) => {
+                            const isActive = selectedCategory === cat;
+                            return (
+                                <button
+                                    key={cat}
+                                    onClick={() => setSelectedCategory(cat)}
+                                    className={`relative px-5 py-2.5 rounded-full font-principal text-xs md:text-sm font-bold uppercase tracking-wider transition-colors duration-300 ${
+                                        isActive ? 'text-preto' : 'text-branco/60 hover:text-branco bg-branco/5 hover:bg-branco/10'
+                                    }`}
+                                >
+                                    {isActive && (
+                                        <motion.div
+                                            layoutId="activeCategoryPill"
+                                            className="absolute inset-0 bg-branco rounded-full z-0"
+                                            transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                                        />
+                                    )}
+                                    <span className="relative z-10">{cat}</span>
+                                </button>
+                            )
+                        })}
+                    </div>
+
+                    <motion.div
+                        layout
+                        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+                    >
+                        <AnimatePresence>
+                            {filteredProjects.map((project, index) => (
                                 <motion.div
-                                    layoutId="activeCategoryPill"
-                                    className="absolute inset-0 bg-branco rounded-full z-0"
-                                    transition={{ type: "spring", stiffness: 400, damping: 30 }}
-                                />
-                            )}
-                            <span className="relative z-10">{cat}</span>
-                        </button>
-                    )
-                })}
-            </div>
+                                    key={project._id}
+                                    layout
+                                    initial={{ opacity: 0, scale: 0.8 }}
+                                    animate={{ opacity: 1, scale: 1 }}
+                                    exit={{ opacity: 0, scale: 0.8 }}
+                                    transition={{ duration: 0.4, delay: (index % 3) * 0.08 }}
+                                    className="showcase-card group cursor-pointer"
+                                    onClick={() => setActiveModalProject(project)}
+                                >
+                                    <div className="showcase-image-container aspect-video relative overflow-hidden rounded-t-xl bg-[#141414]">
+                                        <Image
+                                            src={project.image}
+                                            alt={project.title}
+                                            fill
+                                            className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
+                                        />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-preto via-preto/20 to-transparent opacity-80 group-hover:opacity-60 transition-opacity" />
 
-            <motion.div
-                layout
-                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-            >
-                <AnimatePresence>
-                    {filteredProjects.map((project, index) => (
-                        <motion.div
-                            key={project._id}
-                            layout
-                            initial={{ opacity: 0, scale: 0.8 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            exit={{ opacity: 0, scale: 0.8 }}
-                            transition={{ duration: 0.4, delay: (index % 3) * 0.08 }}
-                            className="showcase-card group cursor-pointer"
-                            onClick={() => setActiveModalProject(project)}
-                        >
-                            <div className="showcase-image-container aspect-video relative overflow-hidden rounded-t-xl bg-[#141414]">
-                                <Image
-                                    src={project.image}
-                                    alt={project.title}
-                                    fill
-                                    className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
-                                />
-                                <div className="absolute inset-0 bg-gradient-to-t from-preto via-preto/20 to-transparent opacity-80 group-hover:opacity-60 transition-opacity" />
-
-                                <span className="absolute top-4 right-4 bg-preto/60 backdrop-blur-md border border-branco/10 text-secundaria font-principal text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest">
-                                    {project.category}
-                                </span>
-                            </div>
-
-                            <div className="p-6 bg-[#0d0d0d] border border-t-0 border-branco/10 rounded-b-xl flex flex-col justify-between flex-grow">
-                                <div>
-                                    <p className="font-principal text-xs text-secundaria font-bold uppercase tracking-widest mb-1">{project.client}</p>
-                                    <h3 className="font-titulo text-xl font-bold text-branco group-hover:text-secundaria transition-colors mb-2">{project.title}</h3>
-                                    <p className="font-principal text-branco/60 text-sm line-clamp-2">{project.description}</p>
-                                </div>
-
-                                <div className="mt-6 pt-4 border-t border-branco/5 flex items-center justify-between">
-                                    <div className="flex gap-1.5 overflow-hidden max-w-[70%]">
-                                        {project.stack?.slice(0, 2).map((tech, i) => (
-                                            <span key={i} className="text-[10px] font-principal text-branco/40 bg-branco/5 px-2 py-0.5 rounded">
-                                                {tech}
-                                            </span>
-                                        ))}
-                                        {project.stack?.length > 2 && (
-                                            <span className="text-[10px] font-principal text-secundaria bg-secundaria/10 px-1.5 py-0.5 rounded">
-                                                +{project.stack.length - 2}
-                                            </span>
-                                        )}
+                                        <span className="absolute top-4 right-4 bg-preto/60 backdrop-blur-md border border-branco/10 text-secundaria font-principal text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest">
+                                            {project.category}
+                                        </span>
                                     </div>
 
-                                    <span className="font-principal text-xs font-bold text-branco group-hover:translate-x-1 transition-transform flex items-center gap-1">
-                                        Detalhes →
-                                    </span>
-                                </div>
-                            </div>
-                        </motion.div>
-                    ))}
-                </AnimatePresence>
-            </motion.div>
+                                    <div className="p-6 bg-[#0d0d0d] border border-t-0 border-branco/10 rounded-b-xl flex flex-col justify-between flex-grow">
+                                        <div>
+                                            <p className="font-principal text-xs text-secundaria font-bold uppercase tracking-widest mb-1">{project.client}</p>
+                                            <h3 className="font-titulo text-xl font-bold text-branco group-hover:text-secundaria transition-colors mb-2">{project.title}</h3>
+                                            <p className="font-principal text-branco/60 text-sm line-clamp-2">{project.description}</p>
+                                        </div>
+
+                                        <div className="mt-6 pt-4 border-t border-branco/5 flex items-center justify-between">
+                                            <div className="flex gap-1.5 overflow-hidden max-w-[70%]">
+                                                {project.stack?.slice(0, 2).map((tech, i) => (
+                                                    <span key={i} className="text-[10px] font-principal text-branco/40 bg-branco/5 px-2 py-0.5 rounded">
+                                                        {tech}
+                                                    </span>
+                                                ))}
+                                                {project.stack?.length > 2 && (
+                                                    <span className="text-[10px] font-principal text-secundaria bg-secundaria/10 px-1.5 py-0.5 rounded">
+                                                        +{project.stack.length - 2}
+                                                    </span>
+                                                )}
+                                            </div>
+
+                                            <span className="font-principal text-xs font-bold text-branco group-hover:translate-x-1 transition-transform flex items-center gap-1">
+                                                Detalhes →
+                                            </span>
+                                        </div>
+                                    </div>
+                                </motion.div>
+                            ))}
+                        </AnimatePresence>
+                    </motion.div>
+                </>
+            ) : (
+                <div className="text-center py-24 border border-branco/10 rounded-2xl bg-branco/5">
+                    <p className="font-principal text-branco/40 text-lg">Em breve novos projetos serão adicionados aqui.</p>
+                </div>
+            )}
 
             <AnimatePresence>
                 {activeModalProject && (
