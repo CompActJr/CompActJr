@@ -57,11 +57,25 @@ const queryTeaser = `*[_type == "projetoPortfolio" && ativo == true] | order(ord
   "image": image.asset->url
 }`
 
+const queryParceirosClientes = `*[_type == "clienteParceiro" && ativo == true] {
+  _id,
+  name,
+  tipo,
+  url,
+  "src": logo.asset->url
+}`
+
 export const dynamic = 'force-dynamic'
 
 export default async function Home() {
-    // Busca os dados no CMS antes de montar a página inicial
-    const teaserData = await client.fetch(queryTeaser)
+
+    const [teaserData, parceirosClientesData] = await Promise.all([
+        client.fetch(queryTeaser),
+        client.fetch(queryParceirosClientes)
+    ])
+
+    const apoiadoresData = parceirosClientesData.filter((item: any) => item.tipo === 'parceiro')
+    const clientesData = parceirosClientesData.filter((item: any) => item.tipo === 'cliente')
 
     return (
         <main className="relative bg-preto min-h-screen w-full max-w-[100vw] overflow-x-clip flex flex-col">
@@ -69,16 +83,15 @@ export default async function Home() {
             <div className="relative z-10 w-full">
                 <Header />
                 <Hero />
-                <Apoiadores />
+                <Apoiadores apoiadoresData={apoiadoresData} />
                 <Indicadores />
                 <About />
-                <Clientes />
+                <Clientes clientesData={clientesData} />
 
                 <SectionsWithWatermark>
                     <Services />
                 </SectionsWithWatermark>
 
-                {/* os 3 projetos aqui */}
                 <Portfolio teaserProjectsData={teaserData} />
 
                 <MaterialsTrailer />

@@ -5,7 +5,8 @@ import { projetoPortfolio } from './projetoPortfolio'
 import { artigoBlog } from './artigoBlog'
 import { membroEquipe } from './membroEquipe'
 import { marcoHistorico } from './marcoHistorico'
+import { clienteParceiro } from './clienteParceiro'
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [linkBio, materialEducativo, projetoPortfolio, artigoBlog, membroEquipe, marcoHistorico],
+  types: [linkBio, materialEducativo, projetoPortfolio, artigoBlog, membroEquipe, marcoHistorico, clienteParceiro],
 }

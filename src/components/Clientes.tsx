@@ -11,17 +11,17 @@ import './styles/BannerParceiros.css'   // Reaproveita o mesmo CSS do componente
  * @kayualins Equipe de Projetos CompAct Jr.
  */
 
-export default function Clientes() {
-    // DADOS DOS CLIENTES
-    // Caminhos organizados e urls adicionadas para os sites/redes sociais dos clientes
-    const clientes = [
-        { name: 'Caduceu JR', src: '/logosParceiros/clientes/caduceujr.webp', url: 'https://caduceujr.com.br/' },
-        { name: 'Equilíbrio JR', src: '/logosParceiros/clientes/equilibrio.webp', url: 'https://www.equilibrioufrgs.com/' },
-        { name: 'Nicole Mundstock', src: '/logosParceiros/clientes/nicole.webp', url: 'https://www.instagram.com/arq.nicolemundstock/' },
-        { name: 'Sobrac', src: '/logosParceiros/clientes/sobrac.webp', url: 'https://acustica.org.br/' },
-        { name: 'Totem', src: '/logosParceiros/clientes/totem.webp', url: 'https://acustica.org.br/' },
-        { name: 'ITEP', src: '/logosParceiros/clientes/itep.webp', url: 'https://www.itepconsultoria.com/' },
-    ]
+interface ClienteItem {
+    _id: string;
+    name: string;
+    src: string;
+    url: string;
+}
+
+export default function Clientes({ clientesData }: { clientesData: ClienteItem[] }) {
+
+    // Se não houver clientes cadastrados, esconde a seção
+    if (!clientesData || clientesData.length === 0) return null;
 
     return (
         <motion.div
@@ -32,13 +32,10 @@ export default function Clientes() {
             className="px-12 sm:px-12 md:px-8 lg:px-12 xl:px-40"
         >
             <div className="supporters-banner">
-
                 <div className="supporters-carousel-container">
                     <div className="supporters-carousel-track">
-                        {[...clientes, ...clientes, ...clientes].map((cliente, index) => (
-                            <div key={index} className="supporter-logo-wrapper flex items-center justify-center">
-
-                                {/* ÂNCORA: Torna o logo clicável com animação de scale */}
+                        {[...clientesData, ...clientesData, ...clientesData].map((cliente, index) => (
+                            <div key={`${cliente._id}-${index}`} className="supporter-logo-wrapper flex items-center justify-center">
                                 <a
                                     href={cliente.url}
                                     target={cliente.url !== '#' ? "_blank" : "_self"}
@@ -46,7 +43,6 @@ export default function Clientes() {
                                     aria-label={`Visitar o site do cliente: ${cliente.name}`}
                                     className="transition-transform duration-300 hover:scale-110 block"
                                 >
-                                    {/* RENDERIZAÇÃO CONDICIONAL DA IMAGEM */}
                                     {cliente.src ? (
                                         <Image
                                             src={cliente.src}
@@ -63,7 +59,6 @@ export default function Clientes() {
                                         </div>
                                     )}
                                 </a>
-
                             </div>
                         ))}
                     </div>

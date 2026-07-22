@@ -11,15 +11,17 @@ import './styles/BannerParceiros.css'
  * @kayualins Equipe de Projetos CompAct Jr.
  */
 
-export default function Apoiadores() {
-    // ADICIONADO: Propriedade 'url' com os links reais de cada parceiro
-    const supporters = [
-        { name: 'UFSM', src: '/logosParceiros/apoiadores/ufsm.webp', url: 'https://www.ufsm.br/' },
-        { name: 'Inovatech', src: '/logosParceiros/apoiadores/inovatech.webp', url: 'https://www.ufsm.br/orgaos-suplementares/inovatec' },
-        { name: 'Atitude Idiomas', src: '/logosParceiros/apoiadores/atitudeIdiomas.webp', url: 'https://www.atitudeidiomas.com.br/' },
-        { name: 'Fejers', src: '/logosParceiros/apoiadores/fejers.webp', url: 'https://fejers.org.br/' },
-        { name: 'Brasil JR', src: '/logosParceiros/apoiadores/brasiljr.webp', url: 'https://brasiljunior.org.br/' },
-    ]
+interface ApoiadorItem {
+    _id: string;
+    name: string;
+    src: string;
+    url: string;
+}
+
+export default function Apoiadores({ apoiadoresData }: { apoiadoresData: ApoiadorItem[] }) {
+
+    // Se não houver apoiadores cadastrados, esconde a seção
+    if (!apoiadoresData || apoiadoresData.length === 0) return null;
 
     return (
         <motion.div
@@ -29,21 +31,16 @@ export default function Apoiadores() {
             transition={{ duration: 0.8 }}
             className="px-12 sm:px-12 md:px-8 lg:px-12 xl:px-40"
         >
-
             <div className="supporters-banner">
-
                 <div className="supporters-carousel-container">
                     <div className="supporters-carousel-track">
-                        {[...supporters, ...supporters, ...supporters].map((supporter, index) => (
-                            <div key={index} className="supporter-logo-wrapper flex items-center justify-center">
-
-                                {/* ANCORA (Link): Envolve a imagem inteira */}
+                        {[...apoiadoresData, ...apoiadoresData, ...apoiadoresData].map((supporter, index) => (
+                            <div key={`${supporter._id}-${index}`} className="supporter-logo-wrapper flex items-center justify-center">
                                 <a
                                     href={supporter.url}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     aria-label={`Visitar o site parceiro: ${supporter.name}`}
-                                    // Movemos o efeito de scale para o botão 'a' inteiro
                                     className="transition-transform duration-300 hover:scale-110 block"
                                 >
                                     {supporter.src ? (
@@ -62,7 +59,6 @@ export default function Apoiadores() {
                                         </div>
                                     )}
                                 </a>
-
                             </div>
                         ))}
                     </div>
