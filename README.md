@@ -1,19 +1,20 @@
-# CompAct Jr. - Landing Page Corporativa
+# CompAct Jr. - Site Institucional e Plataforma Corporativa
 
-Projeto oficial da nova Landing Page da CompAct Jr., desenvolvido para atuar como o principal canal de conversão e vitrine institucional da Empresa Júnior. A aplicação foi construída com foco em altíssima performance, SEO técnico avançado, integração de back-end nativa e microinterações de interface fluidas.
+Projeto oficial do ecossistema web da CompAct Jr., desenvolvido para atuar como o principal canal de conversão, vitrine institucional e portal de conteúdos da Empresa Júnior. A aplicação foi construída com foco em altíssima performance, SEO técnico avançado, integração com Headless CMS e microinterações de interface fluidas.
 
 **Links Oficiais:**
-*   **Ambiente de Produção (Deploy):** [Vercel](https://project-nextjs-one-rose.vercel.app/)
+*   **Ambiente de Produção:** [https://www.compactjr.com](https://www.compactjr.com/)
 *   **Repositório Oficial:** [GitHub - CompActJr](https://github.com/CompActJr/CompActJr)
 
 ---
 
 ## 1. Stack Tecnológico
-A base tecnológica foi escolhida visando escalabilidade e modernidade no ecossistema web:
+A base tecnológica foi escolhida visando escalabilidade, autonomia de edição para a equipe de Marketing e modernidade no ecossistema web:
 
 *   **Framework:** Next.js (App Router)
 *   **Biblioteca de UI:** React
 *   **Linguagem:** TypeScript
+*   **Gerenciamento de Conteúdo:** Sanity CMS (Embedded Studio) e GROQ
 *   **Estilização:** Tailwind CSS v4 (Híbrido com CSS Modular)
 *   **Animações:** Framer Motion
 *   **Back-end e Transacional:** Next.js Route Handlers e Resend SDK
@@ -22,48 +23,48 @@ A base tecnológica foi escolhida visando escalabilidade e modernidade no ecossi
 
 ## 2. Arquitetura e Padrões de Projeto
 
-### 2.1. Server Components vs Client Components
+### 2.1. Integração com Headless CMS (Sanity)
+O projeto utiliza a arquitetura de **Studio Embutido**, hospedando o painel administrativo (`/CompStudio`) e o site no mesmo servidor.
+* A comunicação de dados é feita através de consultas **GROQ** injetadas diretamente em Server Components.
+* Utiliza-se `Promise.all` para chamadas paralelas (ex: carregar Histórico e Equipe simultaneamente), garantindo que a conexão com o banco não crie gargalos de carregamento (TTFB).
+
+### 2.2. Server Components vs Client Components
 A arquitetura respeita o fluxo de renderização do Next.js App Router:
-*   Os arquivos `page.tsx` e `layout.tsx` são mantidos estritamente como *Server Components*. Isso garante a pré-renderização no servidor, essencial para a injeção do objeto metadata e sucesso no ranqueamento de SEO (Search Engine Optimization).
-*   A interatividade (Framer Motion, hooks de estado) foi delegada aos componentes filhos localizados na pasta `src/components/`, os quais utilizam a diretiva `'use client'`.
+*   As rotas de página (`page.tsx`) atuam estritamente como *Server Components*. Isso garante a pré-renderização no servidor e o ranqueamento de ponta em motores de busca.
+*   A interatividade (Framer Motion, modais, filtros) foi delegada aos componentes filhos (`src/components/`), que utilizam a diretiva `'use client'`.
 
-### 2.2. Padronização de Estilos (Clean JSX)
+### 2.3. Padronização de Estilos (Clean JSX)
 Para evitar a poluição visual de dezenas de classes utilitárias no JSX, adotou-se o isolamento de CSS:
-*   Cada componente possui seu próprio arquivo `.css` pareado (ex: `Team.tsx` e `Team.css`).
+*   Cada componente complexo possui seu próprio arquivo `.css` pareado.
 *   As classes utilitárias são agrupadas utilizando a diretiva `@apply` do Tailwind.
-*   A integração com o Tailwind v4 é feita via `@reference "../app/globals.css"` no topo de cada arquivo de estilo.
 
-### 2.3. Resolução de Conflitos de Viewport (Scroll Horizontal)
+### 2.4. Resolução de Conflitos de Viewport (Scroll Horizontal)
 Foi adotada uma solução estrutural no container `<main>` para sanar o vazamento de animações em dispositivos móveis e navegadores Safari:
 *   Substituição de unidades relativas de tela (`w-screen`) por contenção estrita (`w-full max-w-[100vw]`).
-*   Utilização de `overflow-x-clip` em vez de `overflow-hidden`. Esta decisão foi crucial para ocultar o vazamento horizontal sem criar um novo contexto de formatação, preservando o funcionamento da propriedade `position: sticky` utilizada no componente Watermark.
-*   Ocultação das barras de rolagem nativas nos principais navegadores injetada na camada base do Tailwind.
+*   Utilização de `overflow-x-clip` para ocultar o vazamento horizontal sem criar um novo contexto de formatação, preservando a propriedade `position: sticky` do componente Watermark.
 
 ---
 
-## 3. Funcionalidades e Componentes Desenvolvidos
-Abaixo, o registro técnico de todas as seções e soluções implementadas:
+## 3. Módulos Dinâmicos e Componentes (Driven by CMS)
+Abaixo, o registro técnico das soluções implementadas com integração ao banco de dados:
 
-*   **BackgroundGlow:** Componente de câmera fixa (fixed viewport) que utiliza Framer Motion para gerar orbes luminosos dinâmicos. A fixação previne "buracos negros" durante o scroll da página.
-*   **Watermark (Single Source of Truth):** Componente isolado com `position: sticky` aplicado como fundo em múltiplas seções, garantindo padronização e facilidade de manutenção (DRY - Don't Repeat Yourself).
-*   **Services:** Layout orgânico em zigue-zague com aplicação de rotação 3D (`perspective: 1200px` e `rotateY/X`) via Framer Motion no estado de hover.
-*   **Values:** Layout flexível utilizando `flex-wrap`. A interatividade física 3D (`<TiltCard/>`) separa matematicamente as lógicas de *Pointer Move* (acompanhamento contínuo no Desktop) e *Pointer Down/Up* (inclinação exata ao toque no Mobile), revelando o conteúdo sem conflitos de scroll.
-*   **Portfolio:** Layout assimétrico em Mosaico (Bento Grid) focado na exibição de cases reais. Utiliza `grid-area` para destacar elementos específicos e revela informações do projeto através de efeitos de opacidade no hover.
-*   **Apoiadores e Clientes:** Carrosséis horizontais de loop infinito (Social Proof). Construídos com o componente nativo `<Image/>` do Next.js, garantindo conversão automática para formatos modernos (WebP/AVIF), *lazy loading* nativo e entrega via CDN da Vercel. Incluem links externos ancorados de forma segura (`noopener noreferrer`).
-*   **History:** Carrossel interativo baseado em cálculo de índices (Index-based Carousel). A posição (eixo X), escala e desfoque lateral (blur) de cada cartão são calculados matematicamente pela distância (offset) em relação ao índice ativo. A régua cronológica utiliza o `layoutId` do Framer Motion para transições fluidas do indicador.
-*   **Team:** Aplicação direta de Regras de Negócio (RN). O mapeamento de dados condiciona as bordas e cores institucionais (Azul para Diretores, Branco para Membros). Inclui barra de redes sociais animada com recorte geométrico (`clip-path`).
-*   **Contact (Full-stack):** Arquitetura com formulário em glassmorphism e mapa dedicado. Implementa uma *Route Handler* própria (`/api/contact`) que recebe a carga via método `POST`, realiza validação de integridade dos campos obrigatórios e utiliza a API do Resend para o disparo do lead. O componente client-side gerencia os estados interativos de carregamento e sucesso utilizando `<AnimatePresence>`.
-*   **Footer:** Mapa do site semântico com links âncora para todas as seções. Ocultação inteligente de blocos não essenciais e centralização automática em dispositivos móveis.
-*   **FloatingButton (FAB):** Botão de ação direta (WhatsApp) com animação contínua de pulso. Um listener de janela controla a sua renderização, garantindo que só fique visível após 400px de rolagem.
+*   **Blog & Insights:** Motor de publicações com roteamento paramétrico (`[slug]/page.tsx`). O conteúdo é escrito no CMS em Rich Text e traduzido para marcação React segura (livre de XSS) através do `@portabletext/react`, injetando tipografia do Tailwind nativamente.
+*   **Materiais Educativos (Captura de Leads):** Arquitetura restrita. O PDF hospedado no Sanity nunca é exposto no DOM. O front-end envia os dados do lead para a `/api/materiais` e, apenas após o sucesso (HTTP 200), converte o arquivo via **Blob JavaScript**, forçando o download silencioso na máquina do usuário.
+*   **Portfólio (Cases de Sucesso):** Galeria interativa (Bento Grid) com filtragem assíncrona. Utiliza `next/image` com *Remote Patterns* configurados no `next.config.mjs` para otimização de imagens vindas da CDN do Sanity.
+*   **Team (Liderança):** Motor de inteligência de estado gerido no servidor. O Next.js recebe o array bruto do banco, agrupa os membros hierarquicamente por Diretoria e exclui diretorias vazias do DOM antes de enviar o HTML para o navegador.
+*   **History (Linha do Tempo):** Régua cronológica matemática. A linha do tempo lê os anos mais altos e baixos do banco de dados e utiliza `Math.min` / `Math.max` para se dimensionar elasticamente de forma automática.
+*   **Clientes e Parceiros (Social Proof):** Carrosséis horizontais de loop infinito unificados em um único Schema de banco de dados (`clienteParceiro`). O servidor separa o array matematicamente (via chave seletora) para alimentar os carrosséis adequados na interface.
+*   **Links Bio (Árvore de Links):** Página mobile-first gerenciável pelo marketing, com proteção SEO (`noindex`) nativa para evitar canibalização das buscas orgânicas da Home.
 
 ---
 
-## 4. Otimização para Motores de Busca (SEO)
-A infraestrutura técnica foi preparada para indexação orgânica máxima:
+## 4. Otimização Avançada para Motores de Busca (SEO)
+A infraestrutura técnica foi preparada para indexação orgânica de alto desempenho:
 
-*   **Robots & Sitemap:** Geração dinâmica configurada através dos arquivos TypeScript (`src/app/robots.ts` e `src/app/sitemap.ts`), lidos pelo Next.js em tempo de execução.
-*   **Open Graph:** Preparação do ambiente para injeção automática de metadados para redes sociais através do arquivo `opengraph-image.png`.
-*   **Semântica e Acessibilidade:** Emprego rigoroso de tags HTML5 (`<section>`, `<header>`, `<nav>`) e aplicação de atributos `aria-label` em links e botões puramente iconográficos.
+*   **SEO Dinâmico (generateMetadata):** As rotas de blog interceptam os dados do banco antes da tela existir, injetando *OpenGraph Tags* perfeitas (Foto de capa, Resumo, Autor e Título do artigo) no `<head>` para previews ricos em redes sociais como WhatsApp e LinkedIn.
+*   **Sitemap Híbrido Automático:** O arquivo `sitemap.ts` varre as rotas estáticas institucionais e faz uma requisição paralela ao Sanity, gerando dinamicamente as URLs e as datas de modificação (`_updatedAt`) de todos os artigos publicados para o Googlebot.
+*   **Robots.txt:** Configurado com liberação de mapeamento global, mas com políticas ativas de `Disallow` nas rotas de sistema (`/api/`) e no painel de administração (`/CompStudio`) por motivos de segurança e integridade de indexação.
+*   **Metadados Base:** O RootLayout possui o domínio oficial ancorado na propriedade `metadataBase`, garantindo a validação de URLs relativas do Next.js.
 
 ---
 
@@ -82,22 +83,19 @@ npm install
 ```
 
 3. **Configuração de Variáveis de Ambiente:**
-   Crie um arquivo `.env.local` na raiz do projeto para habilitar o envio do formulário de contato.
+   Crie um arquivo `.env.local` na raiz do projeto para conectar ao banco de dados e habilitar o disparo de e-mails:
 ```text
-RESEND_API_KEY=re_chave_de_teste_aqui
+# Disparo Transacional
+RESEND_API_KEY="re_chave_de_teste_aqui"
+
+# Headless CMS (Sanity)
+NEXT_PUBLIC_SANITY_PROJECT_ID="id_do_projeto_aqui"
+NEXT_PUBLIC_SANITY_DATASET="production"
 ```
 
 4. **Inicie o servidor local:**
 ```bash
 npm run dev
 ```
-Acesse `http://localhost:3000` no seu navegador.
+Acesse `http://localhost:3000` (Visão do Cliente) ou `http://localhost:3000/CompStudio` (Painel Administrativo) no seu navegador.
 
----
-
-## 6. Próximos Passos (Backlog)
-Tarefas recomendadas para futuras iterações da aplicação:
-
-*   **Substituição de Ativos Visuais:** O ecossistema de otimização de imagens estáticas já está estruturalmente configurado. O próximo passo prático é substituir as imagens de placeholder pelas fotografias oficiais e redigir o copywriting final (textos definitivos).
-*   **Gerenciamento de Conteúdo (CMS):** Avaliar a futura implementação de um *Headless CMS* (como Strapi ou Sanity) para permitir atualizações de portfólio, timeline histórica e membros da equipe pela diretoria comercial/marketing, sem necessidade de alterações no código-fonte.
-*   **Dark/Light Mode Dinâmico:** A aplicação possui identidade nativa estrita no *Cinematic Dark Mode*. Uma versão futura pode mapear o chaveamento das variáveis CSS root para suportar um modo claro, alterando o estado globalmente.
