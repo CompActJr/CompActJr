@@ -18,7 +18,8 @@ interface ServiceItem {
     title: string;
     description: string;
     deliverables: string[];
-    featuredCase: { name: string; url: string };
+    // Case de sucesso opcional adicionando a interrogação (?)
+    featuredCase?: { name: string; url: string } | null;
     theme: 'light' | 'accent' | 'dark';
     alignment: string;
 }
@@ -34,10 +35,13 @@ const servicesData: ServiceItem[] = [
             'Sistemas institucionais com painel de gestão',
             'E-commerces e vitrines virtuais sob medida'
         ],
+        // featuredCase comentado temporariamente até o time Comercial ter cases para mostrar
+        /*
         featuredCase: {
             name: 'Totem Vestibulares',
             url: 'https://totemvestibulares.compactjr.com/'
         },
+        */
         theme: 'light',
         alignment: 'md:mr-auto lg:ml-10',
     },
@@ -51,10 +55,12 @@ const servicesData: ServiceItem[] = [
             'Integração de dados com CRMs e planilhas',
             'Fluxos de triagem com Inteligência Artificial'
         ],
+        /*
         featuredCase: {
             name: 'CompAct Bot (Solução Interna)',
             url: '/#contato'
         },
+        */
         theme: 'accent',
         alignment: 'md:ml-auto lg:mr-10 md:-mt-24',
     },
@@ -68,10 +74,12 @@ const servicesData: ServiceItem[] = [
             'Sistemas operacionais de uso interno/logística',
             'Design de Interface e Experiência (UI/UX)'
         ],
+        /*
         featuredCase: {
             name: 'Conecta App',
             url: 'https://conecta.compactjr.com/'
         },
+        */
         theme: 'dark',
         alignment: 'mx-auto md:-mt-12',
     }
@@ -125,17 +133,20 @@ export default function Services() {
                                         </ul>
                                     </div>
 
-                                    <div className="pt-2">
-                                        <Link
-                                            href={service.featuredCase.url}
-                                            className="service-case-pill group"
-                                            // stopPropagation impede que arrastar o botão acione o tilt da Vercel
-                                            onClick={(e) => e.stopPropagation()}
-                                        >
-                                            <span className="font-bold">Case de Sucesso:</span> {service.featuredCase.name}
-                                            <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">↗</span>
-                                        </Link>
-                                    </div>
+                                    {/* RENDERIZAÇÃO CONDICIONAL: O bloco todo só existe se houver dados em featuredCase */}
+                                    {service.featuredCase && (
+                                        <div className="pt-2">
+                                            <Link
+                                                href={service.featuredCase.url}
+                                                className="service-case-pill group"
+                                                // stopPropagation impede que arrastar o botão acione o tilt da Vercel
+                                                onClick={(e) => e.stopPropagation()}
+                                            >
+                                                <span className="font-bold">Case de Sucesso:</span> {service.featuredCase.name}
+                                                <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">↗</span>
+                                            </Link>
+                                        </div>
+                                    )}
 
                                 </div>
 
