@@ -6,7 +6,7 @@
    ========================================= */
 
 .ps-hero {
-    @apply relative w-full min-h-screen flex items-center justify-center pt-28 pb-20 overflow-hidden;
+    @apply relative w-full min-h-screen flex items-center justify-center pt-20 pb-14 overflow-hidden;
 }
 
 .ps-hero-glow-purple {
@@ -50,11 +50,11 @@
    ========================================= */
 
 .ps-countdown-wrapper {
-    @apply relative w-full py-20 z-10;
+    @apply relative w-full py-14 z-10;
 }
 
 .ps-section-header {
-    @apply container mx-auto px-6 max-w-7xl mb-12;
+    @apply container mx-auto px-6 max-w-7xl mb-9;
 }
 
 .ps-section-kicker {
@@ -178,7 +178,7 @@
    ========================================= */
 
 .ps-inscricao-section {
-    @apply relative w-full py-20 z-10;
+    @apply relative w-full py-14 z-10;
 }
 
 .ps-inscricao-container {
@@ -237,7 +237,7 @@
    ========================================= */
 
 .ps-edital-section {
-    @apply relative w-full py-20 z-10;
+    @apply relative w-full py-14 z-10;
 }
 
 .ps-edital-container {
@@ -287,7 +287,7 @@
    ========================================= */
 
 .ps-contact-section {
-    @apply relative w-full py-20 z-10;
+    @apply relative w-full py-14 z-10;
 }
 
 .ps-contact-container {
