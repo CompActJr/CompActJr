@@ -18,6 +18,7 @@ import Footer from "@/src/components/Footer";
 import FloatingButton from "@/src/components/FloatingButton";
 import Portfolio from "@/src/components/Portfolio";
 import ProcessoSeletivo from "@/src/components/ProcessoSeletivo";
+import PSBannerHome from "@/src/components/PSBannerHome";
 
 /**
  * EXPLICAÇÃO TÉCNICA (Capacitação da Equipe):
@@ -61,6 +62,10 @@ export default function Home() {
             <div className="relative z-10 w-full">
                 <Header />
                 <Hero />
+                
+                {psAtivo && <ProcessoSeletivo />}
+                <PSBannerHome />
+
                 <Apoiadores />
                 <Indicadores />
                 <About />
@@ -76,7 +81,6 @@ export default function Home() {
                 <History />
                 <Team />
         
-                {psAtivo && <ProcessoSeletivo />}
 
                 <Contact />
                 <Footer />
