@@ -382,7 +382,7 @@ export default function ProcessoSeletivo() {
                             {
                                 icon: <IconRequisitos />,
                                 title: 'Requisitos',
-                                text: 'Podem se inscrever estudantes regularmente matriculados em qualquer curso de graduação da Universidade Federal de Santa Maria (UFSM), campus Santa Maria, no primeiro semestre de 2026, desde que tenham interesse em atuar nas áreas administrativa, de gestão de pessoas, comercial, comunicação ou projetos. ',
+                                text: 'Podem se inscrever estudantes regularmente matriculados em qualquer curso de graduação da Universidade Federal de Santa Maria (UFSM), campus Santa Maria, desde que tenham interesse em atuar nas áreas administrativa, de gestão de pessoas, comercial, comunicação ou projetos. ',
                             },
                             {
                                 icon: <IconCalendario />,
