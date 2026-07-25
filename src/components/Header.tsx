@@ -44,8 +44,8 @@ export default function Header() {
                     {/* COLUNA 1: NAVEGAÇÃO ESQUERDA (DESKTOP) */}
                     {/* 'shrink-0' impede que os links sejam "esmagados" quando a tela diminui */}
                     <nav className="hidden lg:flex items-center lg:gap-6 xl:gap-10 lg:w-[45%] xl:w-[40%] justify-end shrink-0">
-                        <Link href="#hero" className="nav-link">Homepage</Link>
-                        <Link href="#servicos" className="nav-link">Serviços</Link>
+                        <Link href="/#hero" className="nav-link">Homepage</Link>
+                        <Link href="/#servicos" className="nav-link">Serviços</Link>
                     </nav>
 
                     {/* COLUNA 2: LOGO CENTRAL */}
@@ -67,9 +67,9 @@ export default function Header() {
                     {/* COLUNA 3: NAVEGAÇÃO DIREITA E AÇÕES (DESKTOP) */}
                     <div className="hidden lg:flex items-center lg:gap-5 xl:gap-10 lg:w-[45%] xl:w-[40%] justify-start shrink-0">
                         <nav className="flex items-center lg:gap-4 xl:gap-8">
-                            <Link href="#sobre" className="nav-link ">Quem Somos</Link>
-                            {/*<Link href="#blog" className="nav-link ">Blog</Link>*/}
-                            <Link href="#portfolio" className="nav-link ">Portfólio</Link>
+                            <Link href="/#sobre" className="nav-link ">Quem Somos</Link>
+                            {/*<Link href="/#blog" className="nav-link ">Blog</Link>*/}
+                            <Link href="/#portfolio" className="nav-link ">Portfólio</Link>
                            
                             {psAtivo && (
                                 <Link href="/processoSeletivo" id="nav-processo-seletivo">
@@ -81,7 +81,7 @@ export default function Header() {
 
                         {/* Divisor vertical sutil ('border-l') separando os links dos botões de ação */}
                         <div className="flex items-center lg:gap-3 xl:gap-6 border-l border-branco/10 lg:pl-3 xl:pl-6 shrink-0">
-                            <Link href="#contato">
+                            <Link href="/#contato">
                                 <button className="btn-contato">CONTATO</button>
                             </Link>
 
@@ -141,9 +141,9 @@ export default function Header() {
                 {/* Lista de Links Mobile (Maior espaçamento para toques 'Touch Target') */}
                 <nav className="flex flex-col items-center gap-8 mt-10">
                     <Link href="/" onClick={() => setMenuAberto(false)} className="nav-link nav-link-mobile text-secundaria">Homepage</Link>
-                    <Link href="#servicos" onClick={() => setMenuAberto(false)} className="nav-link nav-link-mobile">Serviços</Link>
-                    <Link href="#sobre" onClick={() => setMenuAberto(false)} className="nav-link nav-link-mobile">Quem Somos</Link>
-                    <Link href="#portfolio" onClick={() => setMenuAberto(false)} className="nav-link nav-link-mobile">Portfólio</Link>
+                    <Link href="/#servicos" onClick={() => setMenuAberto(false)} className="nav-link nav-link-mobile">Serviços</Link>
+                    <Link href="/#sobre" onClick={() => setMenuAberto(false)} className="nav-link nav-link-mobile">Quem Somos</Link>
+                    <Link href="/#portfolio" onClick={() => setMenuAberto(false)} className="nav-link nav-link-mobile">Portfólio</Link>
                  
                     {psAtivo && (
                         <Link
@@ -157,7 +157,7 @@ export default function Header() {
                     )}
 
 
-                    <Link href="#contato" onClick={() => setMenuAberto(false)}>
+                    <Link href="/#contato" onClick={() => setMenuAberto(false)}>
                         <button className="btn-contato text-lg px-12 py-4 mt-2">CONTATO</button>
                     </Link>
                 </nav>
