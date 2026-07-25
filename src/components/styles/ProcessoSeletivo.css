@@ -104,16 +104,23 @@
 }
 
 .ps-timer-grid {
-    @apply flex gap-4 md:gap-6;
+    @apply flex gap-2 sm:gap-4 md:gap-6;
 }
 
 .ps-timer-unit {
-    @apply flex flex-col items-center gap-1;
+    @apply flex flex-col items-center gap-0.5;
 }
 
 .ps-timer-number {
-    @apply font-titulo text-4xl md:text-5xl font-black text-branco tabular-nums leading-none;
+    font-size: clamp(1.5rem, 6vw, 3rem);
+    @apply font-titulo font-black text-branco tabular-nums leading-none;
     text-shadow: 0 0 30px rgba(0, 167, 219, 0.3);
+}
+
+@media (min-width: 768px) {
+    .ps-timer-number {
+        font-size: 3rem; /* md:text-5xl */
+    }
 }
 
 .ps-timer-number.highlight {
@@ -121,11 +128,19 @@
 }
 
 .ps-timer-label {
-    @apply font-principal text-[10px] uppercase tracking-[2px] text-branco/40;
+    font-size: clamp(7px, 1.8vw, 10px);
+    @apply font-principal uppercase tracking-[2px] text-branco/40;
 }
 
 .ps-timer-separator {
-    @apply font-titulo text-3xl md:text-4xl font-black text-branco/30 self-start mt-1 leading-none;
+    font-size: clamp(1.2rem, 5vw, 2.25rem);
+    @apply font-titulo font-black text-branco/30 self-start mt-1 leading-none;
+}
+
+@media (min-width: 768px) {
+    .ps-timer-separator {
+        font-size: 2.25rem; /* md:text-4xl */
+    }
 }
 
 .ps-countdown-status {
@@ -296,7 +311,10 @@
 }
 
 .ps-contact-email-btn {
-    @apply inline-flex items-center gap-3 font-titulo border border-secundaria text-secundaria px-8 md:px-12 py-4 text-[12px] uppercase font-bold tracking-[2px] transition-all duration-300 cursor-pointer;
+    font-size: clamp(9px, 2.5vw, 12px);
+    padding: clamp(0.6rem, 2vw, 1rem) clamp(1rem, 5vw, 3rem);
+    gap: clamp(0.4rem, 1.5vw, 0.75rem);
+    @apply inline-flex items-center font-titulo border border-secundaria text-secundaria uppercase font-bold tracking-[2px] transition-all duration-300 cursor-pointer whitespace-nowrap;
 }
 
 .ps-contact-email-btn:hover {
