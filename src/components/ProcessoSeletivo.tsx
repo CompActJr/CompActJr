@@ -281,7 +281,7 @@ export default function ProcessoSeletivo() {
                         alvo={DATA_ENCERRAMENTO_INSCRICOES}
                         cor="#9628a5"
                         statusAberto="Inscrições ainda não abertas"
-                        statusAtivado="Últimas horas! Não perca o prazo."
+                        statusAtivado="Não perca o prazo!"
                         statusFechado="Inscrições encerradas"
                         delay={0.15}
                     />
