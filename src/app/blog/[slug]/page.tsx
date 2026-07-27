@@ -1,33 +1,67 @@
-// src/app/blog/[slug]/page.tsx
-
 import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import { PortableText } from '@portabletext/react'
+import { Metadata } from 'next' // <-- Importação do Metadata adicionada
 import Header from '../../../components/Header'
 import Footer from '../../../components/Footer'
 import BackgroundGlow from '../../../components/BackgroundGlow'
 import { client } from '@/src/sanity/lib/client'
 
 /**
- * PÁGINA DINÂMICA DE ARTIGO (INTERCEPTADOR / PLACEHOLDER)
- * @description Rota curinga que captura qualquer slug vindo de /blog/[slug].
- * Atua como aviso de "Em Editoração" até a V3 plugar o CMS real.
+ * PÁGINA DINÂMICA DE ARTIGO (OFFICIAL & SEO OPTIMIZED)
+ * @description Busca os dados reais, traduz o Rich Text do CMS e gera metadados dinâmicos para o Google.
  */
 
+// Adicionamos o "excerpt" na query para usar na descrição do Google/WhatsApp
 const queryArtigo = `*[_type == "artigoBlog" && slug.current == $slug][0] {
   title,
   category,
   author,
   date,
   readTime,
+  excerpt,
   "image": image.asset->url,
   content,
   referencias
 }`
 
 export const dynamic = 'force-dynamic'
+
+// FUNÇÃO MÁGICA DE SEO DINÂMICO
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+    const resolvedParams = await params;
+    const slug = resolvedParams.slug;
+
+    // Busca os dados do artigo antes de renderizar a página
+    const artigo = await client.fetch(queryArtigo, { slug })
+
+    // Se a URL estiver errada, retorna um título de fallback
+    if (!artigo) {
+        return { title: 'Artigo não encontrado' }
+    }
+
+    // Injeta os dados do Sanity diretamente nas tags do <head> da página
+    return {
+        title: artigo.title,
+        description: artigo.excerpt || 'Leia este artigo completo no blog da CompAct Jr.',
+        openGraph: {
+            title: artigo.title,
+            description: artigo.excerpt,
+            type: 'article',
+            publishedTime: artigo.date,
+            authors: [artigo.author?.name || 'Equipe CompAct'],
+            images: [
+                {
+                    url: artigo.image, // Usa a foto de capa real do artigo no link do WhatsApp!
+                    width: 1200,
+                    height: 630,
+                }
+            ],
+        }
+    }
+}
 
 const customPortableTextComponents = {
     block: {

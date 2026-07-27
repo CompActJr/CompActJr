@@ -1,25 +1,39 @@
 import { MetadataRoute } from 'next'
+import { client } from '@/src/sanity/lib/client'
 
 /**
  * CONFIGURAÇÃO DO SITEMAP.XML
  * @description Gera dinamicamente o mapa do site para melhorar a indexação no Google.
+ * Conecta-se ao Sanity para gerar rotas dinâmicas dos artigos do blog.
  */
-export default function sitemap(): MetadataRoute.Sitemap {
-    const baseUrl = 'https://project-nextjs-one-rose.vercel.app/' // Substitua pelo domínio final em produção
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+    const baseUrl = 'https://www.compactjr.com'
 
-    return [
-        {
-            url: baseUrl,
-            lastModified: new Date(),
-            changeFrequency: 'monthly',
-            priority: 1.0, // Prioridade máxima (1.0) pois é a home e página única
-        },
-        // Exemplo: Se no futuro a EJ criar uma página de blog, você adicionaria aqui:
-        // {
-        //     url: `${baseUrl}/blog`,
-        //     lastModified: new Date(),
-        //     changeFrequency: 'weekly',
-        //     priority: 0.8,
-        // },
-    ]
+    // Busca todos os artigos ativos no Sanity para gerar as URLs dinâmicas
+    const artigos = await client.fetch(`*[_type == "artigoBlog" && ativo == true]{ "slug": slug.current, _updatedAt }`)
+
+    // Mapeia os artigos para o formato exigido pelo Google
+    const blogUrls = artigos.map((artigo: any) => ({
+        url: `${baseUrl}/blog/${artigo.slug}`,
+        lastModified: artigo._updatedAt ? new Date(artigo._updatedAt) : new Date(),
+        changeFrequency: 'weekly' as const,
+        priority: 0.8,
+    }))
+
+    // Rotas estáticas principais (Criadas na fase de Expansão)
+    const rotasEstaticas = [
+        '',
+        '/sobre',
+        '/portfolio',
+        '/blog',
+        '/materiais',
+        '/links'
+    ].map((route) => ({
+        url: `${baseUrl}${route}`,
+        lastModified: new Date(),
+        changeFrequency: 'monthly' as const,
+        priority: route === '' ? 1.0 : 0.9,
+    }))
+
+    return [...rotasEstaticas, ...blogUrls]
 }

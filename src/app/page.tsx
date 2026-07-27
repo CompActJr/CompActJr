@@ -1,4 +1,3 @@
-
 import { Metadata } from 'next'
 import Header from '../components/Header'
 import Hero from '../components/Hero'
@@ -34,11 +33,11 @@ export const metadata: Metadata = {
     openGraph: {
         title: 'CompAct Jr. | Soluções em TI que Transformam Negócios',
         description: 'Desenvolvimento profissional de softwares e sites com a qualidade de uma Empresa Júnior de excelência.',
-        url: 'https://project-nextjs-one-rose.vercel.app/',
+        url: '/', // Herdado perfeitamente da branch de SEO!
         siteName: 'CompAct Jr.',
         images: [
             {
-                url: '/og-image.png', // A equipe de design deverá criar esta imagem de 1200x630px depois
+                url: '/og-image.png',
                 width: 1200,
                 height: 630,
                 alt: 'Capa de apresentação gráfica da CompAct Jr.',
@@ -68,7 +67,7 @@ const queryParceirosClientes = `*[_type == "clienteParceiro" && ativo == true] {
 export const dynamic = 'force-dynamic'
 
 export default async function Home() {
-
+    // CORREÇÃO: Mantemos APENAS o Promise.all da branch do CMS para buscar tudo em paralelo
     const [teaserData, parceirosClientesData] = await Promise.all([
         client.fetch(queryTeaser),
         client.fetch(queryParceirosClientes)
@@ -83,6 +82,7 @@ export default async function Home() {
             <div className="relative z-10 w-full">
                 <Header />
                 <Hero />
+                {/* Dados dinâmicos injetados com sucesso */}
                 <Apoiadores apoiadoresData={apoiadoresData} />
                 <Indicadores />
                 <About />
@@ -92,6 +92,7 @@ export default async function Home() {
                     <Services />
                 </SectionsWithWatermark>
 
+                {/* os 3 primeiros projetos aqui */}
                 <Portfolio teaserProjectsData={teaserData} />
 
                 <MaterialsTrailer />
