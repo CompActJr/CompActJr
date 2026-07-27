@@ -67,7 +67,6 @@ const queryParceirosClientes = `*[_type == "clienteParceiro" && ativo == true] {
 export const dynamic = 'force-dynamic'
 
 export default async function Home() {
-    // CORREÇÃO: Mantemos APENAS o Promise.all da branch do CMS para buscar tudo em paralelo
     const [teaserData, parceirosClientesData] = await Promise.all([
         client.fetch(queryTeaser),
         client.fetch(queryParceirosClientes)
