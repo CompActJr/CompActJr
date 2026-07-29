@@ -38,11 +38,11 @@ export const metadata: Metadata = {
     openGraph: {
         title: 'CompAct Jr. | Soluções em TI que Transformam Negócios',
         description: 'Desenvolvimento profissional de softwares e sites com a qualidade de uma Empresa Júnior de excelência.',
-        url: 'https://project-nextjs-one-rose.vercel.app/',
+        url: 'https://compactjr.com/',
         siteName: 'CompAct Jr.',
         images: [
             {
-                url: '/og-image.png', // A equipe de design deverá criar esta imagem de 1200x630px depois
+                url: '/og-image.png',
                 width: 1200,
                 height: 630,
                 alt: 'Capa de apresentação gráfica da CompAct Jr.',

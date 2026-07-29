@@ -29,7 +29,15 @@ export const metadata: Metadata = {
         title: 'Processo Seletivo 2026/2 | CompAct Jr.',
         description:
             'Inscreva-se no PS 2026/2 da CompAct Jr. e faça parte da melhor Empresa Júnior de TI do Rio Grande do Sul.',
-        url: 'https://project-nextjs-one-rose.vercel.app/processoSeletivo',
+        url: 'https://compactjr.com/processoSeletivo',
+        images: [
+            {
+                url: '/og-image.png',
+                width: 1200,
+                height: 630,
+                alt: 'Capa de apresentação gráfica da CompAct Jr.',
+            },
+        ],
         siteName: 'CompAct Jr.',
         locale: 'pt_BR',
         type: 'website',
